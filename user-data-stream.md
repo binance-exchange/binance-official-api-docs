@@ -6,7 +6,7 @@
 * Doing a `DELETE` on a `listenKey` will close the stream.
 * The base websocket endpoint is: **wss://stream.binance.com:9443**
 * User Data Streams are accessed at **/ws/\<listenKey\>**
-* A single connection to **stream.binance.com** is only valid for 24 hours; expect to be disconnected at the 24 hour mark.
+* A single connection to **stream.binance.com** is only valid for 24 hours; expect to be disconnected at the 24 hour mark
 
 # API Endpoints
 ## Create a listenKey
@@ -84,6 +84,7 @@ Account state is updated with the `outboundAccountInfo` event.
   "T": true,                    // Can trade?
   "W": true,                    // Can withdraw?
   "D": true,                    // Can deposit?
+  "u": 1499405658848,           // Time of last account update
   "B": [                        // Balances array
     {
       "a": "LTC",               // Asset
@@ -129,10 +130,10 @@ Orders are updated with the `executionReport` event. Check the API documentation
   "f": "GTC",                    // Time in force
   "q": "1.00000000",             // Order quantity
   "p": "0.10264410",             // Order price
-  "P": "0.00000000",             // Ignore
+  "P": "0.00000000",             // Stop price
   "F": "0.00000000",             // Iceberg quantity
   "g": -1,                       // Ignore
-  "C": "null",                   // Ignore
+  "C": "null",                   // Original client order ID; This is the ID of the order being canceled
   "x": "NEW",                    // Current execution type
   "X": "NEW",                    // Current order status
   "r": "NONE",                   // Order reject reason; will be an error code.
@@ -145,7 +146,7 @@ Orders are updated with the `executionReport` event. Check the API documentation
   "T": 1499405658657,            // Transaction time
   "t": -1,                       // Trade ID
   "I": 8641984,                  // Ignore
-  "w": true,                     // Is the order working?
+  "w": true,                     // Is the order working? Stops will have
   "m": false,                    // Is this trade the maker side?
   "M": false                     // Ignore
 }

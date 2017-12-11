@@ -208,6 +208,10 @@ There is no & between "GTC" and "quantity=1".
 
 * LIMIT
 * MARKET
+* STOP_LOSS
+* STOP_LOSS_LIMIT
+* TAKE_PROFIT
+* TAKE_PROFIT_LIMIT
 * LIMIT_MAKER
 
 **Order side:**
@@ -560,6 +564,7 @@ symbol | STRING | NO |
 **Response:**
 ```javascript
 {
+  "symbol": "BNBBTC",
   "priceChange": "-94.99999800",
   "priceChangePercent": "-95.960",
   "weightedAvgPrice": "0.29628482",
@@ -584,6 +589,7 @@ OR
 ```javascript
 [
   {
+    "symbol": "BNBBTC",
     "priceChange": "-94.99999800",
     "priceChangePercent": "-95.960",
     "weightedAvgPrice": "0.29628482",
@@ -713,6 +719,7 @@ timeInForce | ENUM | NO |
 quantity | DECIMAL | YES |
 price | DECIMAL | NO |
 newClientOrderId | STRING | NO | A unique id for the order. Automatically generated if not sent.
+stopPrice | DECIMAL | NO | Used with `STOP_LOSS`, `STOP_LOSS_LIMIT`, `TAKE_PROFIT`, and `TAKE_PROFIT_LIMIT` orders.
 icebergQty | DECIMAL | NO | Used with `LIMIT`, `STOP_LOSS_LIMIT`, and `TAKE_PROFIT_LIMIT` to create an iceberg order.
 newOrderRespType | ENUM | NO | Set the response JSON. `ACK`, `RESULT`, or `FULL`; default: `RESULT`.
 recvWindow | LONG | NO |
@@ -724,12 +731,24 @@ Type | Additional mandatory parameters
 ------------ | ------------
 `LIMIT` | `timeInForce`, `quantity`, `price`
 `MARKET` | `quantity`
+`STOP_LOSS` | `quantity`, `stopPrice`
+`STOP_LOSS_LIMIT` | `timeInForce`, `quantity`,  `price`, `stopPrice`
+`TAKE_PROFIT` | `quantity`, `stopPrice`
+`TAKE_PROFIT_LIMIT` | `timeInForce`, `quantity`, `price`, `stopPrice`
 `LIMIT_MAKER` | `quantity`, `price`
 
 Other info:
 
+* `LIMIT_MAKER` are `LIMIT` orders that will be rejected if they would immediately match and trade as a taker.
+* `STOP_LOSS` and `TAKE_PROFIT` will execute a `MARKET` order when the `stopPrice` is reached.
+* Any `LIMIT` or `LIMIT_MAKER` type order can be made an iceberg order by sending an `icebergQty`.
 * Any order with an `icebergQty` MUST have `timeInForce` set to `GTC`.
 
+
+Trigger order price rules against market price for both MARKET and LIMIT versions:
+
+* Price above market price: `STOP_LOSS` `BUY`, `TAKE_PROFIT` `SELL`
+* Price below market price: `STOP_LOSS` `SELL`, `TAKE_PROFIT` `BUY`
 
 **Response ACK:**
 ```javascript
@@ -1013,6 +1032,7 @@ timestamp | LONG | YES |
   "canTrade": true,
   "canWithdraw": true,
   "canDeposit": true,
+  "updateTime": 123456789,
   "balances": [
     {
       "asset": "BTC",
@@ -1134,11 +1154,11 @@ Filters come in two forms: `symbol filters` and `exchange filters`.
 ### PRICE_FILTER
 The `PRICE_FILTER` defines the `price` rules for a symbol. There are 3 parts:
 
-* `minPrice` defines the minimum `price` allowed.
-* `maxPrice` defines the maximum `price` allowed.
-* `tickSize` defines the intervals that a `price` can be increased/decreased by.
+* `minPrice` defines the minimum `price`/`stopPrice` allowed.
+* `maxPrice` defines the maximum `price`/`stopPrice` allowed.
+* `tickSize` defines the intervals that a `price`/`stopPrice` can be increased/decreased by.
 
-In order to pass the `price filter`, the following must be true for `price`:
+In order to pass the `price filter`, the following must be true for `price`/`stopPrice`:
 
 * `price` >= `minPrice`
 * `price` <= `maxPrice`

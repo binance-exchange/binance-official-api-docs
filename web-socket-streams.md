@@ -6,7 +6,7 @@
 * Combined streams are accessed at **/stream?streams=\<streamName1\>/\<streamName2\>/\<streamName3\>**
 * Combined stream events are wrapped as follows: **{"stream":"\<streamName\>","data":\<rawPayload\>}**
 * All symbols for streams are **lowercase**
-* A single connection to **stream.binance.com** is only valid for 24 hours; expect to be disconnected at the 24 hour mark.
+* A single connection to **stream.binance.com** is only valid for 24 hours; expect to be disconnected at the 24 hour mark
 
 # Detailed Stream information
 ## Aggregate Trade Streams

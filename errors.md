@@ -84,26 +84,8 @@ Errors consist of two parts: an error code and a message. Codes are universal,
  * A parameter was sent when not required.
  * Parameter '%s' sent when not required.
 
-#### -1107 WRONG_PARAMS_FOR_ACCOUNT
- * Wrong number of parameters when creating an account.
-
-#### -1108 BAD_ASSET
- * Invalid asset.
-
-#### -1109 BAD_ACCOUNT
- * Invalid account.
-
-#### -1110 BAD_INSTRUMENT_TYPE
- * Invalid symbolType.
-
-#### -1111 BAD_PRECISION
- * Precision is over the maximum defined for this asset.
-
 #### -1112 NO_DEPTH
  * No orders on book for symbol.
-
-#### -1113 WITHDRAW_NOT_NEGATIVE
- * Withdrawal amount must be negative.
 
 #### -1114 TIF_NOT_REQUIRED
  * TimeInForce parameter sent when not required.
@@ -129,9 +111,6 @@ Errors consist of two parts: an error code and a message. Codes are universal,
 #### -1121 BAD_SYMBOL
  * Invalid symbol.
 
-#### -1122 INVALID_SYMBOL_STATUS
- * Invalid symbolStatus.
-
 #### -1125 INVALID_LISTEN_KEY
  * This listenKey does not exist.
 
@@ -152,6 +131,9 @@ Errors consist of two parts: an error code and a message. Codes are universal,
 
 #### -2009 DUPLICATE_API_KEY_DESC
  * API-key desc already exists.
+
+#### -2012 CANCEL_ALL_FAIL
+ * Batch cancel failure.
 
 #### -2013 NO_SUCH_ORDER
  * Order does not exist.
@@ -176,6 +158,10 @@ Error message | Description
 "Account has insufficient balance for requested action." | Not enough funds to complete the action
 "Market orders are not supported for this symbol." | `MARKET` is not enabled on the symbol
 "Iceberg orders are not supported for this symbol." | `icebergQty` is not enabled on the symbol
+"Stop loss orders are not supported for this symbol." | `STOP_LOSS` is not enabled on the symbol
+"Stop loss limit orders are not supported for this symbol." | `STOP_LOSS_LIMIT` is not enabled on the symbol
+"Take profit orders are not supported for this symbol." | `TAKE_PROFIT` is not enabled on the symbol
+"Take profit limit orders are not supported for this symbol." | `TAKE_PROFIT_LIMIT` is not enabled on the symbol
 "Price * QTY is zero or less." | `price` * `quantity` is too low
 "IcebergQty exceeds QTY." | `icebergQty` must be less than the order quantity
 "This action disabled is on this account." | Contact customer support; some actions have been disabled on the account.
