@@ -107,7 +107,7 @@ m -> minutes; h -> hours; d -> days; w -> weeks; M -> months
 ```
 
 ## Individual Symbol Ticker Streams
-24hr Ticker statistics for a single symbol pushed every second
+24hr Ticker statistics for a single symbol pushed every second.
 
 **Stream Name:** \<symbol\>@ticker
 
@@ -141,7 +141,7 @@ m -> minutes; h -> hours; d -> days; w -> weeks; M -> months
 ```
 
 ## All Market Tickers Stream
-24hr Ticker statistics for all symbols in an array pushed every second
+24hr Ticker statistics for all symbols in an array pushed every second.
 
 **Stream Name:** !ticker@arr
 
