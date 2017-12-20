@@ -34,7 +34,7 @@ It is important to **NOT** treat this as a failure; the execution status is
 
 # LIMITS
 * The `/api/v1/exchangeInfo` `rateLimits` array contains objects related to the exchange's `REQUESTS` and `ORDER` rate limits.
-* A 429 will be returned when either rather limit is violated.
+* A 429 will be returned when either rate limit is violated.
 * Each route has a `weight` which determines for the number of requests each endpoint counts for. Heavier endpoints and endpoints that do operations on multiple symbols will have a heavier `weight`.
 * When a 429 is recieved, it's your obligation as an API to back off and not spam the API.
 * **Repeatedly violating rate limits and/or failing to back off after receiving 429s will result in an automated IP ban (http status 418).**
