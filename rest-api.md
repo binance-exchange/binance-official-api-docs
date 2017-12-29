@@ -256,6 +256,35 @@ m -> minutes; h -> hours; d -> days; w -> weeks; M -> months
 * MINUTE
 * DAY
 
+## Table of Contents
+
+- [General endpoints](#general-endpoints)
+    - [Test connectivity](#test-connectivity)
+    - [Check server time](#check-server-time)
+    - [Exchange information](#exchange-information)
+- [Market Data endpoints](#market-data-endpoints)
+    - [Order book](#order-book)
+    - [Recent trades list](#recent-trades-list)
+    - [Old trade lookup (MARKET_DATA)](#old-trade-lookup-market_data)
+    - [Compressed/Aggregate trades list](#compressedaggregate-trades-list)
+    - [Kline/Candlestick data](#klinecandlestick-data)
+    - [24hr ticker price change statistics](#24hr-ticker-price-change-statistics)
+    - [Symbol price ticker](#symbol-price-ticker)
+    - [Symbol order book ticker](#symbol-order-book-ticker)
+- [Account endpoints](#account-endpoints)
+    - [New order  (TRADE)](#new-order--trade)
+    - [Test new order (TRADE)](#test-new-order-trade)
+    - [Query order (USER_DATA)](#query-order-user_data)
+    - [Cancel order (TRADE)](#cancel-order-trade)
+    - [Current open orders (USER_DATA)](#current-open-orders-user_data)
+    - [All orders (USER_DATA)](#all-orders-user_data)
+    - [Account information (USER_DATA)](#account-information-user_data)
+    - [Account trade list (USER_DATA)](#account-trade-list-user_data)
+- [User data stream endpoints](#user-data-stream-endpoints)
+    - [Start user data stream (USER_STREAM)](#start-user-data-stream-user_stream)
+    - [Keepalive user data stream (USER_STREAM)](#keepalive-user-data-stream-user_stream)
+    - [Close user data stream (USER_STREAM)](#close-user-data-stream-user_stream)
+
 ## General endpoints
 ### Test connectivity
 ```
