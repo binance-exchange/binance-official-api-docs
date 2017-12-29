@@ -256,7 +256,7 @@ m -> minutes; h -> hours; d -> days; w -> weeks; M -> months
 * MINUTE
 * DAY
 
-## Table of Contents
+## Endpoints
 
 - [General endpoints](#general-endpoints)
     - [Test connectivity](#test-connectivity)
