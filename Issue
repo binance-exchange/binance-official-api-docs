@@ -1,0 +1,5 @@
+Sorry for creating a new file, but I can't see where to file an issue about the API.
+
+My issue is: how can I get a list of all my trades? The [myTrades](https://github.com/binance-exchange/binance-official-api-docs/blob/master/rest-api.md#account-trade-list-user_data) endpoint requires a symbol, but I want all my trades, for all symbols. This is standard with other exchanges, either directly like [Kraken](https://www.kraken.com/help/api#get-trades-history), or with a special symbol parameter, e.g. ["all" for Poloniex/returnTradeHistory](https://poloniex.com/support/api/).
+
+Is there a way to get all my trades from Binance? This is important for tax reporting purposes, and I don't want to miss a symbol I forgot I traded long time ago.
