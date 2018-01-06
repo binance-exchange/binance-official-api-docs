@@ -272,7 +272,7 @@ m -> minutes; h -> hours; d -> days; w -> weeks; M -> months
     - [Symbol price ticker](#symbol-price-ticker)
     - [Symbol order book ticker](#symbol-order-book-ticker)
 - [Account endpoints](#account-endpoints)
-    - [New order  (TRADE)](#new-order--trade)
+    - [New order (TRADE)](#new-order--trade)
     - [Test new order (TRADE)](#test-new-order-trade)
     - [Query order (USER_DATA)](#query-order-user_data)
     - [Cancel order (TRADE)](#cancel-order-trade)
