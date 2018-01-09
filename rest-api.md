@@ -1,5 +1,56 @@
 # Public Rest API for Binance (2017-12-01)
-# General API Information
+
+## Index
+* [General API Information](#general-api-information)
+* [Limits](#limits)
+* [Endpoint security type](#endpoint-security-type)
+* [SIGNED (TRADE and USER_DATA) Endpoint security](#signed-trade-and-user_data-endpoint-security)
+  * [Timing security](#timing-security)
+  * [SIGNED Endpoint Examples for POST /api/v1/order](#signed-endpoint-examples-for-post-apiv1order)
+    * [Example 1: As a query string](#example-1-as-a-query-string)
+    * [Example 2: As a request body](#example-2-as-a-request-body)
+    * [Example 3: Mixed query string and request body](#example-3-mixed-query-string-and-request-body)
+* [Public API Endpoints](#public-api-endpoints)
+  * [Terminology](#terminology)
+  * [ENUM definitions](#enum-definitions)
+  * [General endpoints](#general-endpoints)
+    * [Test connectivity](#test-connectivity)
+    * [Check server time](#check-server-time)
+    * [Exchange information](#exchange-information)
+  * [Market Data endpoints](#market-data-endpoints)
+    * [Order book](#order-book)
+    * [Recent trades list](#recent-trades-list)
+    * [Old trade lookup (MARKET_DATA)](#old-trade-lookup-market_data)
+    * [Compressed/Aggregate trades list](#compressedaggregate-trades-list)
+    * [Kline/Candlestick data](#klinecandlestick-data)
+    * [24hr ticker price change statistics](#24hr-ticker-price-change-statistics)
+    * [Symbol price ticker](#symbol-price-ticker)
+    * [Symbol order book ticker](#symbol-order-book-ticker)
+  * [Account endpoints](#account-endpoints)
+    * [New order (TRADE)](#new-order--trade)
+    * [Test new order (TRADE)](#test-new-order-trade)
+    * [Query order (USER_DATA)](#query-order-user_data)
+    * [Cancel order (TRADE)](#cancel-order-trade)
+    * [Current open orders (USER_DATA)](#current-open-orders-user_data)
+    * [All orders (USER_DATA)](#all-orders-user_data)
+    * [Account information (USER_DATA)](#account-information-user_data)
+    * [Account trade list (USER_DATA)](#account-trade-list-user_data)
+  * [User data stream endpoints](#user-data-stream-endpoints)
+    * [Start user data stream (USER_STREAM)](#start-user-data-stream-user_stream)
+    * [Keepalive user data stream (USER_STREAM)](#keepalive-user-data-stream-user_stream)
+    * [Close user data stream (USER_STREAM)](#close-user-data-stream-user_stream)
+* [Filters](#filters)
+  * [Symbol filters](#symbol-filters)
+    * [PRICE_FILTER](#price_filter)
+    * [LOT_SIZE](#lot_size)
+    * [MIN_NOTIONAL](#min_notional)
+    * [MAX_NUM_ORDERS](#max_num_orders)
+    * [MAX_ALGO_ORDERS](#max_algo_orders)
+  * [Exchange Filters](#exchange-filters)
+    * [EXCHANGE_MAX_NUM_ORDERS](#exchange_max_num_orders)
+    * [EXCHANGE_MAX_ALGO_ORDERS](#exchange_max_algo_orders)
+
+## General API Information
 * The base endpoint is: **https://api.binance.com**
 * All endpoints return either a JSON object or array.
 * Data is returned in **ascending** order. Oldest first, newest last.
@@ -32,7 +83,7 @@ It is important to **NOT** treat this as a failure; the execution status is
 * If a parameter sent in both the `query string` and `request body`, the
   `query string` parameter will be used.
 
-# LIMITS
+## LIMITS
 * The `/api/v1/exchangeInfo` `rateLimits` array contains objects related to the exchange's `REQUESTS` and `ORDER` rate limits.
 * A 429 will be returned when either rather limit is violated.
 * Each route has a `weight` which determines for the number of requests each endpoint counts for. Heavier endpoints and endpoints that do operations on multiple symbols will have a heavier `weight`.
@@ -40,7 +91,7 @@ It is important to **NOT** treat this as a failure; the execution status is
 * **Repeatedly violating rate limits and/or failing to back off after receiving 429s will result in an automated IP ban (http status 418).**
 * IP bans are tracked and **scale in duration** for repeat offenders, **from 2 minutes to 3 days**.
 
-# Endpoint security type
+## Endpoint security type
 * Each endpoint has a security type that determines the how you will
   interact with it.
 * API-keys are passed into the Rest API via the `X-MBX-APIKEY`
@@ -62,7 +113,7 @@ MARKET_DATA | Endpoint requires sending a valid API-Key.
 
 * `TRADE` and `USER_DATA` endpoints are `SIGNED` endpoints.
 
-# SIGNED (TRADE and USER_DATA) Endpoint security
+## SIGNED (TRADE and USER_DATA) Endpoint security
 * `SIGNED` endpoints require an additional parameter, `signature`, to be
   sent in the  `query string` or `request body`.
 * Endpoints use `HMAC SHA256` signatures. The `HMAC SHA256 signature` is a keyed `HMAC SHA256` operation.
@@ -71,7 +122,7 @@ MARKET_DATA | Endpoint requires sending a valid API-Key.
 * `totalParams` is defined as the `query string` concatenated with the
   `request body`.
 
-## Timing security
+### Timing security
 * A `SIGNED` endpoint also requires a parameter, `timestamp`, to be sent which
   should be the millisecond timestamp of when the request was created and sent.
 * An additional parameter, `recvWindow`, may be sent to specific the number of
@@ -96,7 +147,7 @@ server.
 **Tt recommended to use a small recvWindow of 5000 or less!**
 
 
-## SIGNED Endpoint Examples for POST /api/v1/order
+### SIGNED Endpoint Examples for POST /api/v1/order
 Here is a step-by-step example of how to send a vaild signed payload from the
 Linux command line using `echo`, `openssl`, and `curl`.
 
@@ -118,7 +169,7 @@ recvWindow | 5000
 timestamp | 1499827319559
 
 
-### Example 1: As a query string
+#### Example 1: As a query string
 * **queryString:** symbol=LTCBTC&side=BUY&type=LIMIT&timeInForce=GTC&quantity=1&price=0.1&recvWindow=5000&timestamp=1499827319559
 * **HMAC SHA256 signature:**
 
@@ -135,7 +186,7 @@ timestamp | 1499827319559
     [linux]$ curl -H "X-MBX-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A" -X POST 'https://api.binance.com/api/v3/order?symbol=LTCBTC&side=BUY&type=LIMIT&timeInForce=GTC&quantity=1&price=0.1&recvWindow=5000&timestamp=1499827319559&signature=c8db56825ae71d6d79447849e617115f4a920fa2acdcab2b053c4b2838bd6b71'
     ```
 
-### Example 2: As a request body
+#### Example 2: As a request body
 * **requestBody:** symbol=LTCBTC&side=BUY&type=LIMIT&timeInForce=GTC&quantity=1&price=0.1&recvWindow=5000&timestamp=1499827319559
 * **HMAC SHA256 signature:**
 
@@ -152,7 +203,7 @@ timestamp | 1499827319559
     [linux]$ curl -H "X-MBX-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A" -X POST 'https://api.binance.com/api/v3/order' -d 'symbol=LTCBTC&side=BUY&type=LIMIT&timeInForce=GTC&quantity=1&price=0.1&recvWindow=6000000&timestamp=1499827319559&signature=c8db56825ae71d6d79447849e617115f4a920fa2acdcab2b053c4b2838bd6b71'
     ```
 
-### Example 3: Mixed query string and request body
+#### Example 3: Mixed query string and request body
 * **queryString:** symbol=LTCBTC&side=BUY&type=LIMIT&timeInForce=GTC
 * **requestBody:** quantity=1&price=0.1&recvWindow=5000&timestamp=1499827319559
 * **HMAC SHA256 signature:**
@@ -173,13 +224,13 @@ timestamp | 1499827319559
 Note that the signature is different in example 3.
 There is no & between "GTC" and "quantity=1".
 
-# Public API Endpoints
-## Terminology
+## Public API Endpoints
+### Terminology
 * `base asset` refers to the asset that is the `quantity` of a symbol.
 * `quoate asset` refers to the asset that is the `price` of a symbol.
 
 
-## ENUM definitions
+### ENUM definitions
 **Symbol status:**
 
 * PRE_TRADING
@@ -256,8 +307,8 @@ m -> minutes; h -> hours; d -> days; w -> weeks; M -> months
 * MINUTE
 * DAY
 
-## General endpoints
-### Test connectivity
+### General endpoints
+#### Test connectivity
 ```
 GET /api/v1/ping
 ```
@@ -274,7 +325,7 @@ NONE
 {}
 ```
 
-### Check server time
+#### Check server time
 ```
 GET /api/v1/time
 ```
@@ -293,7 +344,7 @@ NONE
 }
 ```
 
-### Exchange information
+#### Exchange information
 ```
 GET /api/v1/exchangeInfo
 ```
@@ -354,8 +405,8 @@ NONE
 }
 ```
 
-## Market Data endpoints
-### Order book
+### Market Data endpoints
+#### Order book
 ```
 GET /api/v1/depth
 ```
@@ -400,7 +451,7 @@ limit | INT | NO | Default 100; max 1000. Valid limits:[5, 10, 20, 50, 100, 500,
 }
 ```
 
-### Recent trades list
+#### Recent trades list
 ```
 GET /api/v1/trades
 ```
@@ -430,7 +481,7 @@ limit | INT | NO | Default 500; max 500.
 ]
 ```
 
-### Old trade lookup (MARKET_DATA)
+#### Old trade lookup (MARKET_DATA)
 ```
 GET /api/v1/historicalTrades
 ```
@@ -461,7 +512,7 @@ fromId | LONG | NO | TradeId to fetch from. Default gets most recent trades.
 ]
 ```
 
-### Compressed/Aggregate trades list
+#### Compressed/Aggregate trades list
 ```
 GET /api/v1/aggTrades
 ```
@@ -500,7 +551,7 @@ limit | INT | NO | Default 500; max 500.
 ]
 ```
 
-### Kline/Candlestick data
+#### Kline/Candlestick data
 ```
 GET /api/v1/klines
 ```
@@ -543,7 +594,7 @@ endTime | LONG | NO |
 ```
 
 
-### 24hr ticker price change statistics
+#### 24hr ticker price change statistics
 ```
 GET /api/v1/ticker/24hr
 ```
@@ -613,7 +664,7 @@ OR
 ```
 
 
-### Symbol price ticker
+#### Symbol price ticker
 ```
 GET /api/v3/ticker/price
 ```
@@ -651,7 +702,7 @@ OR
 ]
 ```
 
-### Symbol order book ticker
+#### Symbol order book ticker
 ```
 GET /api/v3/ticker/bookTicker
 ```
@@ -698,8 +749,8 @@ OR
 ]
 ```
 
-## Account endpoints
-### New order  (TRADE)
+### Account endpoints
+#### New order  (TRADE)
 ```
 POST /api/v3/order  (HMAC SHA256)
 ```
@@ -826,7 +877,7 @@ Trigger order price rules against market price for both MARKET and LIMIT version
 }
 ```
 
-### Test new order (TRADE)
+#### Test new order (TRADE)
 ```
 POST /api/v3/order/test (HMAC SHA256)
 ```
@@ -846,7 +897,7 @@ Same as `/api/v3/order`
 {}
 ```
 
-### Query order (USER_DATA)
+#### Query order (USER_DATA)
 ```
 GET /api/v3/order (HMAC SHA256)
 ```
@@ -888,7 +939,7 @@ Either `orderId` or `origClientOrderId` must be sent.
 }
 ```
 
-### Cancel order (TRADE)
+#### Cancel order (TRADE)
 ```
 DELETE /api/v3/order  (HMAC SHA256)
 ```
@@ -920,7 +971,7 @@ Either `orderId` or `origClientOrderId` must be sent.
 }
 ```
 
-### Current open orders (USER_DATA)
+#### Current open orders (USER_DATA)
 ```
 GET /api/v3/openOrders  (HMAC SHA256)
 ```
@@ -962,7 +1013,7 @@ timestamp | LONG | YES |
 ]
 ```
 
-### All orders (USER_DATA)
+#### All orders (USER_DATA)
 ```
 GET /api/v3/allOrders (HMAC SHA256)
 ```
@@ -1006,7 +1057,7 @@ Otherwise most recent orders are returned.
 ]
 ```
 
-### Account information (USER_DATA)
+#### Account information (USER_DATA)
 ```
 GET /api/v3/account (HMAC SHA256)
 ```
@@ -1048,7 +1099,7 @@ timestamp | LONG | YES |
 }
 ```
 
-### Account trade list (USER_DATA)
+#### Account trade list (USER_DATA)
 ```
 GET /api/v3/myTrades  (HMAC SHA256)
 ```
@@ -1084,10 +1135,10 @@ timestamp | LONG | YES |
   }
 ]
 ```
-## User data stream endpoints
+### User data stream endpoints
 Specifics on how user data streams work is in another document.
 
-### Start user data stream (USER_STREAM)
+#### Start user data stream (USER_STREAM)
 ```
 POST /api/v1/userDataStream
 ```
@@ -1106,7 +1157,7 @@ NONE
 }
 ```
 
-### Keepalive user data stream (USER_STREAM)
+#### Keepalive user data stream (USER_STREAM)
 ```
 PUT /api/v1/userDataStream
 ```
@@ -1126,7 +1177,7 @@ listenKey | STRING | YES
 {}
 ```
 
-### Close user data stream (USER_STREAM)
+#### Close user data stream (USER_STREAM)
 ```
 DELETE /api/v1/userDataStream
 ```
@@ -1146,12 +1197,12 @@ listenKey | STRING | YES
 {}
 ```
 
-# Filters
+## Filters
 Filters define trading rules on a symbol or an exchange.
 Filters come in two forms: `symbol filters` and `exchange filters`.
 
-## Symbol filters
-### PRICE_FILTER
+### Symbol filters
+#### PRICE_FILTER
 The `PRICE_FILTER` defines the `price` rules for a symbol. There are 3 parts:
 
 * `minPrice` defines the minimum `price`/`stopPrice` allowed.
@@ -1174,7 +1225,7 @@ In order to pass the `price filter`, the following must be true for `price`/`sto
   }
 ```
 
-### LOT_SIZE
+#### LOT_SIZE
 The `LOT_SIZE` filter defines the `quantity` (aka "lots" in auction terms) rules for a symbol. There are 3 parts:
 
 * `minQty` defines the minimum `quantity`/`icebergQty` allowed.
@@ -1197,7 +1248,7 @@ In order to pass the `lot size`, the following must be true for `quantity`/`iceb
   }
 ```
 
-### MIN_NOTIONAL
+#### MIN_NOTIONAL
 The `MIN_NOTIONAL` filter defines the minimum notional value allowed for an order on a symbol.
 An order's notional value is the `price` * `quantity`.
 
@@ -1209,7 +1260,7 @@ An order's notional value is the `price` * `quantity`.
   }
 ```
 
-### MAX_NUM_ORDERS
+#### MAX_NUM_ORDERS
 The `MAX_NUM_ORDERS` filter defines the maximum number of orders an account is allowed to have open on a symbol.
 Note that both "algo" orders and normal orders are counted for this filter.
 
@@ -1221,7 +1272,7 @@ Note that both "algo" orders and normal orders are counted for this filter.
   }
 ```
 
-### MAX_ALGO_ORDERS
+#### MAX_ALGO_ORDERS
 The `MAX_ALGO_ORDERS` filter defines the maximum number of "algo" orders an account is allowed to have open on a symbol.
 "Algo" orders are `STOP_LOSS`, `STOP_LOSS_LIMIT`, `TAKE_PROFIT`, and `TAKE_PROFIT_LIMIT` orders.
 
@@ -1233,8 +1284,8 @@ The `MAX_ALGO_ORDERS` filter defines the maximum number of "algo" orders an acco
   }
 ```
 
-## Exchange Filters
-### EXCHANGE_MAX_NUM_ORDERS
+### Exchange Filters
+#### EXCHANGE_MAX_NUM_ORDERS
 The `MAX_NUM_ORDERS` filter defines the maximum number of orders an account is allowed to have open on the exchange.
 Note that both "algo" orders and normal orders are counted for this filter.
 
@@ -1246,7 +1297,7 @@ Note that both "algo" orders and normal orders are counted for this filter.
   }
 ```
 
-### EXCHANGE_MAX_ALGO_ORDERS
+#### EXCHANGE_MAX_ALGO_ORDERS
 The `MAX_ALGO_ORDERS` filter defines the maximum number of "algo" orders an account is allowed to have open on the exchange.
 "Algo" orders are `STOP_LOSS`, `STOP_LOSS_LIMIT`, `TAKE_PROFIT`, and `TAKE_PROFIT_LIMIT` orders.
 
