@@ -2,7 +2,7 @@
   * GET /api/v1/aggTrades weight changed to 2
   * GET /api/v1/klines weight changed to 2
   * GET /api/v3/order weight changed to 2
-  * GET /api/v3/allOrders weight changed to 100
+  * GET /api/v3/allOrders weight changed to 20
   * GET /api/v3/account weight changed to 20
-  * GET /api/v3/myTrades weight changed to 100
+  * GET /api/v3/myTrades weight changed to 20
 

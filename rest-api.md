@@ -969,7 +969,7 @@ GET /api/v3/allOrders (HMAC SHA256)
 Get all account orders; active, canceled, or filled.
 
 **Weight:**
-100
+20
 
 **Parameters:**
 
@@ -1055,7 +1055,7 @@ GET /api/v3/myTrades  (HMAC SHA256)
 Get trades for a specific account and symbol.
 
 **Weight:**
-100
+20
 
 **Parameters:**
 
