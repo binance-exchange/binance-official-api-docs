@@ -1,4 +1,4 @@
-# Public Rest API for Binance (2017-12-01)
+# Public Rest API for Binance (2018-01-14)
 # General API Information
 * The base endpoint is: **https://api.binance.com**
 * All endpoints return either a JSON object or array.
@@ -469,7 +469,7 @@ Get compressed, aggregate trades. Trades that fill at the time, from the same
 order, with the same price will have the quantity aggregated.
 
 **Weight:**
-1
+2
 
 **Parameters:**
 
@@ -508,7 +508,7 @@ Kline/candlestick bars for a symbol.
 Klines are uniquely identified by their open time.
 
 **Weight:**
-1
+2
 
 **Parameters:**
 
@@ -853,7 +853,7 @@ GET /api/v3/order (HMAC SHA256)
 Check an order's status.
 
 **Weight:**
-1
+2
 
 **Parameters:**
 
@@ -969,7 +969,7 @@ GET /api/v3/allOrders (HMAC SHA256)
 Get all account orders; active, canceled, or filled.
 
 **Weight:**
-1
+100
 
 **Parameters:**
 
@@ -1013,7 +1013,7 @@ GET /api/v3/account (HMAC SHA256)
 Get current account information.
 
 **Weight:**
-1
+20
 
 **Parameters:**
 
@@ -1055,7 +1055,7 @@ GET /api/v3/myTrades  (HMAC SHA256)
 Get trades for a specific account and symbol.
 
 **Weight:**
-1
+100
 
 **Parameters:**
 
@@ -1257,4 +1257,5 @@ The `MAX_ALGO_ORDERS` filter defines the maximum number of "algo" orders an acco
     "limit": 200
   }
 ```
+
 
