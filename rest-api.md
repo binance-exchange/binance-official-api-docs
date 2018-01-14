@@ -437,7 +437,7 @@ GET /api/v1/historicalTrades
 Get older trades.
 
 **Weight:**
-100
+20
 
 **Parameters:**
 
