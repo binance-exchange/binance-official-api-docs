@@ -853,7 +853,7 @@ GET /api/v3/order (HMAC SHA256)
 Check an order's status.
 
 **Weight:**
-2
+1
 
 **Parameters:**
 
@@ -927,7 +927,7 @@ GET /api/v3/openOrders  (HMAC SHA256)
 Get all open orders on a symbol. **Careful** when accessing this with no symbol.
 
 **Weight:**
-1 for a single symbol; **number of symbols** that are `TRADING` when the symbol parameter is omitted
+1 for a single symbol; **number of symbols that are `TRADING` / 2** when the symbol parameter is omitted
 
 **Parameters:**
 
@@ -969,7 +969,7 @@ GET /api/v3/allOrders (HMAC SHA256)
 Get all account orders; active, canceled, or filled.
 
 **Weight:**
-20
+15
 
 **Parameters:**
 
@@ -1055,7 +1055,7 @@ GET /api/v3/myTrades  (HMAC SHA256)
 Get trades for a specific account and symbol.
 
 **Weight:**
-20
+15
 
 **Parameters:**
 
