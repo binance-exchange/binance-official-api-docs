@@ -176,7 +176,7 @@ There is no & between "GTC" and "quantity=1".
 # Public API Endpoints
 ## Terminology
 * `base asset` refers to the asset that is the `quantity` of a symbol.
-* `quoate asset` refers to the asset that is the `price` of a symbol.
+* `quote asset` refers to the asset that is the `price` of a symbol.
 
 
 ## ENUM definitions
