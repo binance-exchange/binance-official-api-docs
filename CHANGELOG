@@ -1,0 +1,16 @@
+---- 2018-01-20
+  * GET /api/v1/ticker/24hr single symbol weight decreased to 1
+  * GET /api/v3/openOrders all symbols weight decreased to number of trading symbols / 2
+  * GET /api/v3/allOrders weight decreased to 15
+  * GET /api/v3/myTrades weight decreased to 15
+  * GET /api/v3/order weight decreased to 1
+  * myTrades will now return both sides of a self-trade/wash-trade
+
+---- 2018-01-14
+  * GET /api/v1/aggTrades weight changed to 2
+  * GET /api/v1/klines weight changed to 2
+  * GET /api/v3/order weight changed to 2
+  * GET /api/v3/allOrders weight changed to 20
+  * GET /api/v3/account weight changed to 20
+  * GET /api/v3/myTrades weight changed to 20
+  * GET /api/v3/historicalTrades weight changed to 20

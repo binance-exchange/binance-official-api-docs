@@ -1,4 +1,4 @@
-# Public Rest API for Binance (2017-12-01)
+# Public Rest API for Binance (2018-01-14)
 
 ## Index
 * [General API Information](#general-api-information)
@@ -488,7 +488,7 @@ GET /api/v1/historicalTrades
 Get older trades.
 
 **Weight:**
-100
+20
 
 **Parameters:**
 
@@ -520,7 +520,7 @@ Get compressed, aggregate trades. Trades that fill at the time, from the same
 order, with the same price will have the quantity aggregated.
 
 **Weight:**
-1
+2
 
 **Parameters:**
 
@@ -559,7 +559,7 @@ Kline/candlestick bars for a symbol.
 Klines are uniquely identified by their open time.
 
 **Weight:**
-1
+2
 
 **Parameters:**
 
@@ -978,7 +978,7 @@ GET /api/v3/openOrders  (HMAC SHA256)
 Get all open orders on a symbol. **Careful** when accessing this with no symbol.
 
 **Weight:**
-1 for a single symbol; **number of symbols** that are `TRADING` when the symbol parameter is omitted
+1 for a single symbol; **number of symbols that are `TRADING` / 2** when the symbol parameter is omitted
 
 **Parameters:**
 
@@ -1020,7 +1020,7 @@ GET /api/v3/allOrders (HMAC SHA256)
 Get all account orders; active, canceled, or filled.
 
 **Weight:**
-1
+15
 
 **Parameters:**
 
@@ -1064,7 +1064,7 @@ GET /api/v3/account (HMAC SHA256)
 Get current account information.
 
 **Weight:**
-1
+20
 
 **Parameters:**
 
@@ -1106,7 +1106,7 @@ GET /api/v3/myTrades  (HMAC SHA256)
 Get trades for a specific account and symbol.
 
 **Weight:**
-1
+15
 
 **Parameters:**
 
@@ -1308,4 +1308,5 @@ The `MAX_ALGO_ORDERS` filter defines the maximum number of "algo" orders an acco
     "limit": 200
   }
 ```
+
 
