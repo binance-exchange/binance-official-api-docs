@@ -100,6 +100,8 @@ server.
 Here is a step-by-step example of how to send a vaild signed payload from the
 Linux command line using `echo`, `openssl`, and `curl`.
 
+* `symbol` means the two currency you want to process, `LTCBTC` means sell `LTC` and buy `BTC`.
+
 Key | Value
 ------------ | ------------
 apiKey | vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A
