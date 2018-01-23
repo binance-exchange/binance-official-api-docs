@@ -1,3 +1,13 @@
+---- 2018-01-23
+  * GET /api/v1/historicalTrades weight decreased to 5
+  * GET /api/v1/aggTrades weight decreased to 1
+  * GET /api/v1/klines weight decreased to 1
+  * GET /api/v1/ticker/24hr all symbols weight decreased to number of trading symbols / 2
+  * GET /api/v3/allOrders weight decreased to 5
+  * GET /api/v3/myTrades weight decreased to 5
+  * GET /api/v3/account weight decreased to 5
+  * -1003 error message updated to direct users to websockets
+
 ---- 2018-01-20
   * GET /api/v1/ticker/24hr single symbol weight decreased to 1
   * GET /api/v3/openOrders all symbols weight decreased to number of trading symbols / 2

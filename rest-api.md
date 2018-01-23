@@ -367,8 +367,8 @@ Adjusted based on the limit:
 Limit | Weight
 ------------ | ------------
 5, 10, 20, 50, 100 | 1
-500 | 25
-1000 | 50
+500 | 5
+1000 | 10
 
 **Parameters:**
 
@@ -437,7 +437,7 @@ GET /api/v1/historicalTrades
 Get older trades.
 
 **Weight:**
-20
+5
 
 **Parameters:**
 
@@ -469,7 +469,7 @@ Get compressed, aggregate trades. Trades that fill at the time, from the same
 order, with the same price will have the quantity aggregated.
 
 **Weight:**
-2
+1
 
 **Parameters:**
 
@@ -508,7 +508,7 @@ Kline/candlestick bars for a symbol.
 Klines are uniquely identified by their open time.
 
 **Weight:**
-2
+1
 
 **Parameters:**
 
@@ -550,7 +550,7 @@ GET /api/v1/ticker/24hr
 24 hour price change statistics. **Careful** when accessing this with no symbol.
 
 **Weight:**
-1 for a single symbol; **number of symbols** that are `TRADING` when the symbol parameter is omitted
+1 for a single symbol; **number of symbols that are `TRADING` / 2** when the symbol parameter is omitted
 
 **Parameters:**
 
@@ -969,7 +969,7 @@ GET /api/v3/allOrders (HMAC SHA256)
 Get all account orders; active, canceled, or filled.
 
 **Weight:**
-15
+5
 
 **Parameters:**
 
@@ -1013,7 +1013,7 @@ GET /api/v3/account (HMAC SHA256)
 Get current account information.
 
 **Weight:**
-20
+5
 
 **Parameters:**
 
@@ -1055,7 +1055,7 @@ GET /api/v3/myTrades  (HMAC SHA256)
 Get trades for a specific account and symbol.
 
 **Weight:**
-15
+5
 
 **Parameters:**
 
