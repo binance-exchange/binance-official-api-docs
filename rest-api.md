@@ -14,7 +14,7 @@
 but not get a response within the timeout period.
 It is important to **NOT** treat this as a failure; the execution status is
 **UNKNOWN** and could have been a success.
-* Any endpoint can retun an ERROR; the error payload is as follows:
+* Any endpoint can return an ERROR; the error payload is as follows:
 ```javascript
 {
   "code": -1121,
