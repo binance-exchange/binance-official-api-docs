@@ -558,8 +558,7 @@ Name | Type | Mandatory | Description
 ------------ | ------------ | ------------ | ------------
 symbol | STRING | NO |
 
-* If the symbol is not sent, tickers for all symbols will be returned in an array.
-* When all symbols are returned, the number of requests counted against the rate limiter is equal to the number of symbols currently trading on the exchange.
+* If `symbol` is not sent, tickers for all symbols will be returned in an array.
 
 **Response:**
 ```javascript
