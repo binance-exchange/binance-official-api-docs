@@ -369,14 +369,7 @@ Fetch system status.
 **Response:**
 ```javascript
 { 
-    "status": 0,
-    "msg": "normal"
-}
-```
-OR
-```javascript
-{ 
-    "status": 1,
-    "msg": "system maintenance"
+    "status": 0,              // 0: normal，1：system maintenance
+    "msg": "normal"           // normal or system maintenance
 }
 ```
