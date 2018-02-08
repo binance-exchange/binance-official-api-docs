@@ -360,7 +360,7 @@ timestamp | LONG | YES
 }
 ```
 
-### System Status (USER_DATA)
+### System Status (System)
 ```
 GET /wapi/v3/systemStatus.html
 ```
@@ -369,7 +369,14 @@ Fetch system status.
 **Response:**
 ```javascript
 { 
-    "success": true,
+    "status": 0,
     "msg": "normal"
+}
+```
+OR
+```javascript
+{ 
+    "status": 1,
+    "msg": "system maintenance"
 }
 ```
