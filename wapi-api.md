@@ -359,3 +359,17 @@ timestamp | LONG | YES
     ]
 }
 ```
+
+### System Status (USER_DATA)
+```
+GET /wapi/v3/systemStatus.html
+```
+
+Fetch system status.
+**Response:**
+```javascript
+{ 
+    "success": true,
+    "msg": "normal"
+}
+```
