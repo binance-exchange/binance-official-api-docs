@@ -1061,7 +1061,7 @@ Get trades for a specific account and symbol.
 
 Name | Type | Mandatory | Description
 ------------ | ------------ | ------------ | ------------
-symbol | STRING | YES |
+symbol | STRING | NO |
 limit | INT | NO | Default 500; max 500.
 fromId | LONG | NO | TradeId to fetch from. Default gets most recent trades.
 recvWindow | LONG | NO |
