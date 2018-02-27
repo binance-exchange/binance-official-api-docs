@@ -521,7 +521,7 @@ startTime | LONG | NO |
 endTime | LONG | NO |
 
 * If startTime and endTime are not sent, the most recent klines are returned.
-* If startTime is provided then endTime is also manditory.
+* If startTime is provided then endTime is also mandatory.
 
 **Response:**
 ```javascript
