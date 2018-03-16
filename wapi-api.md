@@ -318,6 +318,7 @@ Fetch deposit address.
 Name | Type | Mandatory | Description
 ------------ | ------------ | ------------ | ------------
 asset | STRING | YES	
+status | Boolean |NO
 recvWindow | LONG | NO	
 timestamp | LONG | YES	
 
@@ -329,6 +330,33 @@ timestamp | LONG | YES
     "success": true,
     "addressTag": "1231212",
     "asset": "BNB"
+}
+]
+```
+
+### Withdraw Fee (USER_DATA)
+```
+GET  /wapi/v3/withdrawFee.html (HMAC SHA256)
+```
+Fetch deposit address.
+
+**Weight:**
+1
+
+**Parameters:**
+
+Name | Type | Mandatory | Description
+------------ | ------------ | ------------ | ------------
+asset | STRING | YES	
+recvWindow | LONG | NO	
+timestamp | LONG | YES	
+
+**Response:**
+```javascript
+[
+{
+    "withdrawFee": "0.0005",
+    "success": true
 }
 ]
 ```
