@@ -580,7 +580,7 @@ symbol | STRING | NO |
   "quoteVolume": "15.30000000",
   "openTime": 1499783499040,
   "closeTime": 1499869899040,
-  "fristId": 28385,   // First tradeId
+  "firstId": 28385,   // First tradeId
   "lastId": 28460,    // Last tradeId
   "count": 76         // Trade count
 }
@@ -605,7 +605,7 @@ OR
     "quoteVolume": "15.30000000",
     "openTime": 1499783499040,
     "closeTime": 1499869899040,
-    "fristId": 28385,   // First tradeId
+    "firstId": 28385,   // First tradeId
     "lastId": 28460,    // Last tradeId
     "count": 76         // Trade count
   }
