@@ -564,50 +564,56 @@ symbol | STRING | NO |
 **Response:**
 ```javascript
 {
-  "symbol": "BNBBTC",
-  "priceChange": "-94.99999800",
-  "priceChangePercent": "-95.960",
-  "weightedAvgPrice": "0.29628482",
-  "prevClosePrice": "0.10002000",
-  "lastPrice": "4.00000200",
-  "lastQty": "200.00000000",
-  "bidPrice": "4.00000000",
-  "askPrice": "4.00000200",
-  "openPrice": "99.00000000",
-  "highPrice": "100.00000000",
-  "lowPrice": "0.10000000",
-  "volume": "8913.30000000",
-  "quoteVolume": "15.30000000",
-  "openTime": 1499783499040,
-  "closeTime": 1499869899040,
-  "fristId": 28385,   // First tradeId
-  "lastId": 28460,    // Last tradeId
-  "count": 76         // Trade count
+  "askPrice": 0.05450100,
+  "askQty": 0.82200000,
+  "bidPrice": 0.05443800,
+  "bidQty": 0.46900000,
+  "closeTime": "2018-04-02T22:37:56Z",
+  "currencyPair": {},
+  "firstTradeId": 48994089,
+  "highPrice": 0.05590000,
+  "lastPrice": 0.05450200,
+  "lastQty": 0.02500000,
+  "lastTradeId": 49216397,
+  "lowPrice": 0.05439200,
+  "openPrice": 0.05562400,
+  "openTime": "2018-04-01T22:37:56Z",
+  "prevClosePrice": 0.05556100,
+  "priceChange": -0.00112200,
+  "priceChangePercent": -2.017,
+  "quoteVolume": 6159.38599086,
+  "symbol": "ETHBTC",
+  "tradeCount": 222309,
+  "volume": 111506.31600000,
+  "weightedAvgPrice": 0.05523800
 }
 ```
 OR
 ```javascript
 [
   {
-    "symbol": "BNBBTC",
-    "priceChange": "-94.99999800",
-    "priceChangePercent": "-95.960",
-    "weightedAvgPrice": "0.29628482",
-    "prevClosePrice": "0.10002000",
-    "lastPrice": "4.00000200",
-    "lastQty": "200.00000000",
-    "bidPrice": "4.00000000",
-    "askPrice": "4.00000200",
-    "openPrice": "99.00000000",
-    "highPrice": "100.00000000",
-    "lowPrice": "0.10000000",
-    "volume": "8913.30000000",
-    "quoteVolume": "15.30000000",
-    "openTime": 1499783499040,
-    "closeTime": 1499869899040,
-    "fristId": 28385,   // First tradeId
-    "lastId": 28460,    // Last tradeId
-    "count": 76         // Trade count
+    "askPrice": 0.05450100,
+    "askQty": 0.82200000,
+    "bidPrice": 0.05443800,
+    "bidQty": 0.46900000,
+    "closeTime": "2018-04-02T22:37:56Z",
+    "currencyPair": {},
+    "firstTradeId": 48994089,
+    "highPrice": 0.05590000,
+    "lastPrice": 0.05450200,
+    "lastQty": 0.02500000,
+    "lastTradeId": 49216397,
+    "lowPrice": 0.05439200,
+    "openPrice": 0.05562400,
+    "openTime": "2018-04-01T22:37:56Z",
+    "prevClosePrice": 0.05556100,
+    "priceChange": -0.00112200,
+    "priceChangePercent": -2.017,
+    "quoteVolume": 6159.38599086,
+    "symbol": "ETHBTC",
+    "tradeCount": 222309,
+    "volume": 111506.31600000,
+    "weightedAvgPrice": 0.05523800
   }
 ]
 ```
