@@ -124,7 +124,7 @@ m -> minutes; h -> hours; d -> days; w -> weeks; M -> months
   "c": "0.0025",      // Current day's close price
   "Q": "10",          // Close trade's quantity
   "b": "0.0024",      // Best bid price
-  "B": "10",          // Bid bid quantity
+  "B": "10",          // Best bid quantity
   "a": "0.0026",      // Best ask price
   "A": "100",         // Best ask quantity
   "o": "0.0010",      // Open price
