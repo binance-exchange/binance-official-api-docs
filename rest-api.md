@@ -957,7 +957,7 @@ timestamp | LONG | YES |
     "stopPrice": "0.0",
     "icebergQty": "0.0",
     "time": 1499827319559,
-    "isWorking": trueO
+    "isWorking": true
   }
 ]
 ```
