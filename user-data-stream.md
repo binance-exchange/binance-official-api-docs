@@ -6,14 +6,15 @@
 * Doing a `DELETE` on a `listenKey` will close the stream.
 * The base websocket endpoint is: **wss://stream.binance.com:9443**
 * User Data Streams are accessed at **/ws/\<listenKey\>**
+* Listen keys are reused between clients; closing a listen key will affect all clients that use it.
 * A single connection to **stream.binance.com** is only valid for 24 hours; expect to be disconnected at the 24 hour mark
 
 # API Endpoints
-## Create a listenKey
+## Create or return a listenKey
 ```
 POST /api/v1/userDataStream
 ```
-Start a new user data stream. The stream will close after 60 minutes unless a keepalive is sent.
+Start a new user data stream, or return the key to an already existing one. The stream will close after 60 minutes unless a keepalive is sent.
 
 **Weight:**
 1
