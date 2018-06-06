@@ -417,14 +417,14 @@ timestamp | LONG | YES
 Fetch small amounts of assets exchanged BNB records.
 
 **Response:**
-javascript
+```javascript
 {
     "success": true, 
     "results": {
         "total": 2,   //Total counts of exchange
         "rows": [
             {
-                "transfered_total": "0.00132256",      //Total transfered BNB amount for this exchange.
+                "transfered_total": "0.00132256",//Total transfered BNB amount for this exchange.
                 "service_charge_total": "0.00002699",   //Total service charge amount for this exchange.
                 "tran_id": 4359321,
                 "logs": [           //Details of  this exchange.
@@ -454,7 +454,7 @@ javascript
                 "service_charge_total": "0.000012",
                 "tran_id": 4357015,
                 "logs": [       // Details of  this exchange.
-                    { 
+                    {
                         "tranId": 4357015,
                         "serviceChargeAmount": "0.00001",
                         "uid": "10000015",
@@ -478,3 +478,4 @@ javascript
         ]
     }
 }
+```
