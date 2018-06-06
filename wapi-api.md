@@ -403,9 +403,15 @@ Fetch system status.
 ```
 
 ### DustLog (USER_DATA)
+```
 GET /wapi/v3/userAssetDribbletLog.html   (HMAC SHA256)
+```
+Fetch small amounts of assets exchanged BNB records.
+
+
 **Weight:**
 1
+
 
 **Parameters:**
 
@@ -413,8 +419,6 @@ Name | Type | Mandatory | Description
 ------------ | ------------ | ------------ | ------------
 recvWindow | LONG | NO  
 timestamp | LONG | YES  
-
-Fetch small amounts of assets exchanged BNB records.
 
 **Response:**
 ```javascript
