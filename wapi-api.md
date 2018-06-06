@@ -410,7 +410,7 @@ GET /wapi/v3/userAssetDribbletLog.html   (HMAC SHA256)
 **Parameters:**
 
 Name | Type | Mandatory | Description
-—---------- | —---------- | —---------- | —----------
+------------ | ------------ | ------------ | ------------
 recvWindow | LONG | NO  
 timestamp | LONG | YES  
 
