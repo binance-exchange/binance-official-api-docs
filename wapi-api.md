@@ -190,7 +190,7 @@ asset	|  STRING |	YES
 address	 | STRING | YES	
 addressTag | STRING | NO | Secondary address identifier for coins like XRP,XMR etc.
 amount | DECIMAL | YES	
-name | STRING | NO | Description of the address
+name | STRING | YES | Description of the address
 recvWindow | LONG | NO	
 timestamp | LONG | YES	
 **Response:**
