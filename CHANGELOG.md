@@ -2,7 +2,7 @@
 ## 2018-07-18
 ### Rest API
   *  New filter: `ICEBERG_PARTS`
-  *  api/v3/order new defaults for `newOrderRespType`. `ACK`, `RESULT`, or `FULL`; `MARKET` and `LIMIT` order types default to `FULL`, all other orders default to `ACK`.
+  *  `POST api/v3/order` new defaults for `newOrderRespType`. `ACK`, `RESULT`, or `FULL`; `MARKET` and `LIMIT` order types default to `FULL`, all other orders default to `ACK`.
   *  POST api/v3/order `RESULT` and `FULL` responses now have `cummulativeQuoteQty`
   *  GET api/v3/openOrders with no symbol weight reduced to 40.
   *  GET api/v3/ticker/24hr with no symbol weight reduced to 40.
@@ -11,6 +11,7 @@
   *  Max amount of aggregate trades from GET /api/v1/aggTrades increased to 1000.
   *  Max amount of aggregate trades from GET /api/v1/klines increased to 1000.
   *  Rest API Order lookups now return `updateTime` which represents the last time the order was updated; `time` is the order creation time.
+  *  Order lookup endpoints will now return `cummulativeQuoteQty`. If `cummulativeQuoteQty` is < 0, it means the data isn't available for this order at this time.
 
 ### User data stream
   *  `cummulativeQuoteQty` field added to order responses and execution reports (as variable `Z`). Represents the cummulative amount of the `quote` that has been spent (with a `BUY` order) or received (with a `SELL` order). Historical orders will have a -1 in this field indicating the data is not available at this time. `cummulativeQuoteQty` divided by `cummulativeQty` will give the average price for an order.
