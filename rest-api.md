@@ -1238,14 +1238,14 @@ Note that both "algo" orders and normal orders are counted for this filter.
   }
 ```
 
-### MAX_ALGO_ORDERS
+### MAX_NUM_ALGO_ORDERS
 The `MAX_ALGO_ORDERS` filter defines the maximum number of "algo" orders an account is allowed to have open on a symbol.
 "Algo" orders are `STOP_LOSS`, `STOP_LOSS_LIMIT`, `TAKE_PROFIT`, and `TAKE_PROFIT_LIMIT` orders.
 
 **/exchangeInfo format:**
 ```javascript
   {
-    "filterType": "MAX_ALGO_ORDERS",
+    "filterType": "MAX_NUM_ALGO_ORDERS",
     "limit": 5
   }
 ```
@@ -1274,14 +1274,14 @@ Note that both "algo" orders and normal orders are counted for this filter.
   }
 ```
 
-### EXCHANGE_MAX_ALGO_ORDERS
+### EXCHANGE_MAX_NUM_ALGO_ORDERS
 The `MAX_ALGO_ORDERS` filter defines the maximum number of "algo" orders an account is allowed to have open on the exchange.
 "Algo" orders are `STOP_LOSS`, `STOP_LOSS_LIMIT`, `TAKE_PROFIT`, and `TAKE_PROFIT_LIMIT` orders.
 
 **/exchangeInfo format:**
 ```javascript
   {
-    "filterType": "EXCHANGE_MAX_ALGO_ORDERS",
+    "filterType": "EXCHANGE_MAX_NUM_ALGO_ORDERS",
     "limit": 200
   }
 ```
