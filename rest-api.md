@@ -1246,7 +1246,7 @@ The `MAX_ALGO_ORDERS` filter defines the maximum number of "algo" orders an acco
 ```javascript
   {
     "filterType": "MAX_NUM_ALGO_ORDERS",
-    "limit": 5
+    "maxNumAlgoOrders": 5
   }
 ```
 
