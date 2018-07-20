@@ -483,3 +483,38 @@ timestamp | LONG | YES
     }
 }
 ```
+
+### Trade Fee (USER_DATA)
+```
+GET  /wapi/v3/tradeFee.html (HMAC SHA256)
+```
+Fetch trade fee.
+
+
+**Weight:**
+1
+
+
+**Parameters:**
+
+Name | Type | Mandatory | Description
+------------ | ------------ | ------------ | ------------
+recvWindow | LONG | NO  
+timestamp | LONG | YES  
+symbol | STRING | NO
+
+**Response:**
+```javascript
+{
+	"tradeFee": [{
+		"symbol": "ADABNB",
+		"maker": 0.9000,
+		"taker": 1.0000
+	}, {
+		"symbol": "BNBBTC",
+		"maker": 0.3000,
+		"taker": 0.3000
+	}],
+	"success": true
+}
+```
