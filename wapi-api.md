@@ -195,13 +195,11 @@ recvWindow | LONG | NO
 timestamp | LONG | YES	
 **Response:**
 ```javascript
-[
 {
     "msg": "success",
     "success": true,
     "id":"7213fea8e94b4a5593d507237e5a555b"
 }
-]
 ```
 
 
