@@ -1,4 +1,16 @@
-# CHANGELOG for Binance's API (2018-07-18)
+# CHANGELOG for Binance's API (2018-11-13)
+## 2018-11-13
+### Rest API
+  * New filters: `PERCENT_PRICE`, `MARKET_LOT_SIZE`, `MAX_NUM_ICEBERG_ORDERS`.
+  * Added `RAW_REQUST` rate limit. Limits based on the number of requests over X minutes regardless of weight.
+  * /api/v3/ticker/price increased to weight of 2 for a no symbol query.
+  * /api/v3/ticker/bookTicker increased weight of 2 for a no symbol query.
+  * DELETE /api/v3/order will now return an execution report of the final state of the order.
+  * `MIN_NOTIONAL` filter has two new parameters: `applyToMarket` (whether or not the filter is applied to MARKET orders) and `avgPriceMins` (the number of minutes over which the price averaged for the notional estimation).
+
+### User data stream
+  * `Last quote asset transacted quantity` (as variable `Y`) added to execution reports. Represents the `lastPrice` * `lastQty` (`L` * `l`).
+
 ## 2018-07-18
 ### Rest API
   *  New filter: `ICEBERG_PARTS`

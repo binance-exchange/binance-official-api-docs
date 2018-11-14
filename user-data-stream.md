@@ -1,4 +1,4 @@
-# User Data Streams for Binance (2018-07-18)
+# User Data Streams for Binance (2018-11-13)
 # General WSS information
 * The base API endpoint is: **https://api.binance.com**
 * A User Data Stream `listenKey` is valid for 60 minutes after creation.
@@ -152,7 +152,8 @@ Average price can be found by doing `Z` divided by `z`.
   "m": false,                    // Is this trade the maker side?
   "M": false,                    // Ignore
   "O": 1499405658657,            // Order creation time
-  "Z": "0.00000000"              // Cumulative quote asset transacted quantity
+  "Z": "0.00000000",             // Cumulative quote asset transacted quantity
+  "Y": "0.00000000"              // Last quote asset transacted quantity (i.e. lastPrice * lastQty)
 }
 ```
 
