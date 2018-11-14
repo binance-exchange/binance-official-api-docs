@@ -551,6 +551,30 @@ limit | INT | NO | Default 500; max 1000.
 ```
 
 
+### Current average price
+Current average price for a symbol.
+```
+GET /api/v3/avgPrice
+```
+**Weight:**
+1
+
+**Parameters:**
+
+Name | Type | Mandatory | Description
+------------ | ------------ | ------------ | ------------
+symbol | STRING | YES |
+
+
+**Response:**
+```javascript
+{
+  "mins": 5,
+  "price": "9.35751834"
+}
+```
+
+
 ### 24hr ticker price change statistics
 ```
 GET /api/v1/ticker/24hr
@@ -935,7 +959,7 @@ Either `orderId` or `origClientOrderId` must be sent.
   "origQty": "10.00000000",
   "executedQty": "8.00000000",
   "cummulativeQuoteQty": "8.00000000",
-  "status": "CANCELED
+  "status": "CANCELED",
   "timeInForce": "GTC",
   "type": "LIMIT",
   "side": "SELL"

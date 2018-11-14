@@ -7,7 +7,19 @@
   * /api/v3/ticker/price increased to weight of 2 for a no symbol query.
   * /api/v3/ticker/bookTicker increased weight of 2 for a no symbol query.
   * DELETE /api/v3/order will now return an execution report of the final state of the order.
-  * `MIN_NOTIONAL` filter has two new parameters: `applyToMarket` (whether or not the filter is applied to MARKET orders) and `avgPriceMins` (the number of minutes over which the price averaged for the notional estimation).
+  * `MIN_NOTIONAL` filter has two new parameters: `applyToMarket` (whether or not the filter is applied to MARKET orders) and `avgPriceMins` (the number of minutes over which the price averaged for the notional estimation). 
+  
+#### Explanation for the average price calculation:
+  1. (qty * price) of all trades / numTrades of the trades over previous 5 minutes.
+
+  2. If there is no trade in the last 5 minutes, it takes the first trade that happened outside of the 5min window. For example if the last trade was 20 minutes ago, that trade's price is the 5 min average.
+
+  3. If there is no trade on the symbol, there is no average price and market orders cannot be placed.
+     On a new symbol with `applyToMarket` enabled on the `MIN_NOTIONAL` filter, market orders cannot be placed until there is at least 1 trade.
+
+  4. The current average price can be checked here: `https://api.binance.com/api/v3/avgPrice?symbol=<symbol>`
+     For example:
+     https://api.binance.com/api/v3/avgPrice?symbol=BNBUSDT
 
 ### User data stream
   * `Last quote asset transacted quantity` (as variable `Y`) added to execution reports. Represents the `lastPrice` * `lastQty` (`L` * `l`).
