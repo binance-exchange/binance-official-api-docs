@@ -1,6 +1,7 @@
 # CHANGELOG for Binance's API (2018-11-13)
 ## 2018-11-13
 ### Rest API
+  * Can now cancel orders through the Rest API during a trading ban.
   * New filters: `PERCENT_PRICE`, `MARKET_LOT_SIZE`, `MAX_NUM_ICEBERG_ORDERS`.
   * Added `RAW_REQUST` rate limit. Limits based on the number of requests over X minutes regardless of weight.
   * /api/v3/ticker/price increased to weight of 2 for a no symbol query.
