@@ -67,7 +67,7 @@ MARKET_DATA | Endpoint requires sending a valid API-Key.
   sent in the  `query string` or `request body`.
 * Endpoints use `HMAC SHA256` signatures. The `HMAC SHA256 signature` is a keyed `HMAC SHA256` operation.
   Use your `secretKey` as the key and `totalParams` as the value for the HMAC operation.
-* The `signature` is **not case sensitive**.
+* The `signature` is **not case sensitive**, but it should come last in the list or params!
 * `totalParams` is defined as the `query string` concatenated with the
   `request body`.
 
@@ -322,14 +322,13 @@ timestamp | LONG | YES
 
 **Response:**
 ```javascript
-[
 {
     "address": "0x6915f16f8791d0a1cc2bf47c13a6b2a92000504b",
     "success": true,
     "addressTag": "1231212",
     "asset": "BNB"
 }
-]
+
 ```
 
 ### Account Status (USER_DATA)
