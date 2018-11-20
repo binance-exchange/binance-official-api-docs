@@ -8,6 +8,7 @@
   * /api/v3/ticker/bookTicker increased weight of 2 for a no symbol query.
   * DELETE /api/v3/order will now return an execution report of the final state of the order.
   * `MIN_NOTIONAL` filter has two new parameters: `applyToMarket` (whether or not the filter is applied to MARKET orders) and `avgPriceMins` (the number of minutes over which the price averaged for the notional estimation). 
+  * `intervalNum` added to /api/v1/exchangeInfo limits. `intervalNum` describes the amount of the interval. For example: `intervalNum` 5, with `interval` minute, means "every 5 minutes".
   
 #### Explanation for the average price calculation:
   1. (qty * price) of all trades / numTrades of the trades over previous 5 minutes.
