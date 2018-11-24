@@ -1372,7 +1372,7 @@ Note that both "algo" orders and normal orders are counted for this filter.
 ```javascript
   {
     "filterType": "EXCHANGE_MAX_NUM_ORDERS",
-    "maxNumOrders 1000
+    "maxNumOrders": 1000
   }
 ```
 
