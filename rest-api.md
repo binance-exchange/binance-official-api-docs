@@ -305,6 +305,7 @@ Current exchange trading rules and symbol information
 NONE
 
 **Response:**
+# FIXME: this response under filters is missing extra dicts that have been added today! (4 dec 2018)
 ```javascript
 {
   "timezone": "UTC",
