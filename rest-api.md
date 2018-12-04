@@ -1214,13 +1214,13 @@ Filters come in two forms: `symbol filters` and `exchange filters`.
 ### PRICE_FILTER
 The `PRICE_FILTER` defines the `price` rules for a symbol. There are 3 parts:
 
-* `minPrice` defines the minimum `price`/`stopPrice` allowed.
-* `maxPrice` defines the maximum `price`/`stopPrice` allowed.
-* `tickSize` defines the intervals that a `price`/`stopPrice` can be increased/decreased by.
+* `minPrice` defines the minimum `price`/`stopPrice` allowed; disabled on `minPrice` == 0.
+* `maxPrice` defines the maximum `price`/`stopPrice` allowed; disabled on `maxPrice` == 0.
+* `tickSize` defines the intervals that a `price`/`stopPrice` can be increased/decreased by; disabled on `tickSize` == 0.
 
-In order to pass the `price filter`, the following must be true for `price`/`stopPrice`:
+Any of the above variables can be set to 0, which disables that rule in the `price filter`. In order to pass the `price filter`, the following must be true for `price`/`stopPrice` of the enabled rules:
 
-* `price` >= `minPrice`
+* `price` >= `minPrice` 
 * `price` <= `maxPrice`
 * (`price`-`minPrice`) % `tickSize` == 0
 
