@@ -178,7 +178,6 @@ There is no & between "GTC" and "quantity=1".
 
 
 ## ENUM definitions
-## ENUM definitions
 **Symbol status (status):**
 
 * PRE_TRADING
