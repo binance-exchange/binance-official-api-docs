@@ -31,7 +31,7 @@
   `query string` parameter will be used.
 
 # LIMITS
-* The `/api/v1/exchangeInfo` `rateLimits` array contains objects related to the exchange's `RAW_REQUEST`, `REQUEST_WEIGHT`, and `ORDER` rate limits.
+* The `/api/v1/exchangeInfo` `rateLimits` array contains objects related to the exchange's `RAW_REQUEST`, `REQUEST_WEIGHT`, and `ORDER` rate limits. These are further defined in the `ENUM definitions` section under `Rate limiters (rateLimitType)`.
 * A 429 will be returned when either rate limit is violated.
 * Each route has a `weight` which determines for the number of requests each endpoint counts for. Heavier endpoints and endpoints that do operations on multiple symbols will have a heavier `weight`.
 * When a 429 is recieved, it's your obligation as an API to back off and not spam the API.
@@ -178,7 +178,8 @@ There is no & between "GTC" and "quantity=1".
 
 
 ## ENUM definitions
-**Symbol status:**
+## ENUM definitions
+**Symbol status (status):**
 
 * PRE_TRADING
 * TRADING
@@ -192,7 +193,7 @@ There is no & between "GTC" and "quantity=1".
 
 * SPOT
 
-**Order status:**
+**Order status (status):**
 
 * NEW
 * PARTIALLY_FILLED
@@ -202,7 +203,7 @@ There is no & between "GTC" and "quantity=1".
 * REJECTED
 * EXPIRED
 
-**Order types:**
+**Order types (orderTypes, type):**
 
 * LIMIT
 * MARKET
@@ -212,12 +213,12 @@ There is no & between "GTC" and "quantity=1".
 * TAKE_PROFIT_LIMIT
 * LIMIT_MAKER
 
-**Order side:**
+**Order side (side):**
 
 * BUY
 * SELL
 
-**Time in force:**
+**Time in force (timeInForce):**
 
 * GTC
 * IOC
@@ -244,12 +245,39 @@ m -> minutes; h -> hours; d -> days; w -> weeks; M -> months
 * 1M
 
 **Rate limiters (rateLimitType)**
-
 * REQUESTS_WEIGHT
+
+    ```json
+    {
+      "rateLimitType": "REQUESTS_WEIGHT",
+      "interval": "MINUTE",
+      "intervalNum": 1,
+      "limit": 1200
+    }
+    ```
+
 * ORDERS
+
+    ```json
+    {
+      "rateLimitType": "ORDERS",
+      "interval": "SECOND",
+      "intervalNum": 1,
+      "limit": 10
+    }
+    ```
 * RAW_REQUESTS
 
-**Rate limit intervals**
+    ```json
+    {
+      "rateLimitType": "RAW_REQUESTS",
+      "interval": "MINUTE",
+      "intervalNum": 5,
+      "limit": 5000
+    }
+    ```
+
+**Rate limit intervals (interval)**
 
 * SECOND
 * MINUTE
@@ -309,32 +337,14 @@ NONE
 {
   "timezone": "UTC",
   "serverTime": 1508631584636,
-  "rateLimits": [{
-      "rateLimitType": "REQUESTS_WEIGHT",
-      "interval": "MINUTE",
-      "intervalNum": 1,
-      "limit": 1200
-    },
-    {
-      "rateLimitType": "ORDERS",
-      "interval": "SECOND",
-      "intervalNum": 1,
-      "limit": 10
-    },
-    {
-      "rateLimitType": "ORDERS",
-      "interval": "DAY",
-      "intervalNum": 1,
-      "limit": 100000
-    },
-    {
-      "rateLimitType": "RAW_REQUESTS",
-      "interval": "MINUTE",
-      "intervalNum": 5,
-      "limit": 5000
-    }
+  "rateLimits": [
+    // These are defined in the `ENUM definitions` section under `Rate limiters (rateLimitType)`.
+    // All limits are optional.
   ],
-  "exchangeFilters": [],
+  "exchangeFilters": [
+    // There are defined in the `Filters` section.
+    // All filters are optional.
+  ],
   "symbols": [{
     "symbol": "ETHBTC",
     "status": "TRADING",
@@ -342,24 +352,15 @@ NONE
     "baseAssetPrecision": 8,
     "quoteAsset": "BTC",
     "quotePrecision": 8,
-    "orderTypes": ["LIMIT", "MARKET"],
+    "orderTypes": [
+      // These are defined in the `ENUM definitions` section under `Order types (orderTypes)`.
+      // All orderTypes are optional.
+    ],
     "icebergAllowed": false,
-    "filters": [{
-      "filterType": "PRICE_FILTER",
-      "minPrice": "0.00000100",
-      "maxPrice": "100000.00000000",
-      "tickSize": "0.00000100"
-    }, {
-      "filterType": "LOT_SIZE",
-      "minQty": "0.00100000",
-      "maxQty": "100000.00000000",
-      "stepSize": "0.00100000"
-    }, {
-      "filterType": "MIN_NOTIONAL",
-      "minNotional": "0.00100000",
-      "applyToMarket": true,
-      "avgPriceMins": 5
-    }]
+    "filters": [
+      // There are defined in the `Filters` section.
+      // All filters are optional.
+    ]
   }]
 }
 ```
