@@ -356,7 +356,9 @@ NONE
       "stepSize": "0.00100000"
     }, {
       "filterType": "MIN_NOTIONAL",
-      "minNotional": "0.00100000"
+      "minNotional": "0.00100000",
+      "applyToMarket": true,
+      "avgPriceMins": 5
     }]
   }]
 }
