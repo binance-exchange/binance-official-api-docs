@@ -7,9 +7,7 @@
 * 而所有未于本文档内给出的内容，币安均不承诺提供任何支持。
 
 文档名 | 描述
-
 ------------ | ------------ 
-
 [rest-api_CN.md](./rest-api_CN.md) | 通用Rest接口定义 (/api)
 [errors_CN.md](./errors_CN.md) | 错误代码及含义
 [web-socket-streams_CN.md](./web-socket-streams_CN.md) | 行情数据流接口的描述
