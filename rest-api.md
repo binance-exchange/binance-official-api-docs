@@ -244,11 +244,11 @@ m -> minutes; h -> hours; d -> days; w -> weeks; M -> months
 * 1M
 
 **Rate limiters (rateLimitType)**
-* REQUESTS_WEIGHT
+* REQUEST_WEIGHT
 
     ```json
     {
-      "rateLimitType": "REQUESTS_WEIGHT",
+      "rateLimitType": "REQUEST_WEIGHT",
       "interval": "MINUTE",
       "intervalNum": 1,
       "limit": 1200
