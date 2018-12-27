@@ -581,7 +581,7 @@ symbol | STRING | YES |
 ```
 GET /api/v1/ticker/24hr
 ```
-24 hour price change statistics. **Careful** when accessing this with no symbol.
+24 hour rolling window price change statistics. **Careful** when accessing this with no symbol.
 
 **Weight:**
 1 for a single symbol; **40** when the symbol parameter is omitted
