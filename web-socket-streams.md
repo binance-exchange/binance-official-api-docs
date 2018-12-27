@@ -108,7 +108,7 @@ m -> minutes; h -> hours; d -> days; w -> weeks; M -> months
 ```
 
 ## Individual Symbol Mini Ticker Stream
-24hr Mini Ticker statistics for a single symbol pushed every second.
+24hr rolling window mini-ticker statistics for a single symbol pushed every second. These are NOT the statistics of the UTC day, but a 24hr rolling window from requestTime to 24hrs before.
 
 **Stream Name:** \<symbol\>@miniTicker
 
@@ -118,7 +118,7 @@ m -> minutes; h -> hours; d -> days; w -> weeks; M -> months
     "e": "24hrMiniTicker",  // Event type
     "E": 123456789,         // Event time
     "s": "BNBBTC",          // Symbol
-    "c": "0.0025",          // Current day's close price
+    "c": "0.0025",          // Close price
     "o": "0.0010",          // Open price
     "h": "0.0025",          // High price
     "l": "0.0010",          // Low price
@@ -128,7 +128,7 @@ m -> minutes; h -> hours; d -> days; w -> weeks; M -> months
 ```
 
 ## All Market Mini Tickers Stream
-24hr Mini Ticker statistics for all symbols that changed in an array pushed every second.
+24hr rolling window mini-ticker statistics for all symbols that changed in an array pushed every second. These are NOT the statistics of the UTC day, but a 24hr rolling window from requestTime to 24hrs before.
 
 **Stream Name:** !miniTicker@arr
 
@@ -142,7 +142,7 @@ m -> minutes; h -> hours; d -> days; w -> weeks; M -> months
 ```
 
 ## Individual Symbol Ticker Streams
-24hr Ticker statistics for a single symbol pushed every second.
+24hr rollwing window ticker statistics for a single symbol pushed every second. These are NOT the statistics of the UTC day, but a 24hr rolling window from requestTime to 24hrs before.
 
 **Stream Name:** \<symbol\>@ticker
 
@@ -155,9 +155,9 @@ m -> minutes; h -> hours; d -> days; w -> weeks; M -> months
   "p": "0.0015",      // Price change
   "P": "250.00",      // Price change percent
   "w": "0.0018",      // Weighted average price
-  "x": "0.0009",      // Previous day's close price
-  "c": "0.0025",      // Current day's close price
-  "Q": "10",          // Close trade's quantity
+  "x": "0.0009",      // First trade(F)-1 price (first trade before the 24hr rolling window)
+  "c": "0.0025",      // Last price
+  "Q": "10",          // Last quantity
   "b": "0.0024",      // Best bid price
   "B": "10",          // Best bid quantity
   "a": "0.0026",      // Best ask price
@@ -176,7 +176,7 @@ m -> minutes; h -> hours; d -> days; w -> weeks; M -> months
 ```
 
 ## All Market Tickers Stream
-24hr Ticker statistics for all symbols that changed in an array pushed every second.
+24hr rolling window ticker statistics for all symbols that changed in an array pushed every second. These are NOT the statistics of the UTC day, but a 24hr rolling window from requestTime to 24hrs before.
 
 **Stream Name:** !ticker@arr
 
