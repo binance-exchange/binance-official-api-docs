@@ -28,7 +28,7 @@ The Aggregate Trade Streams push trade information that is aggregated for a sing
   "l": 105,         // Last trade ID
   "T": 123456785,   // Trade time
   "m": true,        // Is the buyer the market maker?
-  "M": true         // Ignore
+  "M": true         // Was the trade the best price match?
 }
 ```
 
@@ -50,7 +50,7 @@ The Trade Streams push raw trade information; each trade has a unique buyer and 
   "a": 50,          // Seller order ID
   "T": 123456785,   // Trade time
   "m": true,        // Is the buyer the market maker?
-  "M": true         // Ignore
+  "M": true         // Was the trade the best price match?
 }
 ```
 
