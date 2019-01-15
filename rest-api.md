@@ -1348,7 +1348,7 @@ The `MAX_NUM_ALGO_ORDERS` filter defines the maximum number of "algo" orders an 
 **/exchangeInfo format:**
 ```javascript
   {
-    "filterType": "MAX_ALGO_ORDERS",
+    "filterType": "MAX_NUM_ALGO_ORDERS",
     "maxNumAlgoOrders": 5
   }
 ```
