@@ -404,7 +404,7 @@ timestamp | LONG | YES
             }
             ]
         },
-        "updateTime": 1547630471725   // The query reult return time
+        "updateTime": 1547630471725   // The query result return time
     }
 }
 
