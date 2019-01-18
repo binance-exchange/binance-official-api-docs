@@ -1,12 +1,12 @@
-# User Data Streams for Binance (2018-11-13)
+# User Data Streams for Binance Jersey(2018-11-13)
 # General WSS information
-* The base API endpoint is: **https://api.binance.com**
+* The base API endpoint is: **https://api.binance.je**
 * A User Data Stream `listenKey` is valid for 60 minutes after creation.
 * Doing a `PUT` on a `listenKey` will extend its validity for 60 minutes.
 * Doing a `DELETE` on a `listenKey` will close the stream.
-* The base websocket endpoint is: **wss://stream.binance.com:9443**
+* The base websocket endpoint is: **wss://stream.binance.je:9443**
 * User Data Streams are accessed at **/ws/\<listenKey\>**
-* A single connection to **stream.binance.com** is only valid for 24 hours; expect to be disconnected at the 24 hour mark
+* A single connection to **stream.binance.je** is only valid for 24 hours; expect to be disconnected at the 24 hour mark
 * User data stream payloads are **not guaranteed** to be in order during heavy periods; **make sure to order your updates using E**
 
 # API Endpoints

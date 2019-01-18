@@ -1,4 +1,4 @@
-# Error codes for Binance (2018-11-13)
+# Error codes for Binance Jersey(2018-11-13)
 Errors consist of two parts: an error code and a message. Codes are universal,
  but messages can vary. Here is the error JSON payload:
 ```javascript

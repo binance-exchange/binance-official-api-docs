@@ -1,12 +1,12 @@
 # Web Socket 行情接口(2018-11-13)
 # 基本信息
-* 本篇所列出的所有wss接口的baseurl为: **wss://stream.binance.com:9443**
+* 本篇所列出的所有wss接口的baseurl为: **wss://stream.binance.je:9443**
 * 所有stream均可以直接访问，或者作为组合streams的一部分。
 * 直接访问时URL格式为 **/ws/\<streamName\>**
 * 组合streams的URL格式为 **/stream?streams=\<streamName1\>/\<streamName2\>/\<streamName3\>**
 * 订阅组合streams时，事件payload会以这样的格式封装 **{"stream":"\<streamName\>","data":\<rawPayload\>}**
 * stream名称中所有交易对均为**小写**
-* 每个到**stream.binance.com**的链接有效期不超过24小时，请妥善处理断线重连。
+* 每个到**stream.binance.je**的链接有效期不超过24小时，请妥善处理断线重连。
 * 每3分钟，服务端会发送ping帧，客户端应当在10分钟内回复pong帧，否则服务端会主动断开链接。允许客户端发送不成对的pong帧(即客户端可以以高于10分钟每次的频率发送pong帧保持链接)。
 # Stream 详细定义
 ## 归集交易
@@ -245,9 +245,9 @@ m -> 分钟; h -> 小时; d -> 天; w -> 周; M -> 月
 ```
 
 ## 如何正确在本地维护一个orderbook副本
-1. 订阅 **wss://stream.binance.com:9443/ws/bnbbtc@depth**
+1. 订阅 **wss://stream.binance.je:9443/ws/bnbbtc@depth**
 2. 开始缓存收到的更新。同一个价位，后收到的更新覆盖前面的。
-3. 访问Rest接口 **https://www.binance.com/api/v1/depth?symbol=BNBBTC&limit=1000** 获得一个1000档的深度快照
+3. 访问Rest接口 **https://www.binance.je/api/v1/depth?symbol=BNBBTC&limit=1000** 获得一个1000档的深度快照
 4. 将目前缓存到的信息中`u`小于步骤3中获取到的快照中的`lastUpdateId`的部分丢弃(丢弃更早的信息，已经过期)。
 5. 将深度快照中的内容更新到本地orderbook副本中，并从websocket接收到的第一个`U` <= `lastUpdateId`+1 **且** `u` >= `lastUpdateId`+1 的event开始继续更新本地副本。
 6. 每一个新event的`U`应该恰好等于上一个event的`u`+1，否则可能出现了丢包，请从step3重新进行初始化。

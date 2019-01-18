@@ -1,12 +1,12 @@
-# Web Socket Streams for Binance (2018-11-13)
+# Web Socket Streams for Binance Jersey(2018-11-13)
 # General WSS information
-* The base endpoint is: **wss://stream.binance.com:9443**
+* The base endpoint is: **wss://stream.binance.je:9443**
 * Streams can be access either in a single raw stream or a combined stream
 * Raw streams are accessed at **/ws/\<streamName\>**
 * Combined streams are accessed at **/stream?streams=\<streamName1\>/\<streamName2\>/\<streamName3\>**
 * Combined stream events are wrapped as follows: **{"stream":"\<streamName\>","data":\<rawPayload\>}**
 * All symbols for streams are **lowercase**
-* A single connection to **stream.binance.com** is only valid for 24 hours; expect to be disconnected at the 24 hour mark
+* A single connection to **stream.binance.je** is only valid for 24 hours; expect to be disconnected at the 24 hour mark
 * The websocket server will send a `ping frame` every 3 minutes. If the websocket server does not receive a `pong frame` back from the connection within a 10 minute period, the connection will be disconnected. Unsolicited `pong frames` are allowed.
 
 # Detailed Stream information
@@ -246,9 +246,9 @@ Order book price and quantity depth updates used to locally manage an order book
 ```
 
 ## How to manage a local order book correctly
-1. Open a stream to **wss://stream.binance.com:9443/ws/bnbbtc@depth**
+1. Open a stream to **wss://stream.binance.je:9443/ws/bnbbtc@depth**
 2. Buffer the events you receive from the stream
-3. Get a depth snapshot from **https://www.binance.com/api/v1/depth?symbol=BNBBTC&limit=1000**
+3. Get a depth snapshot from **https://www.binance.je/api/v1/depth?symbol=BNBBTC&limit=1000**
 4. Drop any event where `u` is <= `lastUpdateId` in the snapshot
 5. The first processed should have `U` <= `lastUpdateId`+1 **AND** `u` >= `lastUpdateId`+1
 6. While listening to the stream, each new event's `U` should be equal to the previous event's `u`+1

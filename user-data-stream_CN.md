@@ -1,13 +1,13 @@
 # Websocket账户接口 (2018-11-13)
 
 # 基本信息
-* 本篇所列出REST接口的baseurl **https://api.binance.com**
+* 本篇所列出REST接口的baseurl **https://api.binance.je**
 * 用于订阅账户数据的 `listenKey` 从创建时刻起有效期为60分钟
 * 可以通过`PUT`一个`listenKey`延长60分钟有效期
 * `DELETE`一个 `listenKey` 立即关闭当前数据流
-* 本篇所列出的websocket接口baseurl: **wss://stream.binance.com:9443**
+* 本篇所列出的websocket接口baseurl: **wss://stream.binance.je:9443**
 * 订阅账户数据流的stream名称为 **/ws/\<listenKey\>**
-* 每个到stream.binance.com的链接有效期不超过24小时，请妥善处理断线重连。
+* 每个到stream.binance.je的链接有效期不超过24小时，请妥善处理断线重连。
 * 账户数据流的消息**不保证**严格时间序; **请使用 E 字段进行排序**
 
 # 与Websocket账户接口相关的REST接口

@@ -1,6 +1,6 @@
 # REST接口(账户与资金) (2018-07-18)
 # 基本信息
-* 本篇列出REST接口的baseurl **https://api.binance.com**
+* 本篇列出REST接口的baseurl **https://api.binance.je**
 * 所有接口的响应都是JSON格式
 * 响应中如有数组，数组元素以时间升序排列，越早的数据越提前。
 * 所有时间、时间戳均为UNIX时间，单位为毫秒
@@ -67,7 +67,7 @@ MARKET_DATA | 需要有效的API-KEY
   ```
 
 **关于交易时效性** 
-互联网状况并不100%可靠，不可完全依赖,因此你的程序本地到币安服务器的时延会有抖动.
+互联网状况并不100%可靠，不可完全依赖,因此你的程序本地到币安泽西服务器的时延会有抖动.
 这是我们设置`recvWindow`的目的所在，如果你从事高频交易，对交易时效性有较高的要求，可以灵活设置recvWindow以达到你的要求。
 **不推荐使用5秒以上的recvWindow**
 
@@ -109,7 +109,7 @@ signature  | 157fb937ec848b5f802daa4d9f62bea08becbf4f311203bda2bd34cd9853e320
 
     ```
     (HMAC SHA256)
-    [linux]$ curl -H "X-MBX-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A" -X POST 'https://www.binance.com/wapi/v3/withdraw.html?asset=ETH&address=0x6915f16f8791d0a1cc2bf47c13a6b2a92000504b&amount=1&recvWindow=5000&name=addressName&timestamp=1510903211000&signature=157fb937ec848b5f802daa4d9f62bea08becbf4f311203bda2bd34cd9853e320'
+    [linux]$ curl -H "X-MBX-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A" -X POST 'https://www.binance.je/wapi/v3/withdraw.html?asset=ETH&address=0x6915f16f8791d0a1cc2bf47c13a6b2a92000504b&amount=1&recvWindow=5000&name=addressName&timestamp=1510903211000&signature=157fb937ec848b5f802daa4d9f62bea08becbf4f311203bda2bd34cd9853e320'
     ```
 
 ### 提现
@@ -166,7 +166,7 @@ timestamp | LONG | YES
 {
     "depositList": [
         {
-            "insertTime": 1508198532000, //币安系统记录该笔充值的时间
+            "insertTime": 1508198532000, //币安泽西系统记录该笔充值的时间
             "amount": 0.04670582, //充值金额
             "asset": "ETH", //充值资产
             "address": "0x6915f16f8791d0a1cc2bf47c13a6b2a92000504b", //充值来源地址
@@ -221,7 +221,7 @@ timestamp | LONG | YES
             "status": 4
         },
         {
-            "id":"7213fea8e94b4a5534ggsd237e5a555b",//该笔提现在币安的id
+            "id":"7213fea8e94b4a5534ggsd237e5a555b",//该笔提现在币安泽西的id
             "amount": 1000, //提现金额
             "address": "463tWEBn5XZJSxLU34r6g7h8jtxuNcDbjLSjkn3XAXHCbLrTTErJrBWYgHJQyrCwkNgYvyV3z8zctJLPCZy24jvb3NiTcTJ", //提现目的地址
             "addressTag": "342341222", //提现备注 只对某些币种存在

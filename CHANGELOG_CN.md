@@ -14,9 +14,9 @@
   1. [对过去n分钟所有订单的数量\*价格求和] / 过去n分钟订单数
   2. 如果过去n分钟没有交易发生，则继续向前追溯，直到找到第一个交易，以此价格作为过去n分钟平均价格。
   3. 如果该交易对之前从未发生过交易，则无平均价格，亦即无法在该交易对下市价单，必须至少有一个（双方均未限价单）的交易成交后才可以下市价单。
-  4. 当前系统使用的平均价格可以通过接口 `https://api.binance.com/api/v3/avgPrice?symbol=<symbol>`查询
+  4. 当前系统使用的平均价格可以通过接口 `https://api.binance.je/api/v3/avgPrice?symbol=<symbol>`查询
      例如
-     https://api.binance.com/api/v3/avgPrice?symbol=BNBUSDT
+     https://api.binance.je/api/v3/avgPrice?symbol=BTCEUR
 
 ### User data stream
   * 成交报告中增加了 `末次成交金额` (`Y`)，等于 `末次成交量` * `末次成交价格` (`L` * `l`).

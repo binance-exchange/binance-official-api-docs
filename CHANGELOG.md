@@ -18,9 +18,9 @@
   3. If there is no trade on the symbol, there is no average price and market orders cannot be placed.
      On a new symbol with `applyToMarket` enabled on the `MIN_NOTIONAL` filter, market orders cannot be placed until there is at least 1 trade.
 
-  4. The current average price can be checked here: `https://api.binance.com/api/v3/avgPrice?symbol=<symbol>`
+  4. The current average price can be checked here: `https://api.binance.je/api/v3/avgPrice?symbol=<symbol>`
      For example:
-     https://api.binance.com/api/v3/avgPrice?symbol=BNBUSDT
+     https://api.binance.je/api/v3/avgPrice?symbol=BTCEUR
 
 ### User data stream
   * `Last quote asset transacted quantity` (as variable `Y`) added to execution reports. Represents the `lastPrice` * `lastQty` (`L` * `l`).
