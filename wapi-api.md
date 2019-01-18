@@ -341,6 +341,7 @@ Fetch system status.
 GET /wapi/v3/apiTradingStatus.html
 ```
 Fetch account api trading status detail.
+For more details about our api trading rules, please refer to the link below:https://support.binance.com/hc/en-us/articles/115003235691
 
 
 **Weight:**
