@@ -336,6 +336,78 @@ Fetch system status.
 }
 ```
 
+### Account API Trading Status (USER_DATA)
+```
+GET /wapi/v3/apiTradingStatus.html
+```
+Fetch account api trading status detail.
+
+
+**Weight:**
+1
+
+
+**Parameters:**
+
+Name | Type | Mandatory | Description
+------------ | ------------ | ------------ | ------------
+recvWindow | LONG | NO  
+timestamp | LONG | YES  
+
+**Response:**
+```javascript
+{
+    "success": true,     // Query result
+    "status": {          // API trading status detail
+        "isLocked": false,   // API trading function is locked or not
+        "plannedRecoverTime": 0,  // If API trading function is locked, this is the planned recover time
+        "triggerCondition": { 
+            "GCR": 150,  // Number of GTC orders
+            "IFER": 150, // Number of FOK/IOC orders
+            "UFR": 300   // Number of orders
+        },
+        "indicators": {  // The indicators updated every 30 seconds
+           "BTCUSDT": [  // The symbol
+            {
+            "i": "UFR",  // Unfilled Ratio (UFR)
+            "v": 0.05,   // Current value
+            "t": 0.995   // Trigger value
+            },
+            {
+            "i": "IFER", // IOC/FOK Expiration Ratio (IFER)
+            "v": 0.99,   // Current value
+            "t": 0.99    // Trigger value
+            },
+            {
+            "i": "GCR",  // GTC Cancellation Ratio (GCR)
+            "v": 0.99,   // Current value
+            "t": 0.99    // Trigger value
+            }
+            ],
+            "ETHUSDT": [ 
+            {
+            "i": "UFR",
+            "v": 0.05,
+            "t": 0.995
+            },
+            {
+            "i": "IFER",
+            "v": 0.99,
+            "t": 0.99
+            },
+            {
+            "i": "GCR",
+            "v": 0.99,
+            "t": 0.99
+            }
+            ]
+        },
+        "updateTime": 1547630471725   // The query reult return time
+    }
+}
+
+```
+
 ### DustLog (USER_DATA)
 ```
 GET /wapi/v3/userAssetDribbletLog.html   (HMAC SHA256)
