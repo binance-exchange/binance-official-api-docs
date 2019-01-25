@@ -372,33 +372,39 @@ timestamp | LONG | YES
            "BTCUSDT": [  // The symbol
             {
             "i": "UFR",  // Unfilled Ratio (UFR)
-            "v": 0.05,   // Current value
-            "t": 0.995   // Trigger value
+            "c": 20,     // Count of all orders
+            "v": 0.05,   // Current UFR value
+            "t": 0.995   // Trigger UFR value
             },
             {
             "i": "IFER", // IOC/FOK Expiration Ratio (IFER)
-            "v": 0.99,   // Current value
-            "t": 0.99    // Trigger value
+            "c": 20,     // Count of FOK/IOC orders
+            "v": 0.99,   // Current IFER value
+            "t": 0.99    // Trigger IFER value
             },
             {
             "i": "GCR",  // GTC Cancellation Ratio (GCR)
-            "v": 0.99,   // Current value
-            "t": 0.99    // Trigger value
+            "c": 20,     // Count of GTC orders
+            "v": 0.99,   // Current GCR value
+            "t": 0.99    // Trigger GCR value
             }
             ],
             "ETHUSDT": [ 
             {
             "i": "UFR",
+            "c": 20,
             "v": 0.05,
             "t": 0.995
             },
             {
             "i": "IFER",
+            "c": 20,
             "v": 0.99,
             "t": 0.99
             },
             {
             "i": "GCR",
+            "c": 20,
             "v": 0.99,
             "t": 0.99
             }
@@ -407,7 +413,6 @@ timestamp | LONG | YES
         "updateTime": 1547630471725   // The query result return time
     }
 }
-
 ```
 
 ### DustLog (USER_DATA)
