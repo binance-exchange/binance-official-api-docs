@@ -698,6 +698,7 @@ timestamp | LONG | YES
 
 ```
 
+
 ### Query Sub-account Assets(For Master Account)
 ```
 GET   /wapi/v3/sub-account/assets.html (HMAC SHA256)
@@ -711,6 +712,7 @@ Fetch sub-account assets
 
 Name | Type | Mandatory | Description
 ------------ | ------------ | ------------ | ------------
+email | STRING | YES  | Sub account email
 recvWindow | LONG | NO  
 timestamp | LONG | YES  
 symbol | STRING | NO
@@ -749,5 +751,4 @@ symbol | STRING | NO
     ]
 }
 ```
-
 
