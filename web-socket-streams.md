@@ -136,7 +136,7 @@ m -> minutes; h -> hours; d -> days; w -> weeks; M -> months
 ```javascript
 [
   {
-    // Same as \<symbol\>@miniTicker payload
+    // Same as <symbol>@miniTicker payload
   }
 ]
 ```
