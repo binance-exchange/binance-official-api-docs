@@ -201,15 +201,13 @@ Top **\<levels\>** bids and asks, pushed every second. Valid **\<levels\>** are 
   "bids": [             // Bids to be updated
     [
       "0.0024",         // Price level to be updated
-      "10",             // Quantity
-      []                // Ignore
+      "10"              // Quantity
     ]
   ],
   "asks": [             // Asks to be updated
     [
       "0.0026",         // Price level to be updated
-      "100",            // Quantity
-      []                // Ignore
+      "100"            // Quantity
     ]
   ]
 }
@@ -231,15 +229,13 @@ Order book price and quantity depth updates used to locally manage an order book
   "b": [              // Bids to be updated
     [
       "0.0024",       // Price level to be updated
-      "10",
-      []              // Ignore
+      "10"            // Quantity
     ]
   ],
   "a": [              // Asks to be updated
     [
       "0.0026",       // Price level to be updated
-      "100",          // Quantity
-      []              // Ignore
+      "100"           // Quantity
     ]
   ]
 }
