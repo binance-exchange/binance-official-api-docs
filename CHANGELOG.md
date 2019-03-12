@@ -4,6 +4,10 @@
   * X-MBX-USED-WEIGHT header added to Rest API responses.
   * Retry-After header added to Rest API 418 and 429 responses.
   * When canceling the Rest API can now return `errorCode` -1013 OR -2011 if the symbol's `status` isn't `TRADING`.
+  * `api/v1/depth` no longer has the ignored and empty `[]`.
+  
+### Websocket stream
+  * `<symbol>@depthX` streams no long have the ignored and empty `[]`.
   
 ### System improvements
   * Matching Engine stability/reliability improvements.
