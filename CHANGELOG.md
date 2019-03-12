@@ -1,4 +1,14 @@
-# CHANGELOG for Binance's API (2018-11-13)
+# CHANGELOG for Binance's API (2019-03-12)
+## 2019-03-12
+### Rest API
+  * X-MBX-USED-WEIGHT header added Rest API responses
+  * Retry-After header added to Rest API 418 and 429 responses
+  * When canceling Rest API can now return errorCode -1013 OR -2011 if tradingPhase isn't TRADING.
+  
+### System improvements
+  * Matching Engine stability/reliability improvements
+  * Rest API performance improvements
+
 ## 2018-11-13
 ### Rest API
   * Can now cancel orders through the Rest API during a trading ban.
