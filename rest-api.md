@@ -1137,6 +1137,7 @@ Otherwise most recent orders are returned.
     "orderId": 100234,
     "price": "4.00000100",
     "qty": "12.00000000",
+    "quoteQty": "48.000012",
     "commission": "10.10000000",
     "commissionAsset": "BNB",
     "time": 1499865549590,
