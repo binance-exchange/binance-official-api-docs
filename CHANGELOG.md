@@ -5,6 +5,7 @@
   * Retry-After header added to Rest API 418 and 429 responses.
   * When canceling the Rest API can now return `errorCode` -1013 OR -2011 if the symbol's `status` isn't `TRADING`.
   * `api/v1/depth` no longer has the ignored and empty `[]`.
+  * `api/v3/myTrades` now returns `quoteQty`; the price * qty of for the trade.
   
 ### Websocket streams
   * `<symbol>@depth` and `<symbol>@depthX` streams no longer have the ignored and empty `[]`.
