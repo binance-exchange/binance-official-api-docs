@@ -6,8 +6,8 @@
   * When canceling the Rest API can now return `errorCode` -1013 OR -2011 if the symbol's `status` isn't `TRADING`.
   * `api/v1/depth` no longer has the ignored and empty `[]`.
   
-### Websocket stream
-  * `<symbol>@depthX` streams no long have the ignored and empty `[]`.
+### Websocket streams
+  * `<symbol>@depth` and `<symbol>@depthX` streams no longer have the ignored and empty `[]`.
   
 ### System improvements
   * Matching Engine stability/reliability improvements.
