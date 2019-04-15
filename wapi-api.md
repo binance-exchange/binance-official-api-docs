@@ -589,7 +589,7 @@ Fetch sub account list.
 
 Name | Type | Mandatory | Description
 ------------ | ------------ | ------------ | ------------
-email | STRING | NO | Sub-account email
+email | STRING | YES | Sub-account email
 status | STRING | NO | Sub-account status: enabled or disabled
 page | INT | NO | Default value: 1
 limit | INT | NO | Default value: 500
@@ -636,7 +636,7 @@ Fetch transfer history list
 
 Name | Type | Mandatory | Description
 ------------ | ------------ | ------------ | ------------
-email | STRING | NO | Sub-account email
+email | STRING | YES | Sub-account email
 startTime | LONG | NO | Default return the history with in 100 days
 endTime | LONG | NO | Default return the history with in 100 days
 page | INT | NO | Default value: 1
