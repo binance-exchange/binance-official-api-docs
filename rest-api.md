@@ -986,7 +986,6 @@ recvWindow | LONG | NO |
 timestamp | LONG | YES |
 
 * If the symbol is not sent, orders for all symbols will be returned in an array.
-* When all symbols are returned, the number of requests counted against the rate limiter is equal to the number of symbols currently trading on the exchange.
 
 **Response:**
 ```javascript
