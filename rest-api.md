@@ -16,7 +16,7 @@
 ```javascript
 {
   "code": -1121,
-  "msg": "Invalid symbol."
+  "message": "Invalid symbol."
 }
 ```
 
