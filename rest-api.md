@@ -1,8 +1,9 @@
+# Public Rest API for Binance (2018-11-13)
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
-- [Public Rest API for Binance (2018-11-13)](#public-rest-api-for-binance-2018-11-13)
 - [General API Information](#general-api-information)
 - [LIMITS](#limits)
 - [Endpoint security type](#endpoint-security-type)
@@ -59,7 +60,6 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# Public Rest API for Binance (2018-11-13)
 # General API Information
 * The base endpoint is: **https://api.binance.com**
 * All endpoints return either a JSON object or array.
