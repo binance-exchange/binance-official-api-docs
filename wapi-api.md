@@ -589,7 +589,7 @@ Fetch sub account list.
 
 Name | Type | Mandatory | Description
 ------------ | ------------ | ------------ | ------------
-email | STRING | YES | Sub-account email
+email | STRING | NO | Sub-account email
 status | STRING | NO | Sub-account status: enabled or disabled
 page | INT | NO | Default value: 1
 limit | INT | NO | Default value: 500
