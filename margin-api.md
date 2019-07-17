@@ -530,7 +530,7 @@ Get /sapi/v1/margin/query/asset
 
 Name | Type | Mandatory | Description
 ------------ | ------------ | ------------ | ------------
-assete | STRING | YES |
+asset | STRING | YES |
 
 
 **Response:**
