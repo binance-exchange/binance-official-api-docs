@@ -178,6 +178,7 @@ Execute transfer between spot account and margin account.
 1
 
 **Parameters:**
+
 Name | Type | Mandatory | Description
 ------------ | ------------ | ------------ | ------------
 asset | STRING | YES | The asset being transferred, e.g., BTC
