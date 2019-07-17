@@ -204,6 +204,7 @@ Apply for a loan.
 1
 
 **Parameters:**
+
 Name | Type | Mandatory | Description
 ------------ | ------------ | ------------ | ------------
 asset | STRING | YES | 
@@ -228,6 +229,7 @@ Repay loan for margin account.
 1
 
 **Parameters:**
+
 Name | Type | Mandatory | Description
 ------------ | ------------ | ------------ | ------------
 asset | STRING | YES | 
