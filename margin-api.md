@@ -837,7 +837,9 @@ timestamp | LONG | YES
 
 **Response:**
 ```javascript
-{"amount":  12321.11}
+{
+    "amount": "1.69248805"
+}
 ```
 
 ### Query max transfer-out amount (MARGIN)
