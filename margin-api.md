@@ -407,8 +407,8 @@ asset |	STRING | YES
 txId | LONG | NO | the tranId in POST /sapi/v1/margin/loan
 startTime |	LONG |	NO	
 endTime | LONG | NO	
-current | LONG | NO | Current page number.
-size |	LONG | NO |	Per page row size.
+current | LONG | NO | Default:1
+size |	LONG | NO |	Default:10 Max:100
 recvWindow | LONG | NO
 timestamp | LONG | YES
 
@@ -446,8 +446,8 @@ sset | STRING |	YES
 txId | LONG | NO | return of /sapi/v1/margin/repay 
 startTime | LONG | NO	
 endTime | LONG | NO	
-current | LONG | NO	
-size | LONG | NO
+current | LONG | NO	| Default: 1
+size | LONG | NO | Default:10 Max:100
 recvWindow | LONG | NO
 timestamp | LONG | YES
 
