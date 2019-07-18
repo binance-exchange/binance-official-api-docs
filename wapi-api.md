@@ -181,7 +181,7 @@ Fetch deposit history.
 Name | Type | Mandatory | Description
 ------------ | ------------ | ------------ | ------------
 asset | STRING | NO	
-status | INT | NO | 0(0:pending,1:success,6:Completed)
+status | INT | NO | 0(0:pending,6: credited but cannot withdraw, 1:success)
 startTime | LONG | NO	
 endTime | LONG | NO	
 recvWindow | LONG | NO	
