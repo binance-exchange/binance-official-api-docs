@@ -420,7 +420,7 @@ TxId or [startTime, endTime) must be sent. txId takes precedence.
   "rows": [
     {
       "asset": "BNB",
-      "principal": 11.34,
+      "principal": "0.84624403",
       "timestamp": 1555056425,
       //one of PENDING (pending to execution), COMPLETE (executed, waiting to be confirmed), CONFIRM (successfully loaned), FAILED (execution failed, nothing happened to your account);
       "status": "CONFIRM"
