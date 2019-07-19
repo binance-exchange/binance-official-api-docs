@@ -633,7 +633,7 @@ Get /sapi/v1/margin/query/order
 
 Name | Type | Mandatory | Description
 ------------ | ------------ | ------------ | ------------
-symbol | STRING | NO |
+symbol | STRING | YES |
 orderId | STRING | NO |	
 origClientOrderId | STRING | NO	|
 recvWindow | LONG | NO
