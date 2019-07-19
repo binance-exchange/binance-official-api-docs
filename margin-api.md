@@ -442,7 +442,7 @@ Get /sapi/v1/margin/query/repay
 
 Name | Type | Mandatory | Description
 ------------ | ------------ | ------------ | ------------
-sset | STRING |	YES	
+asset | STRING |	YES	
 txId | LONG | NO | return of /sapi/v1/margin/repay 
 startTime | LONG | NO	
 endTime | LONG | NO	
@@ -606,7 +606,7 @@ Get /sapi/v1/margin/query/priceIndex
 
 Name | Type | Mandatory | Description
 ------------ | ------------ | ------------ | ------------
-symbol | STRING | NO |
+symbol | STRING | YES |
 recvWindow | LONG | NO
 timestamp | LONG | YES
 
