@@ -536,7 +536,7 @@ None
 ```
 
 
-### Query margin asset (USER_DATA)
+### Query margin asset (MARKET_DATA)
 
 ```
 Get /sapi/v1/margin/asset 
@@ -550,8 +550,6 @@ Get /sapi/v1/margin/asset
 Name | Type | Mandatory | Description
 ------------ | ------------ | ------------ | ------------
 asset | STRING | YES |
-recvWindow | LONG | NO
-timestamp | LONG | YES
 
 **Response:**
 ```javascript
@@ -578,8 +576,6 @@ Get /sapi/v1/margin/pair
 Name | Type | Mandatory | Description
 ------------ | ------------ | ------------ | ------------
 symbol | STRING | YES |
-recvWindow | LONG | NO
-timestamp | LONG | YES
 
 **Response:**
 ```javascript
@@ -607,8 +603,6 @@ Get /sapi/v1/margin/priceIndex
 Name | Type | Mandatory | Description
 ------------ | ------------ | ------------ | ------------
 symbol | STRING | YES |
-recvWindow | LONG | NO
-timestamp | LONG | YES
 
 **Response:**
 ```javascript
@@ -895,8 +889,6 @@ DELETE  /sapi/v1/userDataStream
 Name | Type | Mandatory | Description
 ------------ | ------------ | ------------ | ------------
 listenKey | STRING | YES |
-recvWindow | LONG | NO
-timestamp | LONG | YES
 
 **Response:**
 ```javascript
@@ -916,8 +908,6 @@ PUT  /sapi/v1/userDataStream
 Name | Type | Mandatory | Description
 ------------ | ------------ | ------------ | ------------
 listenKey | STRING | YES |
-recvWindow | LONG | NO
-timestamp | LONG | YES
 
 **Response:**
 ```javascript
