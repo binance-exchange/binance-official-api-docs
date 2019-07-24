@@ -1,4 +1,4 @@
-# Public Rest API for Margin Trade
+# Public Rest API for Margin Trade (DRAFT, under construction)
 # General API Information
 * The base endpoint is: **https://api.binance.com**
 * All endpoints return either a JSON object or array.
@@ -248,7 +248,7 @@ timestamp | LONG | YES
 }
 ```
 
-### Margin account new order (MARGIN)
+### Margin account new order (TRADE)
 ```
 Post  /sapi/v1/margin/order
 ```
@@ -350,7 +350,7 @@ timestamp | LONG | YES
 }
 ```
 
-### Margin account cancel order (MARGIN)
+### Margin account cancel order (TRADE)
 ```
 Delete /sapi/v1/margin/order
 ```
@@ -391,9 +391,9 @@ Either orderId or origClientOrderId must be sent.
 }
 ```
 
-### Query loan record (MARGIN)
+### Query loan record (USER_DATA)
 ```
-Get /sapi/v1/margin/query/loan
+Get /sapi/v1/margin/loan
 ```
 
 **Weight:**
@@ -412,7 +412,7 @@ size |	LONG | NO |	Default:10 Max:100
 recvWindow | LONG | NO
 timestamp | LONG | YES
 
-TxId or [startTime, endTime) must be sent. txId takes precedence.
+txId or startTime must be sent. txId takes precedence.
 
 **Response:**
 ```javascript
@@ -430,9 +430,9 @@ TxId or [startTime, endTime) must be sent. txId takes precedence.
 }
 ```
 
-### Query repay record (MARGIN)
+### Query repay record (USER_DATA)
 ```
-Get /sapi/v1/margin/query/repay
+Get /sapi/v1/margin/repay
 ```
 
 **Weight:**
@@ -451,7 +451,7 @@ size | LONG | NO | Default:10 Max:100
 recvWindow | LONG | NO
 timestamp | LONG | YES
 
-TxId or [startTime, endTime) must be sent. txId takes precedence. 
+txId or startTime must be sent. txId takes precedence.
 
 
 **Response:**
@@ -476,9 +476,9 @@ TxId or [startTime, endTime) must be sent. txId takes precedence.
 }
 ```
 
-### Query margin account details (MARGIN)
+### Query margin account details (USER_DATA)
 ```
-Get /sapi/v1/margin/query/account
+Get /sapi/v1/margin/account
 ```
 
 **Weight:**
@@ -536,10 +536,10 @@ None
 ```
 
 
-### Query margin asset (MARGIN)
+### Query margin asset (USER_DATA)
 
 ```
-Get /sapi/v1/margin/query/asset 
+Get /sapi/v1/margin/asset 
 ```
 
 **Weight:**
@@ -565,9 +565,9 @@ timestamp | LONG | YES
 }
 ```
 
-### Query margin pair (MARGIN)
+### Query margin pair (MARKET_DATA)
 ```
-Get /sapi/v1/margin/query/pair 
+Get /sapi/v1/margin/pair 
 ```
 
 **Weight:**
@@ -594,9 +594,9 @@ timestamp | LONG | YES
 }
 ```
 
-### Query margin priceIndex (MARGIN)
+### Query margin priceIndex (MARKET_DATA)
 ```
-Get /sapi/v1/margin/query/priceIndex 
+Get /sapi/v1/margin/priceIndex 
 ```
 
 **Weight:**
@@ -620,10 +620,10 @@ timestamp | LONG | YES
 ```
 
 
-### Query margin account's order (MARGIN)
+### Query margin account's order (USER_DATA)
 
 ```
-Get /sapi/v1/margin/query/order 
+Get /sapi/v1/margin/order 
 ```
 
 **Weight:**
@@ -666,9 +666,9 @@ Notes:
 }
 ```
 
-### Query margin account's open order (MARGIN)
+### Query margin account's open order (USER_DATA)
 ```
-Get  /sapi/v1/margin/query/openOrders 
+Get  /sapi/v1/margin/openOrders 
 ```
 
 **Weight:**
@@ -710,9 +710,9 @@ timestamp | LONG | YES
 ```
 
 
-### Query margin account's all order (MARGIN)
+### Query margin account's all order (USER_DATA)
 ```
-Get /sapi/v1/margin/query/allOrders 
+Get /sapi/v1/margin/allOrders 
 ```
 
 **Weight:**
@@ -765,9 +765,9 @@ Notes:
 ]
 ```
 
-### Query margin account's trade list (MARGIN)
+### Query margin account's trade list (USER_DATA)
 ```
-Get  /sapi/v1/margin/query/myTrades 
+Get  /sapi/v1/margin/myTrades 
 ```
 
 **Weight:**
@@ -819,7 +819,7 @@ Notes:
 ]
 ```
 
-### Query max borrow (MARGIN)
+### Query max borrow (USER_DATA)
 ```
 Get /sapi/v1/margin/maxBorrowable 
 ```
@@ -842,7 +842,7 @@ timestamp | LONG | YES
 }
 ```
 
-### Query max transfer-out amount (MARGIN)
+### Query max transfer-out amount (USER_DATA)
 ```
 Get /sapi/v1/margin/maxTransferable 
 ```
@@ -865,7 +865,7 @@ timestamp | LONG | YES
  }
 ```
 
-### Start user data stream for margin account (USER_DATA)
+### Start user data stream for margin account (USER_STREAM)
 ```
 POST  /sapi/v1/userDataStream
 ```
@@ -882,7 +882,7 @@ NONE
 {"listenKey":  "T3ee22BIYuWqmvne0HNq2A2WsFlEtLhvWCtItw6ffhhdmjifQ2tRbuKkTHhr"}
 ```
 
-### Delete user data stream for margin account  (USER_DATA)
+### Delete user data stream for margin account  (USER_STREAM)
 ```
 DELETE  /sapi/v1/userDataStream
 ```
@@ -903,7 +903,7 @@ timestamp | LONG | YES
 
 ```
 
-## Ping user data stream for margin account  (USER_DATA)
+## Ping user data stream for margin account  (USER_STREAM)
 ```
 PUT  /sapi/v1/userDataStream
 ```
