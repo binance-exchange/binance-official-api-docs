@@ -785,32 +785,31 @@ Notes:
 
 **Response:**
 ```javascript
-[
-      {
-          "id": 43123876,
-          "price": "0.00395740",
-          "qty": "4.06000000",
-          "quoteQty": "0.01606704",
-          "symbol": "BNBBTC",
-          "time": 1556089977693
-      },
-      {
-          "id": 43123877,
-          "price": "0.00395740",
-          "qty": "0.77000000",
-          "quoteQty": "0.00304719",
-          "symbol": "BNBBTC",
-          "time": 1556089977693
-      },
-      {
-          "id": 43253549,
-          "price": "0.00428930",
-          "qty": "23.30000000",
-          "quoteQty": "0.09994069",
-          "symbol": "BNBBTC",
-          "time": 1556163963504
-      }
-]
+[{
+	"commission": "0.00006000",
+	"commissionAsset": "BTC",
+	"id": 34,
+	"isBestMatch": true,
+	"isBuyer": false,
+	"isMaker": false,
+	"orderId": 39324,
+	"price": "0.02000000",
+	"qty": "3.00000000",
+	"symbol": "BNBBTC",
+	"time": 1561973357171
+},{
+	"commission": "0.00002950",
+	"commissionAsset": "BTC",
+	"id": 32,
+	"isBestMatch": true,
+	"isBuyer": false,
+	"isMaker": true,
+	"orderId": 39319,
+	"price": "0.00590000",
+	"qty": "5.00000000",
+	"symbol": "BNBBTC",
+	"time": 1561964645345
+}]
 ```
 
 ### Query max borrow (USER_DATA)
