@@ -910,7 +910,5 @@ listenKey | STRING | YES |
 
 **Response:**
 ```javascript
-{
-   "listenKey": "5Dmm7DfBa8zbuMS2ejWpfWNTt7U0EJHMG3jxkZKo4Oqsd2G39UvASYR7iZmd"
-}
+{}
 ```
