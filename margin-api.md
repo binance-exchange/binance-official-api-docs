@@ -891,7 +891,7 @@ listenKey | STRING | YES |
 
 **Response:**
 ```javascript
-
+{}
 ```
 
 ## Ping user data stream for margin account  (USER_STREAM)
