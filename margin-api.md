@@ -446,7 +446,7 @@ asset | STRING |	YES
 txId | LONG | NO | return of /sapi/v1/margin/repay 
 startTime | LONG | NO	
 endTime | LONG | NO	
-current | LONG | NO	| Default: 1
+current | LONG | NO	| current page. Default: 1
 size | LONG | NO | Default:10 Max:100
 recvWindow | LONG | NO
 timestamp | LONG | YES
