@@ -407,7 +407,7 @@ asset |	STRING | YES
 txId | LONG | NO | the tranId in POST /sapi/v1/margin/loan
 startTime |	LONG |	NO	
 endTime | LONG | NO	
-current | LONG | NO | Default:1
+current | LONG | NO | Currently querying page. Start from 1. Default:1
 size |	LONG | NO |	Default:10 Max:100
 recvWindow | LONG | NO
 timestamp | LONG | YES
@@ -422,8 +422,8 @@ txId or startTime must be sent. txId takes precedence.
       "asset": "BNB",
       "principal": "0.84624403",
       "timestamp": 1555056425,
-      //one of PENDING (pending to execution), COMPLETE (executed, waiting to be confirmed), CONFIRM (successfully loaned), FAILED (execution failed, nothing happened to your account);
-      "status": "CONFIRM"
+      //one of PENDING (pending to execution), CONFIRMED (successfully loaned), FAILED (execution failed, nothing happened to your account);
+      "status": "CONFIRMED"
     }
   ],
   "total": 1
@@ -446,7 +446,7 @@ asset | STRING |	YES
 txId | LONG | NO | return of /sapi/v1/margin/repay 
 startTime | LONG | NO	
 endTime | LONG | NO	
-current | LONG | NO	| current page. Default: 1
+current | LONG | NO	| Currently querying page. Start from 1. Default:1
 size | LONG | NO | Default:10 Max:100
 recvWindow | LONG | NO
 timestamp | LONG | YES
@@ -466,7 +466,7 @@ txId or startTime must be sent. txId takes precedence.
              "interest": "0.01866667",
              //Principal repaid
              "principal": "13.98133333",
-             //one of PENDING (pending to execution), COMPLETE (executed, waiting to be confirmed), CONFIRM (successfully loaned), FAILED (execution failed, nothing happened to your account);
+             //one of PENDING (pending to execution), CONFIRMED (successfully loaned), FAILED (execution failed, nothing happened to your account);
              "status": "CONFIRMED",
              "timestamp": 1563438204,
              "txId": 2970933056
