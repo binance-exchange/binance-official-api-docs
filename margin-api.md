@@ -421,7 +421,7 @@ txId or startTime must be sent. txId takes precedence.
     {
       "asset": "BNB",
       "principal": "0.84624403",
-      "timestamp": 1555056425,
+      "timestamp": 1555056425000,
       //one of PENDING (pending to execution), CONFIRMED (successfully loaned), FAILED (execution failed, nothing happened to your account);
       "status": "CONFIRMED"
     }
@@ -468,7 +468,7 @@ txId or startTime must be sent. txId takes precedence.
              "principal": "13.98133333",
              //one of PENDING (pending to execution), CONFIRMED (successfully loaned), FAILED (execution failed, nothing happened to your account);
              "status": "CONFIRMED",
-             "timestamp": 1563438204,
+             "timestamp": 1563438204000,
              "txId": 2970933056
          }
      ],
