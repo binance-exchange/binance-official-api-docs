@@ -1,4 +1,69 @@
-# Public Rest API for Binance (2018-11-13)
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [General API Information](#general-api-information)
+- [LIMITS](#limits)
+- [Endpoint security type](#endpoint-security-type)
+- [SIGNED (TRADE and USER_DATA) Endpoint security](#signed-trade-and-user_data-endpoint-security)
+  - [Timing security](#timing-security)
+  - [SIGNED Endpoint Examples for POST /api/v3/order](#signed-endpoint-examples-for-post-apiv3order)
+    - [Example 1: As a query string](#example-1-as-a-query-string)
+    - [Example 2: As a request body](#example-2-as-a-request-body)
+    - [Example 3: Mixed query string and request body](#example-3-mixed-query-string-and-request-body)
+- [Public API Endpoints](#public-api-endpoints)
+  - [Terminology](#terminology)
+  - [ENUM definitions](#enum-definitions)
+  - [General endpoints](#general-endpoints)
+    - [Test connectivity](#test-connectivity)
+    - [Check server time](#check-server-time)
+    - [Exchange information](#exchange-information)
+  - [Market Data endpoints](#market-data-endpoints)
+    - [Order book](#order-book)
+    - [Recent trades list](#recent-trades-list)
+    - [Old trade lookup (MARKET_DATA)](#old-trade-lookup-market_data)
+    - [Compressed/Aggregate trades list](#compressedaggregate-trades-list)
+    - [Kline/Candlestick data](#klinecandlestick-data)
+    - [Current average price](#current-average-price)
+    - [24hr ticker price change statistics](#24hr-ticker-price-change-statistics)
+    - [Symbol price ticker](#symbol-price-ticker)
+    - [Symbol order book ticker](#symbol-order-book-ticker)
+  - [Account endpoints](#account-endpoints)
+    - [New order  (TRADE)](#new-order--trade)
+    - [Test new order (TRADE)](#test-new-order-trade)
+    - [Query order (USER_DATA)](#query-order-user_data)
+    - [Cancel order (TRADE)](#cancel-order-trade)
+    - [Current open orders (USER_DATA)](#current-open-orders-user_data)
+    - [All orders (USER_DATA)](#all-orders-user_data)
+    - [New OCO (TRADE)](#new-oco-trade)
+    - [Cancel OCO (TRADE)](#cancel-oco-trade)
+    - [Query OCO (USER_DATA)](#query-oco-user_data)
+    - [Query all OCO (USER_DATA)](#query-all-oco-user_data)
+    - [Query Open OCO (USER_DATA)](#query-open-oco-user_data)
+    - [Account information (USER_DATA)](#account-information-user_data)
+    - [Account trade list (USER_DATA)](#account-trade-list-user_data)
+  - [User data stream endpoints](#user-data-stream-endpoints)
+    - [Start user data stream (USER_STREAM)](#start-user-data-stream-user_stream)
+    - [Keepalive user data stream (USER_STREAM)](#keepalive-user-data-stream-user_stream)
+    - [Close user data stream (USER_STREAM)](#close-user-data-stream-user_stream)
+- [Filters](#filters)
+  - [Symbol filters](#symbol-filters)
+    - [PRICE_FILTER](#price_filter)
+    - [PERCENT_PRICE](#percent_price)
+    - [LOT_SIZE](#lot_size)
+    - [MIN_NOTIONAL](#min_notional)
+    - [ICEBERG_PARTS](#iceberg_parts)
+    - [MARKET_LOT_SIZE](#market_lot_size)
+    - [MAX_NUM_ORDERS](#max_num_orders)
+    - [MAX_NUM_ALGO_ORDERS](#max_num_algo_orders)
+    - [MAX_NUM_ICEBERG_ORDERS](#max_num_iceberg_orders)
+  - [Exchange Filters](#exchange-filters)
+    - [EXCHANGE_MAX_NUM_ORDERS](#exchange_max_num_orders)
+    - [EXCHANGE_MAX_NUM_ALGO_ORDERS](#exchange_max_num_algo_orders)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+# Public Rest API for Binance (2019-08-15)
 # General API Information
 * The base endpoint is: **https://api.binance.com**
 * All endpoints return either a JSON object or array.
@@ -93,10 +158,10 @@ processed within a certain number of milliseconds or be rejected by the
 server.
 
 
-**It recommended to use a small recvWindow of 5000 or less!**
+**It recommended to use a small recvWindow of 5000 or less! The max cannot go beyond 60,000!**
 
 
-## SIGNED Endpoint Examples for POST /api/v1/order
+## SIGNED Endpoint Examples for POST /api/v3/order
 Here is a step-by-step example of how to send a vaild signed payload from the
 Linux command line using `echo`, `openssl`, and `curl`.
 
@@ -203,6 +268,19 @@ There is no & between "GTC" and "quantity=1".
 * PENDING_CANCEL (currently unused)
 * REJECTED
 * EXPIRED
+
+**OCO Status (listStatusType):**
+* RESPONSE
+* EXEC_STARTED
+* ALL_DONE
+
+**OCO Order Status (listOrderStatus):**
+* EXECUTING
+* ALL_DONE
+* REJECT
+
+**ContingencyType**
+* OCO
 
 **Order types (orderTypes, type):**
 
@@ -336,33 +414,45 @@ NONE
 **Response:**
 ```javascript
 {
-  "timezone": "UTC",
-  "serverTime": 1508631584636,
-  "rateLimits": [
-    // These are defined in the `ENUM definitions` section under `Rate limiters (rateLimitType)`.
-    // All limits are optional.
-  ],
-  "exchangeFilters": [
-    // There are defined in the `Filters` section.
-    // All filters are optional.
-  ],
-  "symbols": [{
-    "symbol": "ETHBTC",
-    "status": "TRADING",
-    "baseAsset": "ETH",
-    "baseAssetPrecision": 8,
-    "quoteAsset": "BTC",
-    "quotePrecision": 8,
-    "orderTypes": [
-      // These are defined in the `ENUM definitions` section under `Order types (orderTypes)`.
-      // All orderTypes are optional.
+    "timezone": "UTC",
+    "serverTime": 1565246363776,
+    "rateLimits": [
+        {
+            //These are defined in the `ENUM definitions` section under `Rate Limiters (rateLimitType)`.
+            //All limits are optional
+        }
     ],
-    "icebergAllowed": false,
-    "filters": [
-      // There are defined in the `Filters` section.
-      // All filters are optional.
+    "exchangeFilters": [
+            //These are the defirned filters in the `Filters` section.
+            //All filters are optional.
+    ],
+    "symbols": [
+        {
+            "symbol": "ETHBTC",
+            "status": "TRADING",
+            "baseAsset": "ETH",
+            "baseAssetPrecision": 8,
+            "quoteAsset": "BTC",
+            "quotePrecision": 8,
+            "orderTypes": [
+                "LIMIT",
+                "LIMIT_MAKER",
+                "MARKET",
+                "STOP_LOSS",
+                "STOP_LOSS_LIMIT",
+                "TAKE_PROFIT",
+                "TAKE_PROFIT_LIMIT"
+            ],
+            "icebergAllowed": true,
+            "ocoAllowed": true,
+            "isSpotTradingAllowed": true,
+            "isMarginTradingAllowed": false,
+            "filters": [
+            //These are defined in the Filters section.
+            //All filters are optional
+            ]
+        }
     ]
-  }]
 }
 ```
 
@@ -381,13 +471,16 @@ Limit | Weight
 5, 10, 20, 50, 100 | 1
 500 | 5
 1000 | 10
+5000| 50
+10000| 100
+
 
 **Parameters:**
 
 Name | Type | Mandatory | Description
 ------------ | ------------ | ------------ | ------------
 symbol | STRING | YES |
-limit | INT | NO | Default 100; max 1000. Valid limits:[5, 10, 20, 50, 100, 500, 1000]
+limit | INT | NO | Default 100; max 1000. Valid limits:[5, 10, 20, 50, 100, 500, 1000, 5000, 10000]
 
 **Caution:** setting limit=0 can return a lot of data.
 
@@ -409,6 +502,7 @@ limit | INT | NO | Default 100; max 1000. Valid limits:[5, 10, 20, 50, 100, 500,
   ]
 }
 ```
+
 
 ### Recent trades list
 ```
@@ -755,7 +849,7 @@ newClientOrderId | STRING | NO | A unique id for the order. Automatically genera
 stopPrice | DECIMAL | NO | Used with `STOP_LOSS`, `STOP_LOSS_LIMIT`, `TAKE_PROFIT`, and `TAKE_PROFIT_LIMIT` orders.
 icebergQty | DECIMAL | NO | Used with `LIMIT`, `STOP_LOSS_LIMIT`, and `TAKE_PROFIT_LIMIT` to create an iceberg order.
 newOrderRespType | ENUM | NO | Set the response JSON. `ACK`, `RESULT`, or `FULL`; `MARKET` and `LIMIT` order types default to `FULL`, all other orders default to `ACK`.
-recvWindow | LONG | NO |
+recvWindow | LONG | NO | The value cannot be greater than ```60000```
 timestamp | LONG | YES |
 
 Additional mandatory parameters based on `type`:
@@ -788,6 +882,7 @@ Trigger order price rules against market price for both MARKET and LIMIT version
 {
   "symbol": "BTCUSDT",
   "orderId": 28,
+  "orderListId": -1, //Unless OCO, value will be -1
   "clientOrderId": "6gCrw2kRUAF9CvJDGP16IP",
   "transactTime": 1507725176595
 }
@@ -798,6 +893,7 @@ Trigger order price rules against market price for both MARKET and LIMIT version
 {
   "symbol": "BTCUSDT",
   "orderId": 28,
+  "orderListId": -1, //Unless OCO, value will be -1
   "clientOrderId": "6gCrw2kRUAF9CvJDGP16IP",
   "transactTime": 1507725176595,
   "price": "1.00000000",
@@ -816,6 +912,7 @@ Trigger order price rules against market price for both MARKET and LIMIT version
 {
   "symbol": "BTCUSDT",
   "orderId": 28,
+  "orderListId": -1, //Unless OCO, value will be -1
   "clientOrderId": "6gCrw2kRUAF9CvJDGP16IP",
   "transactTime": 1507725176595,
   "price": "1.00000000",
@@ -897,7 +994,7 @@ Name | Type | Mandatory | Description
 symbol | STRING | YES |
 orderId | LONG | NO |
 origClientOrderId | STRING | NO |
-recvWindow | LONG | NO |
+recvWindow | LONG | NO | The value cannot be greater than ```60000```
 timestamp | LONG | YES |
 
 Notes:
@@ -910,6 +1007,7 @@ Notes:
 {
   "symbol": "LTCBTC",
   "orderId": 1,
+  "orderListId": -1 //Unless part of an OCO, the value will always be -1.
   "clientOrderId": "myOrder1",
   "price": "0.1",
   "origQty": "1.0",
@@ -944,7 +1042,7 @@ symbol | STRING | YES |
 orderId | LONG | NO |
 origClientOrderId | STRING | NO |
 newClientOrderId | STRING | NO |  Used to uniquely identify this cancel. Automatically generated by default.
-recvWindow | LONG | NO |
+recvWindow | LONG | NO | The value cannot be greater than ```60000```
 timestamp | LONG | YES |
 
 Either `orderId` or `origClientOrderId` must be sent.
@@ -952,19 +1050,19 @@ Either `orderId` or `origClientOrderId` must be sent.
 **Response:**
 ```javascript
 {
-  "symbol": "LTCBTC",
-  "orderId": 28,
-  "origClientOrderId": "myOrder1",
-  "clientOrderId": "cancelMyOrder1",
-  "transactTime": 1507725176595,
-  "price": "1.00000000",
-  "origQty": "10.00000000",
-  "executedQty": "8.00000000",
-  "cummulativeQuoteQty": "8.00000000",
-  "status": "CANCELED",
-  "timeInForce": "GTC",
-  "type": "LIMIT",
-  "side": "SELL"
+    "symbol": "LTCBTC",
+    "origClientOrderId": "myOrder1",
+    "orderId": 4,
+    "orderListId": -1, //Unless part of an OCO, the value will always be -1.
+    "clientOrderId": "cancelMyOrder1",
+    "price": "2.00000000",
+    "origQty": "1.00000000",
+    "executedQty": "0.00000000",
+    "cummulativeQuoteQty": "0.00000000",
+    "status": "CANCELED",
+    "timeInForce": "GTC",
+    "type": "LIMIT",
+    "side": "BUY"
 }
 ```
 
@@ -982,7 +1080,7 @@ Get all open orders on a symbol. **Careful** when accessing this with no symbol.
 Name | Type | Mandatory | Description
 ------------ | ------------ | ------------ | ------------
 symbol | STRING | NO |
-recvWindow | LONG | NO |
+recvWindow | LONG | NO | The value cannot be greater than ```60000```
 timestamp | LONG | YES |
 
 * If the symbol is not sent, orders for all symbols will be returned in an array.
@@ -993,6 +1091,7 @@ timestamp | LONG | YES |
   {
     "symbol": "LTCBTC",
     "orderId": 1,
+    "orderListId": -1, //Unless OCO, the value will always be -1
     "clientOrderId": "myOrder1",
     "price": "0.1",
     "origQty": "1.0",
@@ -1029,7 +1128,7 @@ orderId | LONG | NO |
 startTime | LONG | NO |
 endTime | LONG | NO |
 limit | INT | NO | Default 500; max 1000.
-recvWindow | LONG | NO |
+recvWindow | LONG | NO | The value cannot be greater than ```60000```
 timestamp | LONG | YES |
 
 **Notes:**
@@ -1042,6 +1141,7 @@ timestamp | LONG | YES |
   {
     "symbol": "LTCBTC",
     "orderId": 1,
+    "orderListId": -1, //Unless OCO, the value will always be -1
     "clientOrderId": "myOrder1",
     "price": "0.1",
     "origQty": "1.0",
@@ -1060,6 +1160,288 @@ timestamp | LONG | YES |
 ]
 ```
 
+### New OCO (TRADE)
+
+```
+POST /api/v3/order/oco (HMAC SHA256)
+```
+
+**Weight**: 1
+
+Send in a new OCO
+
+**Parameters**:
+
+Name |Type| Mandatory | Descirption
+-----|-----|----------| -----------
+symbol|STRING| YES|
+listClientOrderId|STRING|NO| A unique Id for the entire orderList
+side|ENUM|YES|
+quantity|DECIMAL|YES|
+limitClientOrderId|STRING|NO| A unique Id for the limit order
+price|DECIMAL|YES|
+limitIcebergQty|DECIMAL|NO|
+stopClientOrderId |STRING|NO| A unique Id for the stop loss/stop loss limit leg
+stopIcebergQty|DECIMAL|NO|
+stopLimitTimeInForce|ENUM|NO| Valid values are ```GTC```/```FOK```/```IOC```
+newOrderRespType|ENUM|NO| Set the response JSON.
+recvWindow|LONG|NO| The value cannot be greater than ```60000```
+timestamp|LONG|YES|
+
+
+Other Info:
+* Price Restrictions:
+    * ```SELL```: Limit Price > Last Price > Stop Price
+    * ```BUY```: Limit Price < Last Price < Stop Price
+* Quantity Restrictions:
+    * Both legs must have the same quantity
+    * ```ICEBERG``` quantities however do not have to be the same
+
+**Response:**
+
+```json
+{
+  "orderListId": 0,
+  "contingencyType": "OCO",
+  "listStatusType": "EXEC_STARTED",
+  "listOrderStatus": "EXECUTING",
+  "listClientOrderId": "JYVpp3F0f5CAG15DhtrqLp",
+  "transactionTime": 1563417480525,
+  "symbol": "LTCBTC",
+  "orders": [
+    {
+      "symbol": "LTCBTC",
+      "orderId": 2,
+      "clientOrderId": "Kk7sqHb9J6mJWTMDVW7Vos"
+    },
+    {
+      "symbol": "LTCBTC",
+      "orderId": 3,
+      "clientOrderId": "xTXKaGYd4bluPVp78IVRvl"
+    }
+  ],
+  "orderReports": [
+    {
+      "symbol": "LTCBTC",
+      "orderId": 2,
+      "orderListId": 0,
+      "clientOrderId": "Kk7sqHb9J6mJWTMDVW7Vos",
+      "transactTime": 1563417480525,
+      "price": "0.000000",
+      "origQty": "0.624363",
+      "executedQty": "0.000000",
+      "cummulativeQuoteQty": "0.000000",
+      "status": "NEW",
+      "timeInForce": "GTC",
+      "type": "STOP_LOSS",
+      "side": "BUY",
+      "stopPrice": "0.960664"
+    },
+    {
+      "symbol": "LTCBTC",
+      "orderId": 3,
+      "orderListId": 0,
+      "clientOrderId": "xTXKaGYd4bluPVp78IVRvl",
+      "transactTime": 1563417480525,
+      "price": "0.036435",
+      "origQty": "0.624363",
+      "executedQty": "0.000000",
+      "cummulativeQuoteQty": "0.000000",
+      "status": "NEW",
+      "timeInForce": "GTC",
+      "type": "LIMIT_MAKER",
+      "side": "BUY"
+    }
+  ]
+}
+```
+
+
+### Cancel OCO (TRADE)
+
+```
+DELETE /api/v3/orderList (HMAC SHA256)
+```
+
+**Weight**: 1
+
+Cancel an entire Order List
+
+**Parameters:**
+
+Name| Type| Mandatory| Description
+----| ----|------|------
+symbol| STRING| YES|
+orderListId|STRING|NO| Either ```orderListId``` or ```listClientOrderId``` must be provided
+listClientOrderId|STRING|NO| Either ```orderListId``` or ```listClientOrderId``` must be provided
+newClientOrderId|STRING|NO| Used to uniquely identify this cancel. Automatically generated by default
+recvWindow|LONG|NO| The value cannot be greater than ```60000```
+timestamp|LONG|YES|
+
+Additional notes:
+* Cancelling an individual leg will cancel the entire OCO
+
+
+### Query OCO (USER_DATA)
+
+```
+GET /api/v3/orderList (HMAC SHA256)
+```
+
+**Weight**: 1
+
+Retrieves a specific OCO based on provided optional parameters
+
+**Parameters**:
+
+Name| Type|Mandatory| Description
+----|-----|----|----------
+orderListId|STRING|NO|  Either ```orderListId``` or ```listClientOrderId``` must be provided
+origClientOrderId|STRING|NO| Either ```orderListId``` or ```listClientOrderId``` must be provided
+recvWindow|LONG|NO| The value cannot be greater than ```60000```
+timestamp|LONG|YES|
+
+**Response:**
+
+```javascript
+{
+    "orderListId": 27,
+    "contingencyType": "OCO",
+    "listStatusType": "EXEC_STARTED",
+    "listOrderStatus": "EXECUTING",
+    "listClientOrderId": "h2USkA5YQpaXHPIrkd96xE",
+    "transactionTime": 1565245656253,
+    "symbol": "LTCBTC",
+    "orders": [
+        {
+            "symbol": "LTCBTC",
+            "orderId": 4,
+            "clientOrderId": "qD1gy3kc3Gx0rihm9Y3xwS"
+        },
+        {
+            "symbol": "LTCBTC",
+            "orderId": 5,
+            "clientOrderId": "ARzZ9I00CPM8i3NhmU9Ega"
+        }
+    ]
+}
+```
+
+
+### Query all OCO (USER_DATA)
+
+```
+GET /api/v3/allOrderList (HMAC SHA256)
+```
+
+**Weight**: 10
+
+Retrieves all OCO based on provided optional parameters
+
+**Parameters**
+
+Name|Type| Mandatory| Description
+----|----|----|---------
+fromId|LONG|NO| If supplied, neither ```startTime``` or ```endTime``` can be provided
+startTime|LONG|NO|
+endTime|LONG|NO|
+limit|INT|NO| Default Value: 500; Max Value: 1000
+recvWindow|LONG|NO| The value cannot be greater than ```60000```
+timestamp|LONG|YES|
+
+**Response:**
+
+```javascript
+[
+    {
+        "orderListId": 29,
+        "contingencyType": "OCO",
+        "listStatusType": "EXEC_STARTED",
+        "listOrderStatus": "EXECUTING",
+        "listClientOrderId": "amEEAXryFzFwYF1FeRpUoZ",
+        "transactionTime": 1565245913483,
+        "symbol": "LTCBTC",
+        "orders": [
+            {
+                "symbol": "LTCBTC",
+                "orderId": 4,
+                "clientOrderId": "oD7aesZqjEGlZrbtRpy5zB"
+            },
+            {
+                "symbol": "LTCBTC",
+                "orderId": 5,
+                "clientOrderId": "Jr1h6xirOxgeJOUuYQS7V3"
+            }
+        ]
+    },
+    {
+        "orderListId": 28,
+        "contingencyType": "OCO",
+        "listStatusType": "EXEC_STARTED",
+        "listOrderStatus": "EXECUTING",
+        "listClientOrderId": "hG7hFNxJV6cZy3Ze4AUT4d",
+        "transactionTime": 1565245913407,
+        "symbol": "LTCBTC",
+        "orders": [
+            {
+                "symbol": "LTCBTC",
+                "orderId": 2,
+                "clientOrderId": "j6lFOfbmFMRjTYA7rRJ0LP"
+            },
+            {
+                "symbol": "LTCBTC",
+                "orderId": 3,
+                "clientOrderId": "z0KCjOdditiLS5ekAFtK81"
+            }
+        ]
+    }
+]
+```
+
+### Query Open OCO (USER_DATA)
+
+```
+GET /api/v3/openOrderList (HMAC SHA256)
+```
+
+Weight: 2
+
+**Parameters**
+
+Name| Type|Mandatory| Description
+----|-----|---|------------------
+recvWindow|LONG|NO| The value cannot be greater than ```60000```
+timestamp|LONG|YES|
+signature|LONG|YES|
+
+**Response:**
+
+```javascript
+[
+    {
+        "orderListId": 31,
+        "contingencyType": "OCO",
+        "listStatusType": "EXEC_STARTED",
+        "listOrderStatus": "EXECUTING",
+        "listClientOrderId": "wuB13fmulKj3YjdqWEcsnp",
+        "transactionTime": 1565246080644,
+        "symbol": "1565246079109",
+        "orders": [
+            {
+                "symbol": "LTCBTC",
+                "orderId": 4,
+                "clientOrderId": "r3EH2N76dHfLoSZWIUw1bT"
+            },
+            {
+                "symbol": "LTCBTC",
+                "orderId": 5,
+                "clientOrderId": "Cv1SnyPD3qhqpbjpYEHbd2"
+            }
+        ]
+    }
+]
+```
+
 ### Account information (USER_DATA)
 ```
 GET /api/v3/account (HMAC SHA256)
@@ -1073,7 +1455,7 @@ Get current account information.
 
 Name | Type | Mandatory | Description
 ------------ | ------------ | ------------ | ------------
-recvWindow | LONG | NO |
+recvWindow | LONG | NO | The value cannot be greater than ```60000```
 timestamp | LONG | YES |
 
 **Response:**
@@ -1120,7 +1502,7 @@ startTime | LONG | NO |
 endTime | LONG | NO |
 fromId | LONG | NO | TradeId to fetch from. Default gets most recent trades.
 limit | INT | NO | Default 500; max 1000.
-recvWindow | LONG | NO |
+recvWindow | LONG | NO | The value cannot be greater than ```60000```
 timestamp | LONG | YES |
 
 **Notes:**
@@ -1134,6 +1516,7 @@ Otherwise most recent orders are returned.
     "symbol": "BNBBTC",
     "id": 28457,
     "orderId": 100234,
+    "orderListId": -1,
     "price": "4.00000100",
     "qty": "12.00000000",
     "quoteQty": "48.000012",

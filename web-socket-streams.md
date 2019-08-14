@@ -1,4 +1,23 @@
-# Web Socket Streams for Binance (2018-11-13)
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [General WSS information](#general-wss-information)
+- [Detailed Stream information](#detailed-stream-information)
+  - [Aggregate Trade Streams](#aggregate-trade-streams)
+  - [Trade Streams](#trade-streams)
+  - [Kline/Candlestick Streams](#klinecandlestick-streams)
+  - [Individual Symbol Mini Ticker Stream](#individual-symbol-mini-ticker-stream)
+  - [All Market Mini Tickers Stream](#all-market-mini-tickers-stream)
+  - [Individual Symbol Ticker Streams](#individual-symbol-ticker-streams)
+  - [All Market Tickers Stream](#all-market-tickers-stream)
+  - [Partial Book Depth Streams](#partial-book-depth-streams)
+  - [Diff. Depth Stream](#diff-depth-stream)
+  - [How to manage a local order book correctly](#how-to-manage-a-local-order-book-correctly)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+# Web Socket Streams for Binance (2019-08-15)
 # General WSS information
 * The base endpoint is: **wss://stream.binance.com:9443**
 * Streams can be access either in a single raw stream or a combined stream
