@@ -44,10 +44,14 @@
         * GET api/v3/orderList
 
 * ```recvWindow``` cannot exceed 60000.
-* New Header `X-MBX-WEIGHT-(intervalNum)(interval)` for cases where the weight is based on a ONE MINUTE request rate limit.
-    * Eg. `X-MBX-USED-WEIGHT-1M`
-* New Header `X-MBX-ORDER-COUNT-(num)(letter)`that is updated on any valid order placement; rejected/unsuccessful orders are not guaranteed to have `X-MBX-ORDER-COUNT` headers in the response.
-    * Eg. `X-MBX-ORDER-COUNT-1S` and `X-MBX-ORDER-COUNT-1D`
+* New `intervalLetter` values for headers:
+    * SECOND => S
+    * MINUTE => M
+    * HOUR => H
+    * DAY => D
+* New Headers `X-MBX-USED-WEIGHT-(intervalNum)(intervalLetter)` will give your current used request weight for the (intervalNum)(intervalLetter) rate limiter. For example, if there is a one minute request rate weight limiter set, you will get a `X-MBX-USED-WEIGHT-1M` header in the response. The legacy header `X-MBX-USED-WEIGHT` will still be returned and will represent the current used weight for the one minute request rate weight limit.
+* New Header `X-MBX-ORDER-COUNT-(intervalNum)(intervalLetter)`that is updated on any valid order placement and tracks your current order count for the interval; rejected/unsuccessful orders are not guaranteed to have `X-MBX-ORDER-COUNT-**` headers in the response.
+    * Eg. `X-MBX-ORDER-COUNT-1S` for "orders per 1 second" and `X-MBX-ORDER-COUNT-1D` for orders per "one day"
 * GET api/v1/depth now supports `limit` 5000 and 10000; weights are 50 and 100 respectively.
 * GET api/v1/exchangeInfo has a new parameter `ocoAllowed`.
 
@@ -165,4 +169,3 @@
 * GET /api/v3/account weight changed to 20
 * GET /api/v3/myTrades weight changed to 20
 * GET /api/v3/historicalTrades weight changed to 20
-
