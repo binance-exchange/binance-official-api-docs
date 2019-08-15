@@ -2,7 +2,7 @@
 ---
 ## 2019-08-15
 ### Rest API
-* New order type: OCO (Order Cancels Order)
+* New order type: OCO ("One Cancels the Other")
     * An OCO has 2 orders: (also known as legs in financial terms)
         * ```STOP_LOSS``` or ```STOP_LOSS_LIMIT``` leg
         * ```LIMIT_MAKER``` leg
