@@ -1,5 +1,9 @@
 # CHANGELOG for Binance's API (2019-08-15)
 ---
+## 2019-08-16 (Update 2)
+* GET api/v1/depth `limit` of 10000 has been temporarily removed
+
+---
 ## 2019-08-16
 * In Q4 2017, the following endpoints were deprecated and removed from the API documentation. They have been permanently removed from the API as of this version. We apologize for the omission from the original changelog:
     * GET api/v1/order
