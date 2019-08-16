@@ -478,7 +478,6 @@ Limit | Weight
 500 | 5
 1000 | 10
 5000| 50
-10000| 100
 
 
 **Parameters:**
@@ -486,7 +485,7 @@ Limit | Weight
 Name | Type | Mandatory | Description
 ------------ | ------------ | ------------ | ------------
 symbol | STRING | YES |
-limit | INT | NO | Default 100; max 10000. Valid limits:[5, 10, 20, 50, 100, 500, 1000, 5000, 10000]
+limit | INT | NO | Default 100; max 5000. Valid limits:[5, 10, 20, 50, 100, 500, 1000, 5000]
 
 **Response:**
 ```javascript
