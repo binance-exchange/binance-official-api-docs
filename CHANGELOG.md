@@ -3,9 +3,10 @@
 ## 2019-08-16
 * In Q4 2017, the following endpoints were deprecated and removed from the API documentation. They have been permanently removed from the API as of this version. We apologize for the omission from the original changelog:
     * GET api/v1/order
+    * GET api/v1/openOrders
     * POST api/v1/order
     * DELETE api/v1/order
-    * GET api/v1/allOrder
+    * GET api/v1/allOrders
     * GET api/v1/account
     * GET api/v1/myTrades
 
