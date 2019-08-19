@@ -31,7 +31,7 @@
   `query string` parameter will be used.
 
 # LIMITS
-* The `/api/v1/exchangeInfo` `rateLimits` array contains objects related to the exchange's `RAW_REQUEST`, `REQUEST_WEIGHT`, and `ORDER` rate limits. These are further defined in the `ENUM definitions` section under `Rate limiters (rateLimitType)`.
+* The `/api/v1/exchangeInfo` `rateLimits` array contains objects related to the exchange's `REQUEST_WEIGHT`, and `ORDER` rate limits. These are further defined in the `ENUM definitions` section under `Rate limiters (rateLimitType)`.
 * A 429 will be returned when either rate limit is violated.
 * Each route has a `weight` which determines for the number of requests each endpoint counts for. Heavier endpoints and endpoints that do operations on multiple symbols will have a heavier `weight`.
 * Every request will contain a `X-MBX-USED-WEIGHT` header which has the current used weight for the IP for the current minute.
@@ -265,16 +265,6 @@ m -> minutes; h -> hours; d -> days; w -> weeks; M -> months
       "interval": "SECOND",
       "intervalNum": 1,
       "limit": 10
-    }
-    ```
-* RAW_REQUESTS
-
-    ```json
-    {
-      "rateLimitType": "RAW_REQUESTS",
-      "interval": "MINUTE",
-      "intervalNum": 5,
-      "limit": 5000
     }
     ```
 
