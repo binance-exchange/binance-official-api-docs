@@ -590,6 +590,130 @@ symbol | STRING | YES |
 }
 ```
 
+### Get all margin assets (MARKET_DATA)
+
+```
+Get /sapi/v1/margin/allAssets
+```
+
+**Weight:**
+5
+
+**Parameters:**
+
+None
+
+**Response:**
+
+```javascript
+  [
+      {
+          "assetFullName": "USD coin",
+          "assetName": "USDC",
+          "isBorrowable": true,
+          "isMortgageable": true,
+          "userMinBorrow": "0.00000000",
+          "userMinRepay": "0.00000000"
+      },
+      {
+          "assetFullName": "BNB-coin",
+          "assetName": "BNB",
+          "isBorrowable": true,
+          "isMortgageable": true,
+          "userMinBorrow": "1.00000000",
+          "userMinRepay": "0.00000000"
+      },
+      {
+          "assetFullName": "Tether",
+          "assetName": "USDT",
+          "isBorrowable": true,
+          "isMortgageable": true,
+          "userMinBorrow": "1.00000000",
+          "userMinRepay": "0.00000000"
+      },
+      {
+          "assetFullName": "etherum",
+          "assetName": "ETH",
+          "isBorrowable": true,
+          "isMortgageable": true,
+          "userMinBorrow": "0.00000000",
+          "userMinRepay": "0.00000000"
+      },
+      {
+          "assetFullName": "Bitcoin",
+          "assetName": "BTC",
+          "isBorrowable": true,
+          "isMortgageable": true,
+          "userMinBorrow": "0.00000000",
+          "userMinRepay": "0.00000000"
+      }
+  ]
+```
+
+### Get all margin pairs (MARKET_DATA)
+```
+Get /sapi/v1/margin/allPairs 
+```
+
+**Weight:**
+5
+
+**Parameters:**
+
+None
+
+**Response:**
+
+```javascript
+[
+	{
+		"base": "BNB",
+  		"id": 351637150141315861,
+  		"isBuyAllowed": True,
+  		"isMarginTrade": True,
+  		"isSellAllowed": True,
+  		"quote": "BTC",
+  		"symbol": "BNBBTC"
+  	},
+ 	{
+ 		"base": "TRX",
+  		"id": 351637923235429141,
+  		"isBuyAllowed": True,
+  		"isMarginTrade": True,
+  		"isSellAllowed": True,
+  		"quote": "BTC",
+  		"symbol": "TRXBTC"
+  	},
+ 	{
+ 		"base": "XRP",
+  		"id": 351638112213990165,
+  		"isBuyAllowed": True,
+  		"isMarginTrade": True,
+  		"isSellAllowed": True,
+  		"quote": "BTC",
+  		"symbol": "XRPBTC"
+  	},
+ 	{
+ 		"base": "ETH",
+  		"id": 351638524530850581,
+  		"isBuyAllowed": True,
+  		"isMarginTrade": True,
+  		"isSellAllowed": True,
+  		"quote": "BTC",
+  		"symbol": "ETHBTC"
+  	},
+ 	{
+ 		"base": "BNB",
+  		"id": 376870400832855109,
+  		"isBuyAllowed": True,
+  		"isMarginTrade": True,
+  		"isSellAllowed": True,
+  		"quote": "USDT",
+  		"symbol": "BNBUSDT"
+  },
+]
+```
+
 ### Query margin priceIndex (MARKET_DATA)
 ```
 Get /sapi/v1/margin/priceIndex 
@@ -612,6 +736,174 @@ symbol | STRING | YES |
    "symbol": "BNBBTC"
 }
 ```
+
+### Get transfer history (USER_DATA)
+```
+Get /sapi/v1/margin/transfer
+```
+
+**Weight:**s
+5
+
+**Parameters:**
+
+Name | Type | Mandatory | Description
+------------ | ------------ | ------------ | ------------
+asset | STRING | No
+type | STRING | YES | Tranfer Type: ROLL_IN, ROLL_OUT
+startTime | LONG |	NO	
+endTime | LONG | NO	
+current | LONG | NO | Currently querying page. Start from 1. Default:1
+size |	LONG | NO |	Default:10 Max:100
+recvWindow | LONG | NO | The value cannot be greater than ```60000```
+timestamp | LONG | YES
+
+
+**Response:**
+
+```javascript
+{
+	"rows": [
+  	{
+  		"amount: "0.10000000",
+   		"asset": "BNB",
+   		"status": "CONFIRMED",
+   		"timestamp": 1566898617,
+   		"txId": 5240372201,
+   		"type": "ROLL_IN"
+  	},
+  	{
+  		"amount": "5.00000000",
+   		"asset": "USDT",
+   		"status": "CONFIRMED",
+   		"timestamp": 1566888436,
+   		"txId": 5239810406,
+   		"type": "ROLL_OUT"
+  	},
+  	{
+  		"amount": "1.00000000",
+   		"asset": "EOS,
+   		"status": "CONFIRMED",
+   		"timestamp": 1566888403,
+   		"txId": 5239808703,
+   		"type": "ROLL_IN"
+  	}
+ 	"total": 3
+} 
+```
+
+### Get interest history (USER_DATA)
+```
+Get /sapi/v1/margin/interestHistory
+```
+
+**Weight:**s
+5
+
+**Parameters:**
+
+Name | Type | Mandatory | Description
+------------ | ------------ | ------------ | ------------
+asset | STRING | No
+startTime | LONG |	NO	
+endTime | LONG | NO	
+current | LONG | NO | Currently querying page. Start from 1. Default:1
+size |	LONG | NO |	Default:10 Max:100
+recvWindow | LONG | NO | The value cannot be greater than ```60000```
+timestamp | LONG | YES
+
+
+**Response:**
+
+```javascript
+  {
+      "rows": [
+          {
+              "asset": "BNB",
+              "interest": "0.02414667",
+              "interestAccuredTime": 1566813600,
+              "interestRate": "0.01600000",
+              "principal": "36.22000000",
+              "type": "ON_BORROW"
+          },
+          {
+              "asset": "BNB",
+              "interest": "0.02019334",
+              "interestAccuredTime": 1566813600,
+              "interestRate": "0.01600000",
+              "principal": "30.29000000",
+              "type": "ON_BORROW"
+          },
+          {
+              "asset": "BNB",
+              "interest": "0.02098667",
+              "interestAccuredTime": 1566813600,
+              "interestRate": "0.01600000",
+              "principal": "31.48000000",
+              "type": "ON_BORROW"
+          },
+          {
+              "asset": "BNB",
+              "interest": "0.02483334",
+              "interestAccuredTime": 1566806400,
+              "interestRate": "0.01600000",
+              "principal": "37.25000000",
+              "type": "ON_BORROW"
+          },
+          {
+              "asset": "BNB",
+              "interest": "0.02165334",
+              "interestAccuredTime": 1566806400,
+              "interestRate": "0.01600000",
+              "principal": "32.48000000",
+              "type": "ON_BORROW"
+          }
+      ],
+      "total": 5
+  }
+```
+
+### Get force liquidation record (USER_DATA)
+```
+Get /sapi/v1/margin/forceLiquidationRec
+```
+
+**Weight:**s
+5
+
+**Parameters:**
+
+Name | Type | Mandatory | Description
+------------ | ------------ | ------------ | ------------
+startTime | LONG |	NO	
+endTime | LONG | NO	
+current | LONG | NO | Currently querying page. Start from 1. Default:1
+size |	LONG | NO |	Default:10 Max:100
+recvWindow | LONG | NO | The value cannot be greater than ```60000```
+timestamp | LONG | YES
+
+
+**Response:**
+
+```javascript
+  {
+      "rows": [
+          {
+              "avgPrice": "0.00388359",
+              "executedQty": "31.39000000",
+              "orderId": 180015097,
+              "price": "0.00388110",
+              "qty": "31.39000000",
+              "side": "SELL",
+              "symbol": "BNBBTC",
+              "timeInForce": "GTC",
+              "updatedTime": 1558941374745
+          }
+      ],
+      "total": 1
+  }
+```
+
 
 
 ### Query margin account's order (USER_DATA)
