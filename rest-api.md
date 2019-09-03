@@ -529,6 +529,7 @@ limit | INT | NO | Default 500; max 1000.
     "id": 28457,
     "price": "4.00000100",
     "qty": "12.00000000",
+    "quoteQty": "48.000012",
     "time": 1499865549590,
     "isBuyerMaker": true,
     "isBestMatch": true
@@ -560,6 +561,7 @@ fromId | LONG | NO | TradeId to fetch from. Default gets most recent trades.
     "id": 28457,
     "price": "4.00000100",
     "qty": "12.00000000",
+    "quoteQty": "48.000012",
     "time": 1499865549590,
     "isBuyerMaker": true,
     "isBestMatch": true
@@ -1472,6 +1474,7 @@ timestamp | LONG | YES |
   "canWithdraw": true,
   "canDeposit": true,
   "updateTime": 123456789,
+  "accountType": "SPOT",
   "balances": [
     {
       "asset": "BTC",
