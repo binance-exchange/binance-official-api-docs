@@ -8,8 +8,8 @@
 - [SIGNED (TRADE and USER_DATA) Endpoint security](#signed-trade-and-user_data-endpoint-security)
   - [Timing security](#timing-security)
   - [SIGNED Endpoint Examples for POST /api/v3/order](#signed-endpoint-examples-for-post-apiv3order)
-    - [Example 1: As a query string](#example-1-as-a-query-string)
-    - [Example 2: As a request body](#example-2-as-a-request-body)
+    - [Example 1: As a request body](#example-1-as-a-request-body)
+    - [Example 2: As a query string](#example-2-as-a-query-string)
     - [Example 3: Mixed query string and request body](#example-3-mixed-query-string-and-request-body)
 - [Public API Endpoints](#public-api-endpoints)
   - [Terminology](#terminology)
@@ -106,8 +106,8 @@
 * Each route has a `weight` which determines for the number of requests each endpoint counts for. Heavier endpoints and endpoints that do operations on multiple symbols will have a heavier `weight`.
 * Every request will contain `X-MBX-USED-WEIGHT-(intervalNum)(intervalLetter)` headers which has the current used weight for the IP for all request rate limiters defined.
 * Every successful order will contain a `X-MBX-ORDER-COUNT-(intervalNum)(intervalLetter)` header which has the current order count for the IP for all order rate limiters defined. Rejected/unsuccessful orders are not guaranteed to have `X-MBX-ORDER-COUNT-**` headers in the response.
-* When a 429 is recieved, it's your obligation as an API to back off and not spam the API.
-* **Repeatedly violating rate limits and/or failing to back off after receiving 429s will result in an automated IP ban (http status 418).**
+* When a 429 is received, it's your obligation as an API to back off and not spam the API.
+* **Repeatedly violating rate limits and/or failing to back off after receiving 429s will result in an automated IP ban (HTTP status 418).**
 * IP bans are tracked and **scale in duration** for repeat offenders, **from 2 minutes to 3 days**.
 * A `Retry-After` header is sent with a 418 or 429 responses and will give the **number of seconds** required to wait, in the case of a 418, to prevent a ban, or, in the case of a 429, until the ban is over.
 
@@ -188,25 +188,7 @@ price | 0.1
 recvWindow | 5000
 timestamp | 1499827319559
 
-
-### Example 1: As a query string
-* **queryString:** symbol=LTCBTC&side=BUY&type=LIMIT&timeInForce=GTC&quantity=1&price=0.1&recvWindow=5000&timestamp=1499827319559
-* **HMAC SHA256 signature:**
-
-    ```
-    [linux]$ echo -n "symbol=LTCBTC&side=BUY&type=LIMIT&timeInForce=GTC&quantity=1&price=0.1&recvWindow=5000&timestamp=1499827319559" | openssl dgst -sha256 -hmac "NhqPtmdSJYdKjVHjA7PZj4Mge3R5YNiP1e3UZjInClVN65XAbvqqM6A7H5fATj0j"
-    (stdin)= c8db56825ae71d6d79447849e617115f4a920fa2acdcab2b053c4b2838bd6b71
-    ```
-
-
-* **curl command:**
-
-    ```
-    (HMAC SHA256)
-    [linux]$ curl -H "X-MBX-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A" -X POST 'https://api.binance.com/api/v3/order?symbol=LTCBTC&side=BUY&type=LIMIT&timeInForce=GTC&quantity=1&price=0.1&recvWindow=5000&timestamp=1499827319559&signature=c8db56825ae71d6d79447849e617115f4a920fa2acdcab2b053c4b2838bd6b71'
-    ```
-
-### Example 2: As a request body
+### Example 1: As a request body
 * **requestBody:** symbol=LTCBTC&side=BUY&type=LIMIT&timeInForce=GTC&quantity=1&price=0.1&recvWindow=5000&timestamp=1499827319559
 * **HMAC SHA256 signature:**
 
@@ -221,6 +203,23 @@ timestamp | 1499827319559
     ```
     (HMAC SHA256)
     [linux]$ curl -H "X-MBX-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A" -X POST 'https://api.binance.com/api/v3/order' -d 'symbol=LTCBTC&side=BUY&type=LIMIT&timeInForce=GTC&quantity=1&price=0.1&recvWindow=5000&timestamp=1499827319559&signature=c8db56825ae71d6d79447849e617115f4a920fa2acdcab2b053c4b2838bd6b71'
+    ```
+
+### Example 2: As a query string
+* **queryString:** symbol=LTCBTC&side=BUY&type=LIMIT&timeInForce=GTC&quantity=1&price=0.1&recvWindow=5000&timestamp=1499827319559
+* **HMAC SHA256 signature:**
+
+    ```
+    [linux]$ echo -n "symbol=LTCBTC&side=BUY&type=LIMIT&timeInForce=GTC&quantity=1&price=0.1&recvWindow=5000&timestamp=1499827319559" | openssl dgst -sha256 -hmac "NhqPtmdSJYdKjVHjA7PZj4Mge3R5YNiP1e3UZjInClVN65XAbvqqM6A7H5fATj0j"
+    (stdin)= c8db56825ae71d6d79447849e617115f4a920fa2acdcab2b053c4b2838bd6b71
+    ```
+
+
+* **curl command:**
+
+    ```
+    (HMAC SHA256)
+    [linux]$ curl -H "X-MBX-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A" -X POST 'https://api.binance.com/api/v3/order?symbol=LTCBTC&side=BUY&type=LIMIT&timeInForce=GTC&quantity=1&price=0.1&recvWindow=5000&timestamp=1499827319559&signature=c8db56825ae71d6d79447849e617115f4a920fa2acdcab2b053c4b2838bd6b71'
     ```
 
 ### Example 3: Mixed query string and request body
@@ -420,45 +419,45 @@ NONE
 **Response:**
 ```javascript
 {
-    "timezone": "UTC",
-    "serverTime": 1565246363776,
-    "rateLimits": [
-        {
-            //These are defined in the `ENUM definitions` section under `Rate Limiters (rateLimitType)`.
-            //All limits are optional
-        }
-    ],
-    "exchangeFilters": [
-            //These are the defirned filters in the `Filters` section.
-            //All filters are optional.
-    ],
-    "symbols": [
-        {
-            "symbol": "ETHBTC",
-            "status": "TRADING",
-            "baseAsset": "ETH",
-            "baseAssetPrecision": 8,
-            "quoteAsset": "BTC",
-            "quotePrecision": 8,
-            "orderTypes": [
-                "LIMIT",
-                "LIMIT_MAKER",
-                "MARKET",
-                "STOP_LOSS",
-                "STOP_LOSS_LIMIT",
-                "TAKE_PROFIT",
-                "TAKE_PROFIT_LIMIT"
-            ],
-            "icebergAllowed": true,
-            "ocoAllowed": true,
-            "isSpotTradingAllowed": true,
-            "isMarginTradingAllowed": false,
-            "filters": [
-            //These are defined in the Filters section.
-            //All filters are optional
-            ]
-        }
-    ]
+  "timezone": "UTC",
+  "serverTime": 1565246363776,
+  "rateLimits": [
+    {
+      //These are defined in the `ENUM definitions` section under `Rate Limiters (rateLimitType)`.
+      //All limits are optional
+    }
+  ],
+  "exchangeFilters": [
+    //These are the defined filters in the `Filters` section.
+    //All filters are optional.
+  ],
+  "symbols": [
+    {
+      "symbol": "ETHBTC",
+      "status": "TRADING",
+      "baseAsset": "ETH",
+      "baseAssetPrecision": 8,
+      "quoteAsset": "BTC",
+      "quotePrecision": 8,
+      "orderTypes": [
+        "LIMIT",
+        "LIMIT_MAKER",
+        "MARKET",
+        "STOP_LOSS",
+        "STOP_LOSS_LIMIT",
+        "TAKE_PROFIT",
+        "TAKE_PROFIT_LIMIT"
+      ],
+      "icebergAllowed": true,
+      "ocoAllowed": true,
+      "isSpotTradingAllowed": true,
+      "isMarginTradingAllowed": false,
+      "filters": [
+        //These are defined in the Filters section.
+        //All filters are optional
+      ]
+    }
+  ]
 }
 ```
 
@@ -1053,19 +1052,19 @@ Either `orderId` or `origClientOrderId` must be sent.
 **Response:**
 ```javascript
 {
-    "symbol": "LTCBTC",
-    "origClientOrderId": "myOrder1",
-    "orderId": 4,
-    "orderListId": -1, //Unless part of an OCO, the value will always be -1.
-    "clientOrderId": "cancelMyOrder1",
-    "price": "2.00000000",
-    "origQty": "1.00000000",
-    "executedQty": "0.00000000",
-    "cummulativeQuoteQty": "0.00000000",
-    "status": "CANCELED",
-    "timeInForce": "GTC",
-    "type": "LIMIT",
-    "side": "BUY"
+  "symbol": "LTCBTC",
+  "origClientOrderId": "myOrder1",
+  "orderId": 4,
+  "orderListId": -1, //Unless part of an OCO, the value will always be -1.
+  "clientOrderId": "cancelMyOrder1",
+  "price": "2.00000000",
+  "origQty": "1.00000000",
+  "executedQty": "0.00000000",
+  "cummulativeQuoteQty": "0.00000000",
+  "status": "CANCELED",
+  "timeInForce": "GTC",
+  "type": "LIMIT",
+  "side": "BUY"
 }
 ```
 
@@ -1175,7 +1174,7 @@ Send in a new OCO
 
 **Parameters**:
 
-Name |Type| Mandatory | Descirption
+Name |Type| Mandatory | Description
 -----|-----|----------| -----------
 symbol|STRING| YES|
 listClientOrderId|STRING|NO| A unique Id for the entire orderList
@@ -1284,7 +1283,7 @@ recvWindow|LONG|NO| The value cannot be greater than ```60000```
 timestamp|LONG|YES|
 
 Additional notes:
-* Cancelling an individual leg will cancel the entire OCO
+* Canceling an individual leg will cancel the entire OCO
 
 
 ### Query OCO (USER_DATA)
@@ -1310,25 +1309,25 @@ timestamp|LONG|YES|
 
 ```javascript
 {
-    "orderListId": 27,
-    "contingencyType": "OCO",
-    "listStatusType": "EXEC_STARTED",
-    "listOrderStatus": "EXECUTING",
-    "listClientOrderId": "h2USkA5YQpaXHPIrkd96xE",
-    "transactionTime": 1565245656253,
-    "symbol": "LTCBTC",
-    "orders": [
-        {
-            "symbol": "LTCBTC",
-            "orderId": 4,
-            "clientOrderId": "qD1gy3kc3Gx0rihm9Y3xwS"
-        },
-        {
-            "symbol": "LTCBTC",
-            "orderId": 5,
-            "clientOrderId": "ARzZ9I00CPM8i3NhmU9Ega"
-        }
-    ]
+  "orderListId": 27,
+  "contingencyType": "OCO",
+  "listStatusType": "EXEC_STARTED",
+  "listOrderStatus": "EXECUTING",
+  "listClientOrderId": "h2USkA5YQpaXHPIrkd96xE",
+  "transactionTime": 1565245656253,
+  "symbol": "LTCBTC",
+  "orders": [
+    {
+      "symbol": "LTCBTC",
+      "orderId": 4,
+      "clientOrderId": "qD1gy3kc3Gx0rihm9Y3xwS"
+    },
+    {
+      "symbol": "LTCBTC",
+      "orderId": 5,
+      "clientOrderId": "ARzZ9I00CPM8i3NhmU9Ega"
+    }
+  ]
 }
 ```
 
@@ -1358,48 +1357,48 @@ timestamp|LONG|YES|
 
 ```javascript
 [
-    {
-        "orderListId": 29,
-        "contingencyType": "OCO",
-        "listStatusType": "EXEC_STARTED",
-        "listOrderStatus": "EXECUTING",
-        "listClientOrderId": "amEEAXryFzFwYF1FeRpUoZ",
-        "transactionTime": 1565245913483,
+  {
+    "orderListId": 29,
+    "contingencyType": "OCO",
+    "listStatusType": "EXEC_STARTED",
+    "listOrderStatus": "EXECUTING",
+    "listClientOrderId": "amEEAXryFzFwYF1FeRpUoZ",
+    "transactionTime": 1565245913483,
+    "symbol": "LTCBTC",
+    "orders": [
+      {
         "symbol": "LTCBTC",
-        "orders": [
-            {
-                "symbol": "LTCBTC",
-                "orderId": 4,
-                "clientOrderId": "oD7aesZqjEGlZrbtRpy5zB"
-            },
-            {
-                "symbol": "LTCBTC",
-                "orderId": 5,
-                "clientOrderId": "Jr1h6xirOxgeJOUuYQS7V3"
-            }
-        ]
-    },
-    {
-        "orderListId": 28,
-        "contingencyType": "OCO",
-        "listStatusType": "EXEC_STARTED",
-        "listOrderStatus": "EXECUTING",
-        "listClientOrderId": "hG7hFNxJV6cZy3Ze4AUT4d",
-        "transactionTime": 1565245913407,
+        "orderId": 4,
+        "clientOrderId": "oD7aesZqjEGlZrbtRpy5zB"
+      },
+      {
         "symbol": "LTCBTC",
-        "orders": [
-            {
-                "symbol": "LTCBTC",
-                "orderId": 2,
-                "clientOrderId": "j6lFOfbmFMRjTYA7rRJ0LP"
-            },
-            {
-                "symbol": "LTCBTC",
-                "orderId": 3,
-                "clientOrderId": "z0KCjOdditiLS5ekAFtK81"
-            }
-        ]
-    }
+        "orderId": 5,
+        "clientOrderId": "Jr1h6xirOxgeJOUuYQS7V3"
+      }
+    ]
+  },
+  {
+    "orderListId": 28,
+    "contingencyType": "OCO",
+    "listStatusType": "EXEC_STARTED",
+    "listOrderStatus": "EXECUTING",
+    "listClientOrderId": "hG7hFNxJV6cZy3Ze4AUT4d",
+    "transactionTime": 1565245913407,
+    "symbol": "LTCBTC",
+    "orders": [
+      {
+        "symbol": "LTCBTC",
+        "orderId": 2,
+        "clientOrderId": "j6lFOfbmFMRjTYA7rRJ0LP"
+      },
+      {
+        "symbol": "LTCBTC",
+        "orderId": 3,
+        "clientOrderId": "z0KCjOdditiLS5ekAFtK81"
+      }
+    ]
+  }
 ]
 ```
 
@@ -1422,27 +1421,27 @@ timestamp|LONG|YES|
 
 ```javascript
 [
-    {
-        "orderListId": 31,
-        "contingencyType": "OCO",
-        "listStatusType": "EXEC_STARTED",
-        "listOrderStatus": "EXECUTING",
-        "listClientOrderId": "wuB13fmulKj3YjdqWEcsnp",
-        "transactionTime": 1565246080644,
-        "symbol": "1565246079109",
-        "orders": [
-            {
-                "symbol": "LTCBTC",
-                "orderId": 4,
-                "clientOrderId": "r3EH2N76dHfLoSZWIUw1bT"
-            },
-            {
-                "symbol": "LTCBTC",
-                "orderId": 5,
-                "clientOrderId": "Cv1SnyPD3qhqpbjpYEHbd2"
-            }
-        ]
-    }
+  {
+    "orderListId": 31,
+    "contingencyType": "OCO",
+    "listStatusType": "EXEC_STARTED",
+    "listOrderStatus": "EXECUTING",
+    "listClientOrderId": "wuB13fmulKj3YjdqWEcsnp",
+    "transactionTime": 1565246080644,
+    "symbol": "1565246079109",
+    "orders": [
+      {
+        "symbol": "LTCBTC",
+        "orderId": 4,
+        "clientOrderId": "r3EH2N76dHfLoSZWIUw1bT"
+      },
+      {
+        "symbol": "LTCBTC",
+        "orderId": 5,
+        "clientOrderId": "Cv1SnyPD3qhqpbjpYEHbd2"
+      }
+    ]
+  }
 ]
 ```
 
@@ -1615,12 +1614,12 @@ Any of the above variables can be set to 0, which disables that rule in the `pri
 
 **/exchangeInfo format:**
 ```javascript
-  {
-    "filterType": "PRICE_FILTER",
-    "minPrice": "0.00000100",
-    "maxPrice": "100000.00000000",
-    "tickSize": "0.00000100"
-  }
+{
+  "filterType": "PRICE_FILTER",
+  "minPrice": "0.00000100",
+  "maxPrice": "100000.00000000",
+  "tickSize": "0.00000100"
+}
 ```
 
 ### PERCENT_PRICE
@@ -1633,12 +1632,12 @@ In order to pass the `percent price`, the following must be true for `price`:
 
 **/exchangeInfo format:**
 ```javascript
-  {
-    "filterType": "PERCENT_PRICE",
-    "multiplierUp": "1.3000",
-    "multiplierDown": "0.7000",
-    "avgPriceMins": 5
-  }
+{
+  "filterType": "PERCENT_PRICE",
+  "multiplierUp": "1.3000",
+  "multiplierDown": "0.7000",
+  "avgPriceMins": 5
+}
 ```
 
 ### LOT_SIZE
@@ -1656,12 +1655,12 @@ In order to pass the `lot size`, the following must be true for `quantity`/`iceb
 
 **/exchangeInfo format:**
 ```javascript
-  {
-    "filterType": "LOT_SIZE",
-    "minQty": "0.00100000",
-    "maxQty": "100000.00000000",
-    "stepSize": "0.00100000"
-  }
+{
+  "filterType": "LOT_SIZE",
+  "minQty": "0.00100000",
+  "maxQty": "100000.00000000",
+  "stepSize": "0.00100000"
+}
 ```
 
 ### MIN_NOTIONAL
@@ -1674,12 +1673,12 @@ Since `MARKET` orders have no price, the average price is used over the last `av
 
 **/exchangeInfo format:**
 ```javascript
-  {
-    "filterType": "MIN_NOTIONAL",
-    "minNotional": "0.00100000",
-    "applyToMarket": true,
-    "avgPriceMins": 5
-  }
+{
+  "filterType": "MIN_NOTIONAL",
+  "minNotional": "0.00100000",
+  "applyToMarket": true,
+  "avgPriceMins": 5
+}
 ```
 
 ### ICEBERG_PARTS
@@ -1687,10 +1686,10 @@ The `ICEBERG_PARTS` filter defines the maximum parts an iceberg order can have. 
 
 **/exchangeInfo format:**
 ```javascript
-  {
-    "filterType": "ICEBERG_PARTS",
-    "limit": 10
-  }
+{
+  "filterType": "ICEBERG_PARTS",
+  "limit": 10
+}
 ```
 
 ### MARKET_LOT_SIZE
@@ -1708,12 +1707,12 @@ In order to pass the `market lot size`, the following must be true for `quantity
 
 **/exchangeInfo format:**
 ```javascript
-  {
-    "filterType": "MARKET_LOT_SIZE",
-    "minQty": "0.00100000",
-    "maxQty": "100000.00000000",
-    "stepSize": "0.00100000"
-  }
+{
+  "filterType": "MARKET_LOT_SIZE",
+  "minQty": "0.00100000",
+  "maxQty": "100000.00000000",
+  "stepSize": "0.00100000"
+}
 ```
 
 ### MAX_NUM_ORDERS
@@ -1722,10 +1721,10 @@ Note that both "algo" orders and normal orders are counted for this filter.
 
 **/exchangeInfo format:**
 ```javascript
-  {
-    "filterType": "MAX_NUM_ORDERS",
-    "limit": 25
-  }
+{
+  "filterType": "MAX_NUM_ORDERS",
+  "limit": 25
+}
 ```
 
 ### MAX_NUM_ALGO_ORDERS
@@ -1734,10 +1733,10 @@ The `MAX_NUM_ALGO_ORDERS` filter defines the maximum number of "algo" orders an 
 
 **/exchangeInfo format:**
 ```javascript
-  {
-    "filterType": "MAX_NUM_ALGO_ORDERS",
-    "maxNumAlgoOrders": 5
-  }
+{
+  "filterType": "MAX_NUM_ALGO_ORDERS",
+  "maxNumAlgoOrders": 5
+}
 ```
 
 ### MAX_NUM_ICEBERG_ORDERS
@@ -1746,10 +1745,10 @@ An `ICEBERG` order is any order where the `icebergQty` is > 0.
 
 **/exchangeInfo format:**
 ```javascript
-  {
-    "filterType": "MAX_NUM_ICEBERG_ORDERS",
-    "maxNumIcebergOrders": 5
-  }
+{
+  "filterType": "MAX_NUM_ICEBERG_ORDERS",
+  "maxNumIcebergOrders": 5
+}
 ```
 
 ## Exchange Filters
@@ -1759,10 +1758,10 @@ Note that both "algo" orders and normal orders are counted for this filter.
 
 **/exchangeInfo format:**
 ```javascript
-  {
-    "filterType": "EXCHANGE_MAX_NUM_ORDERS",
-    "maxNumOrders": 1000
-  }
+{
+  "filterType": "EXCHANGE_MAX_NUM_ORDERS",
+  "maxNumOrders": 1000
+}
 ```
 
 ### EXCHANGE_MAX_NUM_ALGO_ORDERS
@@ -1771,8 +1770,8 @@ The `MAX_ALGO_ORDERS` filter defines the maximum number of "algo" orders an acco
 
 **/exchangeInfo format:**
 ```javascript
-  {
-    "filterType": "EXCHANGE_MAX_ALGO_ORDERS",
-    "maxNumAlgoOrders": 200
-  }
+{
+  "filterType": "EXCHANGE_MAX_ALGO_ORDERS",
+  "maxNumAlgoOrders": 200
+}
 ```

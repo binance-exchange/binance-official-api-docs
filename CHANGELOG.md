@@ -1,4 +1,17 @@
-# CHANGELOG for Binance's API (2019-08-15)
+# CHANGELOG for Binance's API (2019-09-03)
+---
+## 2019-09-03
+* Faster order book data with 100ms updates: `<symbol>@depth@100ms` and `<symbol>@depth#@100ms`
+* Added "Update Speed:" to `web-socket-streams.md`
+* Removed deprecated v1 endpoints as per previous announcement:
+    * GET api/v1/order
+    * GET api/v1/openOrders
+    * POST api/v1/order
+    * DELETE api/v1/order
+    * GET api/v1/allOrders
+    * GET api/v1/account
+    * GET api/v1/myTrades
+
 ---
 ## 2019-08-16 (Update 2)
 * GET api/v1/depth `limit` of 10000 has been temporarily removed
@@ -36,11 +49,11 @@
         * ```ICEBERG``` quantities however, do not have to be the same.
 
     * Execution Order:
-        * If the ```LIMIT_MAKER``` is touched, the limit maker leg will be executed first BEFORE cancelling the Stop Loss Leg.
-        * if the Market Price moves such that the ```STOP_LOSS``` or ```STOP_LOSS_LIMIT``` will trigger, the Limit Maker leg will be cancelled BEFORE executing the ```STOP_LOSS``` Leg.
+        * If the ```LIMIT_MAKER``` is touched, the limit maker leg will be executed first BEFORE canceling the Stop Loss Leg.
+        * if the Market Price moves such that the ```STOP_LOSS``` or ```STOP_LOSS_LIMIT``` will trigger, the Limit Maker leg will be canceled BEFORE executing the ```STOP_LOSS``` Leg.
 
-    * Cancelling an OCO
-        * Cancelling either order leg will cancel the entire OCO.
+    * Canceling an OCO
+        * Canceling either order leg will cancel the entire OCO.
         * The entire OCO can be canceled via the ```orderListId``` or the ```listClientOrderId```.
 
     * New Enums for OCO:
@@ -75,7 +88,7 @@
 ### USER DATA STREAM
 * ```executionReport``` event now contains "g" which has the ```orderListId```; it will be set to -1 for non-OCO orders.
 * New Event Type ```listStatus```; ```listStatus``` is sent on an update to any OCO order.
-* New Event Type ```outboundAccountPosition```; ```outboundAccountPosition``` is sent any time an account's balance changes and contains the assets that could have changed by the event that generated the balance change (a deposit, withdrawal, trade, order placement, or cancelation).
+* New Event Type ```outboundAccountPosition```; ```outboundAccountPosition``` is sent any time an account's balance changes and contains the assets that could have changed by the event that generated the balance change (a deposit, withdrawal, trade, order placement, or cancellation).
 
 ### NEW ERRORS
 * **-1131 BAD_RECV_WINDOW**

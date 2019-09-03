@@ -17,7 +17,7 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# Web Socket Streams for Binance (2019-08-15)
+# Web Socket Streams for Binance (2019-09-03)
 # General WSS information
 * The base endpoint is: **wss://stream.binance.com:9443**
 * Streams can be accessed either in a single raw stream or in a combined stream
@@ -33,6 +33,8 @@
 The Aggregate Trade Streams push trade information that is aggregated for a single taker order.
 
 **Stream Name:** \<symbol\>@aggTrade
+
+**Update Speed:** Real-time
 
 **Payload:**
 ```javascript
@@ -55,6 +57,8 @@ The Aggregate Trade Streams push trade information that is aggregated for a sing
 The Trade Streams push raw trade information; each trade has a unique buyer and seller.
 
 **Stream Name:** \<symbol\>@trade
+
+**Update Speed:** Real-time
 
 **Payload:**
 ```javascript
@@ -98,6 +102,8 @@ m -> minutes; h -> hours; d -> days; w -> weeks; M -> months
 
 **Stream Name:** \<symbol\>@kline_\<interval\>
 
+**Update Speed:** 2000ms
+
 **Payload:**
 ```javascript
 {
@@ -127,9 +133,11 @@ m -> minutes; h -> hours; d -> days; w -> weeks; M -> months
 ```
 
 ## Individual Symbol Mini Ticker Stream
-24hr rolling window mini-ticker statistics for a single symbol pushed every second. These are NOT the statistics of the UTC day, but a 24hr rolling window from requestTime to 24hrs before.
+24hr rolling window mini-ticker statistics. These are NOT the statistics of the UTC day, but a 24hr rolling window for the previous 24hrs.
 
 **Stream Name:** \<symbol\>@miniTicker
+
+**Update Speed:** 1000ms
 
 **Payload:**
 ```javascript
@@ -147,9 +155,11 @@ m -> minutes; h -> hours; d -> days; w -> weeks; M -> months
 ```
 
 ## All Market Mini Tickers Stream
-24hr rolling window mini-ticker statistics for all symbols that changed in an array pushed every second. These are NOT the statistics of the UTC day, but a 24hr rolling window from requestTime to 24hrs before.
+24hr rolling window mini-ticker statistics for all symbols that changed in an array. These are NOT the statistics of the UTC day, but a 24hr rolling window for the previous 24hrs. Note that only tickers that have changed will be present in the array.
 
 **Stream Name:** !miniTicker@arr
+
+**Update Speed:** 1000ms
 
 **Payload:**
 ```javascript
@@ -161,9 +171,11 @@ m -> minutes; h -> hours; d -> days; w -> weeks; M -> months
 ```
 
 ## Individual Symbol Ticker Streams
-24hr rollwing window ticker statistics for a single symbol pushed every second. These are NOT the statistics of the UTC day, but a 24hr rolling window from requestTime to 24hrs before.
+24hr rollwing window ticker statistics for a single symbol. These are NOT the statistics of the UTC day, but a 24hr rolling window for the previous 24hrs.
 
 **Stream Name:** \<symbol\>@ticker
+
+**Update Speed:** 1000ms
 
 **Payload:**
 ```javascript
@@ -195,9 +207,11 @@ m -> minutes; h -> hours; d -> days; w -> weeks; M -> months
 ```
 
 ## All Market Tickers Stream
-24hr rolling window ticker statistics for all symbols that changed in an array pushed every second. These are NOT the statistics of the UTC day, but a 24hr rolling window from requestTime to 24hrs before.
+24hr rolling window ticker statistics for all symbols that changed in an array. These are NOT the statistics of the UTC day, but a 24hr rolling window for the previous 24hrs. Note that only tickers that have changed will be present in the array.
 
 **Stream Name:** !ticker@arr
+
+**Update Speed:** 1000ms
 
 **Payload:**
 ```javascript
@@ -211,7 +225,9 @@ m -> minutes; h -> hours; d -> days; w -> weeks; M -> months
 ## Partial Book Depth Streams
 Top **\<levels\>** bids and asks, pushed every second. Valid **\<levels\>** are 5, 10, or 20.
 
-**Stream Name:** \<symbol\>@depth\<levels\>
+**Stream Names:** \<symbol\>@depth\<levels\> OR \<symbol\>@depth\<levels\>@100ms
+
+**Update Speed:** 1000ms or 100ms
 
 **Payload:**
 ```javascript
@@ -233,9 +249,11 @@ Top **\<levels\>** bids and asks, pushed every second. Valid **\<levels\>** are 
 ```
 
 ## Diff. Depth Stream
-Order book price and quantity depth updates used to locally manage an order book pushed every second.
+Order book price and quantity depth updates used to locally manage an order book.
 
-**Stream Name:** \<symbol\>@depth
+**Stream Name:** \<symbol\>@depth OR \<symbol\>@depth@100ms
+
+**Update Speed:** 1000ms or 100ms
 
 **Payload:**
 ```javascript
