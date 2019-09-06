@@ -183,7 +183,7 @@ Name | Type | Mandatory | Description
 ------------ | ------------ | ------------ | ------------
 asset | STRING | YES | The asset being transferred, e.g., BTC
 amount | DECIMAL | YES | The amount to be transferred
-type | INT | YES | 1: transfer from main account to margin account 2: transfer from margin account to main account
+type | STRING | YES | Tranfer Type: ROLL_IN, ROLL_OUT
 recvWindow | LONG | NO
 timestamp | LONG | YES
 
@@ -821,7 +821,7 @@ timestamp | LONG | YES
           {
               "asset": "BNB",
               "interest": "0.02414667",
-              "interestAccuredTime": 1566813600,
+              "interestAccruedTime": 1566813600,
               "interestRate": "0.01600000",
               "principal": "36.22000000",
               "type": "ON_BORROW"
@@ -829,7 +829,7 @@ timestamp | LONG | YES
           {
               "asset": "BNB",
               "interest": "0.02019334",
-              "interestAccuredTime": 1566813600,
+              "interestAccruedTime": 1566813600,
               "interestRate": "0.01600000",
               "principal": "30.29000000",
               "type": "ON_BORROW"
@@ -837,7 +837,7 @@ timestamp | LONG | YES
           {
               "asset": "BNB",
               "interest": "0.02098667",
-              "interestAccuredTime": 1566813600,
+              "interestAccruedTime": 1566813600,
               "interestRate": "0.01600000",
               "principal": "31.48000000",
               "type": "ON_BORROW"
@@ -845,7 +845,7 @@ timestamp | LONG | YES
           {
               "asset": "BNB",
               "interest": "0.02483334",
-              "interestAccuredTime": 1566806400,
+              "interestAccruedTime": 1566806400,
               "interestRate": "0.01600000",
               "principal": "37.25000000",
               "type": "ON_BORROW"
@@ -853,7 +853,7 @@ timestamp | LONG | YES
           {
               "asset": "BNB",
               "interest": "0.02165334",
-              "interestAccuredTime": 1566806400,
+              "interestAccruedTime": 1566806400,
               "interestRate": "0.01600000",
               "principal": "32.48000000",
               "type": "ON_BORROW"
