@@ -11,6 +11,8 @@
   - [All Market Mini Tickers Stream](#all-market-mini-tickers-stream)
   - [Individual Symbol Ticker Streams](#individual-symbol-ticker-streams)
   - [All Market Tickers Stream](#all-market-tickers-stream)
+  - [Individual Symbol Book Ticker Streams](#individual-symbol-book-ticker-streams)
+  - [All Book Tickers Stream](#all-book-tickers-stream)
   - [Partial Book Depth Streams](#partial-book-depth-streams)
   - [Diff. Depth Stream](#diff-depth-stream)
   - [How to manage a local order book correctly](#how-to-manage-a-local-order-book-correctly)
@@ -220,6 +222,39 @@ m -> minutes; h -> hours; d -> days; w -> weeks; M -> months
     // Same as <symbol>@ticker payload
   }
 ]
+```
+
+## Individual Symbol Book Ticker Streams
+Pushes any update to the best bid or ask's price or quantity in real-time for a specified symbol.
+
+**Stream Name:** <symbol>@bookTicker
+
+**Update Speed:** Real-time
+
+**Payload:**
+```javascript
+{
+  "u":400900217,     // order book updateId
+  "s":"BNBUSDT",     // symbol
+  "b":"25.35190000", // best bid price
+  "B":"31.21000000", // best bid qty
+  "a":"25.36520000", // best ask price
+  "A":"40.66000000"  // best ask qty
+}
+```
+
+## All Book Tickers Stream
+Pushes any update to the best bid or ask's price or quantity in real-time for all symbols.
+
+**Stream Name:** !bookTicker
+
+**Update Speed:** Real-time
+
+**Payload:**
+```javascript
+{
+  // Same as <symbol>@bookTicker payload
+}
 ```
 
 ## Partial Book Depth Streams

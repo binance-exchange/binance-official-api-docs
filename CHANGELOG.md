@@ -1,4 +1,8 @@
-# CHANGELOG for Binance's API (2019-09-03)
+# CHANGELOG for Binance's API (2019-09-09)
+---
+## 2019-09-09
+* New WebSocket streams for bookTickers added: `<symbol>@bookTicker` and `!bookTicker`. See `web-socket-streams.md` for details.
+
 ---
 ## 2019-09-03
 * Faster order book data with 100ms updates: `<symbol>@depth@100ms` and `<symbol>@depth#@100ms`
