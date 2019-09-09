@@ -13,3 +13,8 @@ Name | Description
 [wapi-api.md](./wapi-api.md) | Details on the Withdrawal API (/wapi)
 [margin-api.md](./margin-api.md) | Details on the Margin Trade API (/sapi)
 
+
+
+# Binance Futures API Documentation:
+
+#### - [Binance Futures API Documentation in English](https://binanceapitest.github.io/Binance-Futures-API-doc/)
