@@ -241,7 +241,8 @@ timestamp | LONG | YES
     "withdrawList": [
         {
             "id":"7213fea8e94b4a5593d507237e5a555b",
-            "amount": 1,
+            "amount": 0.99,
+	    "transactionFee": 0.01,
             "address": "0x6915f16f8791d0a1cc2bf47c13a6b2a92000504b",
             "asset": "ETH",
             "txId": "0xdf33b22bdb2b28b1f75ccd201a4a4m6e7g83jy5fc5d5a9d1340961598cfcb0a1",
@@ -250,7 +251,8 @@ timestamp | LONG | YES
         },
         {
             "id":"7213fea8e94b4a5534ggsd237e5a555b",
-            "amount": 1000,
+            "amount": 999.9999,
+	    "transactionFee": 0.0001,
             "address": "463tWEBn5XZJSxLU34r6g7h8jtxuNcDbjLSjkn3XAXHCbLrTTErJrBWYgHJQyrCwkNgYvyV3z8zctJLPCZy24jvb3NiTcTJ",
             "addressTag": "342341222",
             "txId": "b3c6219639c8ae3f9cf010cdc24fw7f7yt8j1e063f9b4bd1a05cb44c4b6e2509",
