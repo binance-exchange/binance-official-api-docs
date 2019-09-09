@@ -13,3 +13,8 @@
 [web-socket-streams_CN.md](./web-socket-streams_CN.md) | 行情数据流接口的描述
 [user-data-stream_CN.md](./user-data-stream_CN.md) | 用户数据流接口的描述
 [wapi-api_CN.md](./wapi-api_CN.md) | 提现接口(及其他账户信息)的描述(/wapi)
+
+
+# 币安合约API文档:
+
+#### - [币安合约API中文文档](https://binanceapitest.github.io/Binance-Futures-API-doc-CN/)
