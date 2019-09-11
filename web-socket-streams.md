@@ -227,7 +227,7 @@ m -> minutes; h -> hours; d -> days; w -> weeks; M -> months
 ## Individual Symbol Book Ticker Streams
 Pushes any update to the best bid or ask's price or quantity in real-time for a specified symbol.
 
-**Stream Name:** <symbol>@bookTicker
+**Stream Name:** \<symbol\>@bookTicker
 
 **Update Speed:** Real-time
 
