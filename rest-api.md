@@ -164,7 +164,7 @@ processed within a certain number of milliseconds or be rejected by the
 server.
 
 
-**It recommended to use a small recvWindow of 5000 or less! The max cannot go beyond 60,000!**
+**It is recommended to use a small recvWindow of 5000 or less! The max cannot go beyond 60,000!**
 
 
 ## SIGNED Endpoint Examples for POST /api/v3/order
