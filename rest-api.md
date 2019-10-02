@@ -63,7 +63,7 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# Public Rest API for Binance (2019-08-15)
+# Public Rest API for Binance (2019-10-02)
 # General API Information
 * The base endpoint is: **https://api.binance.com**
 * All endpoints return either a JSON object or array.
@@ -96,6 +96,8 @@
   `query string` parameter will be used.
 
 # LIMITS
+
+## General Info on Limits
 * The following `intervalLetter` values for headers:
     * SECOND => S
     * MINUTE => M
@@ -103,17 +105,25 @@
     * DAY => D
 * The `/api/v1/exchangeInfo` `rateLimits` array contains objects related to the exchange's `RAW_REQUEST`, `REQUEST_WEIGHT`, and `ORDER` rate limits. These are further defined in the `ENUM definitions` section under `Rate limiters (rateLimitType)`.
 * A 429 will be returned when either rate limit is violated.
+
+## IP Limits
+* Every request will contain `X-MBX-USED-WEIGHT-(intervalNum)(intervalLetter)` in the response headers which has the current used weight for the IP for all request rate limiters defined.
 * Each route has a `weight` which determines for the number of requests each endpoint counts for. Heavier endpoints and endpoints that do operations on multiple symbols will have a heavier `weight`.
-* Every request will contain `X-MBX-USED-WEIGHT-(intervalNum)(intervalLetter)` headers which has the current used weight for the IP for all request rate limiters defined.
-* Every successful order will contain a `X-MBX-ORDER-COUNT-(intervalNum)(intervalLetter)` header which has the current order count for the IP for all order rate limiters defined. Rejected/unsuccessful orders are not guaranteed to have `X-MBX-ORDER-COUNT-**` headers in the response.
 * When a 429 is received, it's your obligation as an API to back off and not spam the API.
 * **Repeatedly violating rate limits and/or failing to back off after receiving 429s will result in an automated IP ban (HTTP status 418).**
 * IP bans are tracked and **scale in duration** for repeat offenders, **from 2 minutes to 3 days**.
 * A `Retry-After` header is sent with a 418 or 429 responses and will give the **number of seconds** required to wait, in the case of a 418, to prevent a ban, or, in the case of a 429, until the ban is over.
+* **The limits on the API are based on the IPs, not the API keys.**
+
+## Order Rate Limits
+* Every successful order response will contain a `X-MBX-ORDER-COUNT-(intervalNum)(intervalLetter)` header which has the current order count for the IP for all order rate limiters defined.
+* Rejected/unsuccessful orders are not guaranteed to have `X-MBX-ORDER-COUNT-**` headers in the response.
+* **The order rate limit is counted against each account**.
 
 # Endpoint security type
 * Each endpoint has a security type that determines the how you will
-  interact with it.
+  interact with it. This is stated next to the NAME of the endpoint.
+    * If no security type is stated, assume the security type is NONE.
 * API-keys are passed into the Rest API via the `X-MBX-APIKEY`
   header.
 * API-keys and secret-keys **are case sensitive**.
