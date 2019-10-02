@@ -4,6 +4,9 @@
 
 - [General API Information](#general-api-information)
 - [LIMITS](#limits)
+  - [General Info on Limits](#general-info-on-limits)
+  - [IP Limits](#ip-limits)
+  - [Order Rate Limits](#order-rate-limits)
 - [Endpoint security type](#endpoint-security-type)
 - [SIGNED (TRADE and USER_DATA) Endpoint security](#signed-trade-and-user_data-endpoint-security)
   - [Timing security](#timing-security)
