@@ -66,12 +66,16 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# Public Rest API for Binance (2019-10-02)
-# General API Information
+# Public Rest API for Binance (2019-10-03)
+
+## General API Information
 * The base endpoint is: **https://api.binance.com**
 * All endpoints return either a JSON object or array.
 * Data is returned in **ascending** order. Oldest first, newest last.
-* All time and timestamp related fields are in milliseconds.
+* All time and timestamp related fields are in **milliseconds**.
+
+## HTTP Return Codes
+
 * HTTP `4XX` return codes are used for malformed requests;
   the issue is on the sender's side.
 * HTTP `429` return code is used when breaking a request rate limit.
@@ -80,15 +84,21 @@
   Binance's side.
   It is important to **NOT** treat this as a failure operation; the execution status is
   **UNKNOWN** and could have been a success.
-* Any endpoint can return an ERROR; the error payload is as follows:
+
+
+## Error Codes
+* Any endpoint can return an ERROR
+
+Sample Payload below:
 ```javascript
 {
   "code": -1121,
   "msg": "Invalid symbol."
 }
 ```
+* Specific error codes and messages are defined in [Errors Codes](./errors.md).
 
-* Specific error codes and messages defined in another document.
+## General Information on Endpoints
 * For `GET` endpoints, parameters must be sent as a `query string`.
 * For `POST`, `PUT`, and `DELETE` endpoints, the parameters may be sent as a
   `query string` or in the `request body` with content type
@@ -106,6 +116,7 @@
     * MINUTE => M
     * HOUR => H
     * DAY => D
+* `intervalNum` describes the amount of the interval. For example, `intervalNum` 5 with `intervalLetter` M means "Every 5 minutes".
 * The `/api/v1/exchangeInfo` `rateLimits` array contains objects related to the exchange's `RAW_REQUEST`, `REQUEST_WEIGHT`, and `ORDER` rate limits. These are further defined in the `ENUM definitions` section under `Rate limiters (rateLimitType)`.
 * A 429 will be returned when either rate limit is violated.
 
@@ -1197,24 +1208,25 @@ side|ENUM|YES|
 quantity|DECIMAL|YES|
 limitClientOrderId|STRING|NO| A unique Id for the limit order
 price|DECIMAL|YES|
-limitIcebergQty|DECIMAL|NO|
+limitIcebergQty|DECIMAL|NO| Used to make the `LIMIT_MAKER` leg an iceberg order.
 stopClientOrderId |STRING|NO| A unique Id for the stop loss/stop loss limit leg
 stopPrice |DECIMAL| YES
-stopLimitPrice|DECIMAL|NO
-stopIcebergQty|DECIMAL|NO|
-stopLimitTimeInForce|ENUM|NO| Valid values are ```GTC```/```FOK```/```IOC```
+stopLimitPrice|DECIMAL|NO | If provided, `stopLimitTimeInForce` is required.
+stopIcebergQty|DECIMAL|NO| Used with `STOP_LOSS_LIMIT` leg to make an iceberg order.
+stopLimitTimeInForce|ENUM|NO| Valid values are `GTC`/`FOK`/`IOC`
 newOrderRespType|ENUM|NO| Set the response JSON.
-recvWindow|LONG|NO| The value cannot be greater than ```60000```
+recvWindow|LONG|NO| The value cannot be greater than `60000`
 timestamp|LONG|YES|
 
 
-Other Info:
+Additional Info:
 * Price Restrictions:
-    * ```SELL```: Limit Price > Last Price > Stop Price
-    * ```BUY```: Limit Price < Last Price < Stop Price
+    * `SELL`: Limit Price > Last Price > Stop Price
+    * `BUY`: Limit Price < Last Price < Stop Price
 * Quantity Restrictions:
-    * Both legs must have the same quantity
+    * Both legs must have the same quantity.
     * ```ICEBERG``` quantities however do not have to be the same
+
 
 **Response:**
 
