@@ -2,7 +2,10 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
-- [General API Information](#general-api-information)
+  - [General API Information](#general-api-information)
+  - [HTTP Return Codes](#http-return-codes)
+  - [Error Codes](#error-codes)
+  - [General Information on Endpoints](#general-information-on-endpoints)
 - [LIMITS](#limits)
   - [General Info on Limits](#general-info-on-limits)
   - [IP Limits](#ip-limits)
