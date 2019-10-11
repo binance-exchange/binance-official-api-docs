@@ -150,7 +150,8 @@ Submit a withdraw request.
 
 Name | Type | Mandatory | Description
 ------------ | ------------ | ------------ | ------------
-asset	|  STRING |	YES	
+asset	|  STRING |	YES
+network | STRING | NO
 address	 | STRING | YES	
 addressTag | STRING | NO | Secondary address identifier for coins like XRP,XMR etc.
 amount | DECIMAL | YES	
