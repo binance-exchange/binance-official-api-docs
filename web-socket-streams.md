@@ -173,7 +173,7 @@ m -> minutes; h -> hours; d -> days; w -> weeks; M -> months
 ```
 
 ## Individual Symbol Ticker Streams
-24hr rollwing window ticker statistics for a single symbol. These are NOT the statistics of the UTC day, but a 24hr rolling window for the previous 24hrs.
+24hr rolling window ticker statistics for a single symbol. These are NOT the statistics of the UTC day, but a 24hr rolling window for the previous 24hrs.
 
 **Stream Name:** \<symbol\>@ticker
 
