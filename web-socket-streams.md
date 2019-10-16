@@ -1,7 +1,28 @@
-# Web Socket Streams for Binance Jersey(2018-11-13)
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [General WSS information](#general-wss-information)
+- [Detailed Stream information](#detailed-stream-information)
+  - [Aggregate Trade Streams](#aggregate-trade-streams)
+  - [Trade Streams](#trade-streams)
+  - [Kline/Candlestick Streams](#klinecandlestick-streams)
+  - [Individual Symbol Mini Ticker Stream](#individual-symbol-mini-ticker-stream)
+  - [All Market Mini Tickers Stream](#all-market-mini-tickers-stream)
+  - [Individual Symbol Ticker Streams](#individual-symbol-ticker-streams)
+  - [All Market Tickers Stream](#all-market-tickers-stream)
+  - [Individual Symbol Book Ticker Streams](#individual-symbol-book-ticker-streams)
+  - [All Book Tickers Stream](#all-book-tickers-stream)
+  - [Partial Book Depth Streams](#partial-book-depth-streams)
+  - [Diff. Depth Stream](#diff-depth-stream)
+  - [How to manage a local order book correctly](#how-to-manage-a-local-order-book-correctly)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+# Web Socket Streams for Binance Jersey(2019-10-16)
 # General WSS information
 * The base endpoint is: **wss://stream.binance.je:9443**
-* Streams can be access either in a single raw stream or a combined stream
+* Streams can be accessed either in a single raw stream or a combined stream
 * Raw streams are accessed at **/ws/\<streamName\>**
 * Combined streams are accessed at **/stream?streams=\<streamName1\>/\<streamName2\>/\<streamName3\>**
 * Combined stream events are wrapped as follows: **{"stream":"\<streamName\>","data":\<rawPayload\>}**
@@ -15,12 +36,14 @@ The Aggregate Trade Streams push trade information that is aggregated for a sing
 
 **Stream Name:** \<symbol\>@aggTrade
 
+**Update Speed:** Real-time
+
 **Payload:**
 ```javascript
 {
   "e": "aggTrade",  // Event type
   "E": 123456789,   // Event time
-  "s": "BNBBTC",    // Symbol
+  "s": "BNBGBP",    // Symbol
   "a": 12345,       // Aggregate trade ID
   "p": "0.001",     // Price
   "q": "100",       // Quantity
@@ -37,12 +60,14 @@ The Trade Streams push raw trade information; each trade has a unique buyer and 
 
 **Stream Name:** \<symbol\>@trade
 
+**Update Speed:** Real-time
+
 **Payload:**
 ```javascript
 {
   "e": "trade",     // Event type
   "E": 123456789,   // Event time
-  "s": "BNBBTC",    // Symbol
+  "s": "BNBGBP",    // Symbol
   "t": 12345,       // Trade ID
   "p": "0.001",     // Price
   "q": "100",       // Quantity
@@ -79,16 +104,18 @@ m -> minutes; h -> hours; d -> days; w -> weeks; M -> months
 
 **Stream Name:** \<symbol\>@kline_\<interval\>
 
+**Update Speed:** 2000ms
+
 **Payload:**
 ```javascript
 {
   "e": "kline",     // Event type
   "E": 123456789,   // Event time
-  "s": "BNBBTC",    // Symbol
+  "s": "BNBGBP",    // Symbol
   "k": {
     "t": 123400000, // Kline start time
     "T": 123460000, // Kline close time
-    "s": "BNBBTC",  // Symbol
+    "s": "BNBGBP",  // Symbol
     "i": "1m",      // Interval
     "f": 100,       // First trade ID
     "L": 200,       // Last trade ID
@@ -108,16 +135,18 @@ m -> minutes; h -> hours; d -> days; w -> weeks; M -> months
 ```
 
 ## Individual Symbol Mini Ticker Stream
-24hr rolling window mini-ticker statistics for a single symbol pushed every second. These are NOT the statistics of the UTC day, but a 24hr rolling window from requestTime to 24hrs before.
+24hr rolling window mini-ticker statistics. These are NOT the statistics of the UTC day, but a 24hr rolling window for the previous 24hrs.
 
 **Stream Name:** \<symbol\>@miniTicker
+
+**Update Speed:** 1000ms
 
 **Payload:**
 ```javascript
   {
     "e": "24hrMiniTicker",  // Event type
     "E": 123456789,         // Event time
-    "s": "BNBBTC",          // Symbol
+    "s": "BNBGBP",          // Symbol
     "c": "0.0025",          // Close price
     "o": "0.0010",          // Open price
     "h": "0.0025",          // High price
@@ -128,9 +157,11 @@ m -> minutes; h -> hours; d -> days; w -> weeks; M -> months
 ```
 
 ## All Market Mini Tickers Stream
-24hr rolling window mini-ticker statistics for all symbols that changed in an array pushed every second. These are NOT the statistics of the UTC day, but a 24hr rolling window from requestTime to 24hrs before.
+24hr rolling window mini-ticker statistics for all symbols that changed in an array. These are NOT the statistics of the UTC day, but a 24hr rolling window for the previous 24hrs. Note that only tickers that have changed will be present in the array.
 
 **Stream Name:** !miniTicker@arr
+
+**Update Speed:** 1000ms
 
 **Payload:**
 ```javascript
@@ -142,16 +173,18 @@ m -> minutes; h -> hours; d -> days; w -> weeks; M -> months
 ```
 
 ## Individual Symbol Ticker Streams
-24hr rollwing window ticker statistics for a single symbol pushed every second. These are NOT the statistics of the UTC day, but a 24hr rolling window from requestTime to 24hrs before.
+24hr rolling window ticker statistics for a single symbol. These are NOT the statistics of the UTC day, but a 24hr rolling window for the previous 24hrs.
 
 **Stream Name:** \<symbol\>@ticker
+
+**Update Speed:** 1000ms
 
 **Payload:**
 ```javascript
 {
   "e": "24hrTicker",  // Event type
   "E": 123456789,     // Event time
-  "s": "BNBBTC",      // Symbol
+  "s": "BNBGBP",      // Symbol
   "p": "0.0015",      // Price change
   "P": "250.00",      // Price change percent
   "w": "0.0018",      // Weighted average price
@@ -176,9 +209,11 @@ m -> minutes; h -> hours; d -> days; w -> weeks; M -> months
 ```
 
 ## All Market Tickers Stream
-24hr rolling window ticker statistics for all symbols that changed in an array pushed every second. These are NOT the statistics of the UTC day, but a 24hr rolling window from requestTime to 24hrs before.
+24hr rolling window ticker statistics for all symbols that changed in an array. These are NOT the statistics of the UTC day, but a 24hr rolling window from requestTime to 24hrs before.
 
 **Stream Name:** !ticker@arr
+
+**Update Speed:** 1000ms
 
 **Payload:**
 ```javascript
@@ -189,10 +224,45 @@ m -> minutes; h -> hours; d -> days; w -> weeks; M -> months
 ]
 ```
 
+## Individual Symbol Book Ticker Streams
+Pushes any update to the best bid or ask's price or quantity in real-time for a specified symbol.
+
+**Stream Name:** \<symbol\>@bookTicker
+
+**Update Speed:** Real-time
+
+**Payload:**
+```javascript
+{
+  "u":400900217,        // order book updateId
+  "s":"BNBEUR",         // symbol
+  "b":"25.35190000",    // best bid price
+  "B":"31.21000000",    // best bid qty
+  "a":"25.36520000",    // best ask price
+  "A":"40.66000000"     // best ask qty
+}
+```
+
+## All Book Tickers Stream
+Pushes any update to the best bid or ask's price or quantity in real-time for all symbols.
+
+**Stream Name:** !bookTicker
+
+**Update Speed:** Real-time
+
+**Payload:**
+```javascript
+{
+  // Same as <symbol>@bookTicker payload
+}
+```
+
 ## Partial Book Depth Streams
 Top **\<levels\>** bids and asks, pushed every second. Valid **\<levels\>** are 5, 10, or 20.
 
-**Stream Name:** \<symbol\>@depth\<levels\>
+**Stream Names:** \<symbol\>@depth\<levels\> OR \<symbol\>@depth\<levels\>@100ms
+
+**Update Speed:** 1000ms or 100ms
 
 **Payload:**
 ```javascript
@@ -201,58 +271,56 @@ Top **\<levels\>** bids and asks, pushed every second. Valid **\<levels\>** are 
   "bids": [             // Bids to be updated
     [
       "0.0024",         // Price level to be updated
-      "10",             // Quantity
-      []                // Ignore
+      "10"              // Quantity
     ]
   ],
   "asks": [             // Asks to be updated
     [
       "0.0026",         // Price level to be updated
-      "100",            // Quantity
-      []                // Ignore
+      "100"            // Quantity
     ]
   ]
 }
 ```
 
 ## Diff. Depth Stream
-Order book price and quantity depth updates used to locally manage an order book pushed every second.
+Order book price and quantity depth updates used to locally manage an order book.
 
-**Stream Name:** \<symbol\>@depth
+**Stream Name:** \<symbol\>@depth OR \<symbol\>@depth@100ms
+
+**Update Speed:** 1000ms or 100ms
 
 **Payload:**
 ```javascript
 {
   "e": "depthUpdate", // Event type
   "E": 123456789,     // Event time
-  "s": "BNBBTC",      // Symbol
+  "s": "BNBEUR",      // Symbol
   "U": 157,           // First update ID in event
   "u": 160,           // Final update ID in event
   "b": [              // Bids to be updated
     [
       "0.0024",       // Price level to be updated
-      "10",
-      []              // Ignore
+      "10"            // Quantity
     ]
   ],
   "a": [              // Asks to be updated
     [
       "0.0026",       // Price level to be updated
-      "100",          // Quantity
-      []              // Ignore
+      "100"           // Quantity
     ]
   ]
 }
 ```
 
 ## How to manage a local order book correctly
-1. Open a stream to **wss://stream.binance.je:9443/ws/bnbbtc@depth**
-2. Buffer the events you receive from the stream
-3. Get a depth snapshot from **https://www.binance.je/api/v1/depth?symbol=BNBBTC&limit=1000**
-4. Drop any event where `u` is <= `lastUpdateId` in the snapshot
-5. The first processed should have `U` <= `lastUpdateId`+1 **AND** `u` >= `lastUpdateId`+1
-6. While listening to the stream, each new event's `U` should be equal to the previous event's `u`+1
-7. The data in each event is the **absolute** quantity for a price level
-8. If the quantity is 0, **remove** the price level
+1. Open a stream to **wss://stream.binance.com:9443/ws/bnbbtc@depth**.
+2. Buffer the events you receive from the stream.
+3. Get a depth snapshot from **https://www.binance.com/api/v1/depth?symbol=BNBBTC&limit=1000** .
+4. Drop any event where `u` is <= `lastUpdateId` in the snapshot.
+5. The first processed event should have `U` <= `lastUpdateId`+1 **AND** `u` >= `lastUpdateId`+1.
+6. While listening to the stream, each new event's `U` should be equal to the previous event's `u`+1.
+7. The data in each event is the **absolute** quantity for a price level.
+8. If the quantity is 0, **remove** the price level.
 9. Receiving an event that removes a price level that is not in your local order book can happen and is normal.
 

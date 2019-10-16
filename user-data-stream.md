@@ -1,4 +1,19 @@
-# User Data Streams for Binance Jersey(2018-11-13)
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [General WSS information](#general-wss-information)
+- [API Endpoints](#api-endpoints)
+  - [Create a listenKey](#create-a-listenkey)
+  - [Ping/Keep-alive a listenKey](#pingkeep-alive-a-listenkey)
+  - [Close a listenKey](#close-a-listenkey)
+- [Web Socket Payloads](#web-socket-payloads)
+  - [Account Update](#account-update)
+  - [Order Update](#order-update)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+# User Data Streams for Binance Jersey(2019-10-16)
 # General WSS information
 * The base API endpoint is: **https://api.binance.je**
 * A User Data Stream `listenKey` is valid for 60 minutes after creation.
@@ -108,9 +123,25 @@ Account state is updated with the `outboundAccountInfo` event.
       "l": "0.00000000"
     },
     {
-      "a": "NEO",
+      "a": "EUR",
       "f": "0.00000000",
       "l": "0.00000000"
+    }
+  ]
+}
+```
+An additional event `outboundAccountPosition` is sent any time an account balance has changed and contains the assets that were possibly changed by the event that generated the balance change.
+
+```javascript
+{
+  "e": "outboundAccountPosition", //Event type
+  "E": 1564034571105,             //Event Time
+  "u": 1564034571073,             //Time of last account update
+  "B": [                          //Balances Array
+    {
+      "a": "ETH",                 //Asset
+      "f": "10000.000000",        //Free
+      "l": "0.000000"             //Locked
     }
   ]
 }
@@ -125,7 +156,7 @@ Average price can be found by doing `Z` divided by `z`.
 {
   "e": "executionReport",        // Event type
   "E": 1499405658658,            // Event time
-  "s": "ETHBTC",                 // Symbol
+  "s": "ETHEUR",                 // Symbol
   "c": "mUvoqJxFIILMdfAW5iGSOW", // Client order ID
   "S": "BUY",                    // Side
   "o": "LIMIT",                  // Order type
@@ -134,7 +165,7 @@ Average price can be found by doing `Z` divided by `z`.
   "p": "0.10264410",             // Order price
   "P": "0.00000000",             // Stop price
   "F": "0.00000000",             // Iceberg quantity
-  "g": -1,                       // Ignore
+  "g": -1,                       // OrderListId
   "C": "null",                   // Original client order ID; This is the ID of the order being canceled
   "x": "NEW",                    // Current execution type
   "X": "NEW",                    // Current order status
@@ -166,3 +197,32 @@ Average price can be found by doing `Z` divided by `z`.
 * TRADE
 * EXPIRED
 
+If the order is an OCO, an event will be displayed named `ListStatus` in addition to the `executionReport` event.
+
+**Payload**
+```javascript
+{
+  "e": "listStatus",                //Event Type
+  "E": 1564035303637,               //Event Time
+  "s": "ETHEUR",                    //Symbol
+  "g": 2,                           //OrderListId
+  "c": "OCO",                       //Contingency Type
+  "l": "EXEC_STARTED",              //List Status Type
+  "L": "EXECUTING",                 //List Order Status
+  "r": "NONE",                      //List Reject Reason
+  "C": "F4QN4G8DlFATFlIUQ0cjdD",    //List Client Order ID
+  "T": 1564035303625,               //Transaction Time
+  "O": [                            //An array of objects
+    {
+      "s": "ETHEUR",                //Symbol
+      "i": 17,                      // orderId
+      "c": "AJYsMjErWJesZvqlJCTUgL" //ClientOrderId
+    },
+    {
+      "s": "ETHEUR",
+      "i": 18,
+      "c": "bfYPSQdLoqAJeNrOr9adzq"
+    }
+  ]
+}
+```

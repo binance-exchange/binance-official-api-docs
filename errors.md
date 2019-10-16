@@ -1,4 +1,4 @@
-# Error codes for Binance Jersey(2018-11-13)
+# Error codes for Binance Jersey(2019-10-16)
 Errors consist of two parts: an error code and a message. Codes are universal,
  but messages can vary. Here is the error JSON payload:
 ```javascript
@@ -169,6 +169,8 @@ Error message | Description
 "Order would trigger immediately." | The order's stop price is not valid when compared to the last traded price.
 "Cancel order is invalid. Check origClOrdId and orderId." | No `origClOrdId` or `orderId` was sent in.
 "Order would immediately match and take." | `LIMIT_MAKER` order type would immediately match and trade, and not be a pure maker order.
+"The relationship of the prices for the orders is not correct." | The prices set in the `OCO` is breaking the Price rules. <br> The rules are: <br> `SELL Orders`: Limit Price > Last Price > Stop Price <br>`BUY Orders`: Limit Price < Last Price < Stop Price
+"OCO orders are not supported for this symbol" | `OCO` is not enabled on the symbol
 
 ## -9xxx Filter failures
 Error message | Description

@@ -1,4 +1,132 @@
-# CHANGELOG for Binance's API (2018-11-13)
+# CHANGELOG for Binance's API (2019-10-16)
+
+---
+## 2019-09-09
+* New WebSocket streams for bookTickers added: `<symbol>@bookTicker` and `!bookTicker`. See `web-socket-streams.md` for details.
+
+---
+## 2019-09-03
+* Faster order book data with 100ms updates: `<symbol>@depth@100ms` and `<symbol>@depth#@100ms`
+* Added "Update Speed:" to `web-socket-streams.md`
+* Removed deprecated v1 endpoints as per previous announcement:
+    * GET api/v1/order
+    * GET api/v1/openOrders
+    * POST api/v1/order
+    * DELETE api/v1/order
+    * GET api/v1/allOrders
+    * GET api/v1/account
+    * GET api/v1/myTrades
+
+---
+## 2019-08-16 (Update 2)
+* GET api/v1/depth `limit` of 10000 has been temporarily removed
+
+---
+## 2019-08-16
+* In Q4 2017, the following endpoints were deprecated and removed from the API documentation. They have been permanently removed from the API as of this version. We apologize for the omission from the original changelog:
+    * GET api/v1/order
+    * GET api/v1/openOrders
+    * POST api/v1/order
+    * DELETE api/v1/order
+    * GET api/v1/allOrders
+    * GET api/v1/account
+    * GET api/v1/myTrades
+
+* Streams, endpoints, parameters, payloads, etc. described in the documents in this repository are **considered official** and **supported**. The use of any other streams, endpoints, parameters, or payloads, etc. is **not supported; use them at your own risk and with no guarantees.**
+
+---
+## 2019-08-15
+### Rest API
+* New order type: OCO ("One Cancels the Other")
+    * An OCO has 2 orders: (also known as legs in financial terms)
+        * ```STOP_LOSS``` or ```STOP_LOSS_LIMIT``` leg
+        * ```LIMIT_MAKER``` leg
+
+    * Price Restrictions:
+        * ```SELL Orders``` : Limit Price > Last Price > Stop Price
+        * ```BUY Orders``` : Limit Price < Last Price < Stop Price
+        * As stated, the prices must "straddle" the last traded price on the symbol. EX: If the last price is 10:
+            * A SELL OCO must have the limit price greater than 10, and the stop price less than 10.
+            * A BUY OCO must have a limit price less than 10, and the stop price greater than 10.
+
+    * Quantity Restrictions:
+        * Both legs must have the **same quantity**.
+        * ```ICEBERG``` quantities however, do not have to be the same.
+
+    * Execution Order:
+        * If the ```LIMIT_MAKER``` is touched, the limit maker leg will be executed first BEFORE canceling the Stop Loss Leg.
+        * if the Market Price moves such that the ```STOP_LOSS``` or ```STOP_LOSS_LIMIT``` will trigger, the Limit Maker leg will be canceled BEFORE executing the ```STOP_LOSS``` Leg.
+
+    * Canceling an OCO
+        * Canceling either order leg will cancel the entire OCO.
+        * The entire OCO can be canceled via the ```orderListId``` or the ```listClientOrderId```.
+
+    * New Enums for OCO:
+        1. ```ListStatusType```
+            * ```RESPONSE``` - used when ListStatus is responding to a failed action. (either order list placement or cancellation)
+            * ```EXEC_STARTED``` - used when an order list has been placed or there is an update to a list's status.
+            * ```ALL_DONE``` - used when an order list has finished executing and is no longer active.
+        1. ```ListOrderStatus```
+            * ```EXECUTING``` - used when an order list has been placed or there is an update to a list's status.
+            * ```ALL_DONE``` - used when an order list has finished executing and is no longer active.
+            * ```REJECT``` - used when ListStatus is responding to a failed action. (either order list placement or cancellation)
+        1. ```ContingencyType```
+            * ```OCO``` - specifies the type of order list.
+
+    * New Endpoints:
+        * POST api/v3/order/oco
+        * DELETE api/v3/orderList
+        * GET api/v3/orderList
+
+* ```recvWindow``` cannot exceed 60000.
+* New `intervalLetter` values for headers:
+    * SECOND => S
+    * MINUTE => M
+    * HOUR => H
+    * DAY => D
+* New Headers `X-MBX-USED-WEIGHT-(intervalNum)(intervalLetter)` will give your current used request weight for the (intervalNum)(intervalLetter) rate limiter. For example, if there is a one minute request rate weight limiter set, you will get a `X-MBX-USED-WEIGHT-1M` header in the response. The legacy header `X-MBX-USED-WEIGHT` will still be returned and will represent the current used weight for the one minute request rate weight limit.
+* New Header `X-MBX-ORDER-COUNT-(intervalNum)(intervalLetter)`that is updated on any valid order placement and tracks your current order count for the interval; rejected/unsuccessful orders are not guaranteed to have `X-MBX-ORDER-COUNT-**` headers in the response.
+    * Eg. `X-MBX-ORDER-COUNT-1S` for "orders per 1 second" and `X-MBX-ORDER-COUNT-1D` for orders per "one day"
+* GET api/v1/depth now supports `limit` 5000 and 10000; weights are 50 and 100 respectively.
+* GET api/v1/exchangeInfo has a new parameter `ocoAllowed`.
+
+### USER DATA STREAM
+* ```executionReport``` event now contains "g" which has the ```orderListId```; it will be set to -1 for non-OCO orders.
+* New Event Type ```listStatus```; ```listStatus``` is sent on an update to any OCO order.
+* New Event Type ```outboundAccountPosition```; ```outboundAccountPosition``` is sent any time an account's balance changes and contains the assets that could have changed by the event that generated the balance change (a deposit, withdrawal, trade, order placement, or cancellation).
+
+### NEW ERRORS
+* **-1131 BAD_RECV_WINDOW**
+    * ```recvWindow``` must be less than 60000
+* **-1099 Not found, authenticated, or authorized**
+    * This replaces error code -1999
+
+### NEW -2011 ERRORS
+* **OCO_BAD_ORDER_PARAMS**
+    * A parameter for one of the orders is incorrect.
+* **OCO_BAD_PRICES**
+    * The relationship of the prices for the orders is not correct.
+* **UNSUPPORTED_ORD_OCO**
+    * OCO orders are not supported for this symbol.
+
+---
+## 2019-03-12
+### Rest API
+* X-MBX-USED-WEIGHT header added to Rest API responses.
+* Retry-After header added to Rest API 418 and 429 responses.
+* When canceling the Rest API can now return `errorCode` -1013 OR -2011 if the symbol's `status` isn't `TRADING`.
+* `api/v1/depth` no longer has the ignored and empty `[]`.
+* `api/v3/myTrades` now returns `quoteQty`; the price * qty of for the trade.
+  
+### Websocket streams
+* `<symbol>@depth` and `<symbol>@depthX` streams no longer have the ignored and empty `[]`.
+  
+### System improvements
+* Matching Engine stability/reliability improvements.
+* Rest API performance improvements.
+
+---
+
 ## 2018-11-13
 ### Rest API
   * Can now cancel orders through the Rest API during a trading ban.
