@@ -119,7 +119,7 @@
     * HOUR => H
     * DAY => D
 * `intervalNum` describes the amount of the interval. For example, `intervalNum` 5 with `intervalLetter` M means "Every 5 minutes".
-* The `/api/v1/exchangeInfo` `rateLimits` array contains objects related to the exchange's `RAW_REQUEST`, `REQUEST_WEIGHT`, and `ORDER` rate limits. These are further defined in the `ENUM definitions` section under `Rate limiters (rateLimitType)`.
+* The `/api/v3/exchangeInfo` `rateLimits` array contains objects related to the exchange's `RAW_REQUEST`, `REQUEST_WEIGHT`, and `ORDER` rate limits. These are further defined in the `ENUM definitions` section under `Rate limiters (rateLimitType)`.
 * A 429 will be returned when either rate limit is violated.
 
 ## IP Limits
@@ -397,7 +397,7 @@ m -> minutes; h -> hours; d -> days; w -> weeks; M -> months
 ## General endpoints
 ### Test connectivity
 ```
-GET /api/v1/ping
+GET /api/v3/ping
 ```
 Test connectivity to the Rest API.
 
@@ -414,7 +414,7 @@ NONE
 
 ### Check server time
 ```
-GET /api/v1/time
+GET /api/v3/time
 ```
 Test connectivity to the Rest API and get the current server time.
 
@@ -433,7 +433,7 @@ NONE
 
 ### Exchange information
 ```
-GET /api/v1/exchangeInfo
+GET /api/v3/exchangeInfo
 ```
 Current exchange trading rules and symbol information
 
@@ -491,7 +491,7 @@ NONE
 ## Market Data endpoints
 ### Order book
 ```
-GET /api/v1/depth
+GET /api/v3/depth
 ```
 
 **Weight:**
@@ -534,7 +534,7 @@ limit | INT | NO | Default 100; max 5000. Valid limits:[5, 10, 20, 50, 100, 500,
 
 ### Recent trades list
 ```
-GET /api/v1/trades
+GET /api/v3/trades
 ```
 Get recent trades (up to last 500).
 
@@ -565,7 +565,7 @@ limit | INT | NO | Default 500; max 1000.
 
 ### Old trade lookup (MARKET_DATA)
 ```
-GET /api/v1/historicalTrades
+GET /api/v3/historicalTrades
 ```
 Get older trades.
 
@@ -597,7 +597,7 @@ fromId | LONG | NO | TradeId to fetch from. Default gets most recent trades.
 
 ### Compressed/Aggregate trades list
 ```
-GET /api/v1/aggTrades
+GET /api/v3/aggTrades
 ```
 Get compressed, aggregate trades. Trades that fill at the time, from the same
 order, with the same price will have the quantity aggregated.
@@ -636,7 +636,7 @@ limit | INT | NO | Default 500; max 1000.
 
 ### Kline/Candlestick data
 ```
-GET /api/v1/klines
+GET /api/v3/klines
 ```
 Kline/candlestick bars for a symbol.
 Klines are uniquely identified by their open time.
@@ -703,7 +703,7 @@ symbol | STRING | YES |
 
 ### 24hr ticker price change statistics
 ```
-GET /api/v1/ticker/24hr
+GET /api/v3/ticker/24hr
 ```
 24 hour rolling window price change statistics. **Careful** when accessing this with no symbol.
 
@@ -1574,7 +1574,7 @@ Specifics on how user data streams work is in another document.
 
 ### Start user data stream (USER_STREAM)
 ```
-POST /api/v1/userDataStream
+POST /api/v3/userDataStream
 ```
 Start a new user data stream. The stream will close after 60 minutes unless a keepalive is sent.
 
@@ -1593,7 +1593,7 @@ NONE
 
 ### Keepalive user data stream (USER_STREAM)
 ```
-PUT /api/v1/userDataStream
+PUT /api/v3/userDataStream
 ```
 Keepalive a user data stream to prevent a time out. User data streams will close after 60 minutes. It's recommended to send a ping about every 30 minutes.
 
@@ -1613,7 +1613,7 @@ listenKey | STRING | YES
 
 ### Close user data stream (USER_STREAM)
 ```
-DELETE /api/v1/userDataStream
+DELETE /api/v3/userDataStream
 ```
 Close out a user data stream.
 
