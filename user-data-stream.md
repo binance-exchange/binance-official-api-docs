@@ -27,7 +27,7 @@
 # API Endpoints
 ## Create a listenKey
 ```
-POST /api/v1/userDataStream
+POST /api/v3/userDataStream
 ```
 Start a new user data stream. The stream will close after 60 minutes unless a keepalive is sent.
 
@@ -46,7 +46,7 @@ NONE
 
 ## Ping/Keep-alive a listenKey
 ```
-PUT /api/v1/userDataStream
+PUT /api/v3/userDataStream
 ```
 Keepalive a user data stream to prevent a time out. User data streams will close after 60 minutes. It's recommended to send a ping about every 30 minutes.
 
@@ -66,7 +66,7 @@ listenKey | STRING | YES
 
 ## Close a listenKey
 ```
-DELETE /api/v1/userDataStream
+DELETE /api/v3/userDataStream
 ```
 Close out a user data stream.
 
