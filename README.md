@@ -12,5 +12,5 @@ Name | Description
 [user-data-stream.md](./user-data-stream.md) | Details on the dedicated account stream
 [wapi-api.md](./wapi-api.md) | Details on the Withdrawal API (/wapi)
 [margin-api.md](./margin-api.md) | Details on the Margin Trade API (/sapi)
-[Futures-API](https://binanceapitest.github.io/Binance-Futures-API-doc/) | Details on the Futures API (/fapi)
+[Futures-API](https://binance-docs.github.io/apidocs/futures/en/) | Details on the Futures API (/fapi)
 
