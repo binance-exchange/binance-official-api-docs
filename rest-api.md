@@ -69,7 +69,7 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# Public Rest API for Binance (2019-10-03)
+# Public Rest API for Binance (2019-11-13)
 
 ## General API Information
 * The base endpoint is: **https://api.binance.com**
@@ -467,6 +467,8 @@ NONE
       "baseAssetPrecision": 8,
       "quoteAsset": "BTC",
       "quotePrecision": 8,
+      "baseCommissionPrecision": 8,
+      "quoteCommissionPrecision": 8,
       "orderTypes": [
         "LIMIT",
         "LIMIT_MAKER",
@@ -478,6 +480,7 @@ NONE
       ],
       "icebergAllowed": true,
       "ocoAllowed": true,
+      "quoteOrderQtyMarketAllowed": true,
       "isSpotTradingAllowed": true,
       "isMarginTradingAllowed": false,
       "filters": [
@@ -875,7 +878,8 @@ symbol | STRING | YES |
 side | ENUM | YES |
 type | ENUM | YES |
 timeInForce | ENUM | NO |
-quantity | DECIMAL | YES |
+quantity | DECIMAL | NO |
+quoteOrderQty|DECIMAL|NO|
 price | DECIMAL | NO |
 newClientOrderId | STRING | NO | A unique id for the order. Automatically generated if not sent.
 stopPrice | DECIMAL | NO | Used with `STOP_LOSS`, `STOP_LOSS_LIMIT`, `TAKE_PROFIT`, and `TAKE_PROFIT_LIMIT` orders.
@@ -889,7 +893,7 @@ Additional mandatory parameters based on `type`:
 Type | Additional mandatory parameters
 ------------ | ------------
 `LIMIT` | `timeInForce`, `quantity`, `price`
-`MARKET` | `quantity`
+`MARKET` | `quantity` or `quoteOrderQty`
 `STOP_LOSS` | `quantity`, `stopPrice`
 `STOP_LOSS_LIMIT` | `timeInForce`, `quantity`,  `price`, `stopPrice`
 `TAKE_PROFIT` | `quantity`, `stopPrice`
@@ -1053,7 +1057,8 @@ Notes:
   "icebergQty": "0.0",
   "time": 1499827319559,
   "updateTime": 1499827319559,
-  "isWorking": true
+  "isWorking": true,
+  "origQuoteOrderQty": "0.000000"
 }
 ```
 
@@ -1137,7 +1142,8 @@ timestamp | LONG | YES |
     "icebergQty": "0.0",
     "time": 1499827319559,
     "updateTime": 1499827319559,
-    "isWorking": true
+    "isWorking": true,
+    "origQuoteOrderQty": "0.000000"
   }
 ]
 ```
@@ -1187,7 +1193,8 @@ timestamp | LONG | YES |
     "icebergQty": "0.0",
     "time": 1499827319559,
     "updateTime": 1499827319559,
-    "isWorking": true
+    "isWorking": true,
+    "origQuoteOrderQty": "0.000000"
   }
 ]
 ```
