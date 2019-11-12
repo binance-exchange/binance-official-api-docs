@@ -158,7 +158,7 @@ Balance Update happens when the funds are deposited or withdrawn from the accoun
 {
   "e": "balanceUpdate",         //Event Type
   "E": 1573200697110,           //Event Time
-  "a": "ABC",                   //Asset
+  "a": "BTC",                   //Asset
   "d": "100.00000000",          //Balance Delta
   "T": 1573200697068            //Clear Time
 }
