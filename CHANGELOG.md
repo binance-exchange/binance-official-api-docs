@@ -20,6 +20,7 @@
       "msg": "Combination of optional parameters invalid. Recommendation: 'stopLimitTimeInForce' should also be sent."
      }
     ```
+* Updated error messages for -1003 to specify the limit is referring to the request weight, not to the number of requests.
 
 **Deprecation of v1 endpoints**:
 

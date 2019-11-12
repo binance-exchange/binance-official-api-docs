@@ -21,9 +21,9 @@ Errors consist of two parts: an error code and a message. Codes are universal,
 
 #### -1003 TOO_MANY_REQUESTS
  * Too many requests queued.
- * Too many requests; please use the websocket for live updates.
- * Too many requests; current limit is %s requests per minute. Please use the websocket for live updates to avoid polling the API.
- * Way too many requests; IP banned until %s. Please use the websocket for live updates to avoid bans.
+ * Too much request weight used; please use the websocket for live updates to avoid polling the API.
+ * Too much request weight used; current limit is %s request weight per %s %s. Please use the websocket for live updates to avoid polling the API.
+ * Way too much request weight used; IP banned until %s. Please use the websocket for live updates to avoid bans.
 
 #### -1006 UNEXPECTED_RESP
  * An unexpected response was received from the message bus. Execution status unknown.
