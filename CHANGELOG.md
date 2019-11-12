@@ -1,4 +1,71 @@
-# CHANGELOG for Binance's API (2019-09-09)
+# CHANGELOG for Binance's API (2019-11-13)
+
+---
+## 2019-11-13
+
+### Rest API
+
+* api/v3/exchangeInfo has new fields:
+    * `quoteOrderQtyMarketAllowed`
+    * `baseCommissionDecimalPlaces`
+    * `quoteCommissionDecimalPlaces`
+* `MARKET` orders have a new optional field: `quoteOrderQty` used to specify the quote quantity to BUY or SELL. This cannot be used in combination with `quantity`.
+    * The exact timing that `quoteOrderQty` MARKET orders will be enabled is TBD. There will be a separate announcement and further details at that time.
+* All order query endpoints will return a new field `origQuoteOrderQty` in the JSON payload. (e.g. GET api/v3/allOrders)
+* Updated error messages for  -1128
+    * Sending an `OCO` with a `stopLimitPrice` but without a `stopLimitTimeInForce` will return the error:
+    ```json
+     {
+      "code": -1128,
+      "msg": "Combination of optional parameters invalid. Recommendation: 'stopLimitTimeInForce' should also be sent."
+     }
+    ```
+
+**Deprecation of v1 endpoints**:
+
+By end of Q1 2020, the following endpoints will be removed from the API. The documentation has been updated to use the v3 versions of these endpoints.
+
+* GET api/v1/depth
+* GET api/v1/historicalTrades
+* GET api/v1/aggTrades
+* GET api/v1/klines
+* GET api/v1/ticker/24hr
+* GET api/v1/ticker/price
+* GET api/v1/exchangeInfo
+* POST api/v1/userDataStream
+* PUT api/v1/userDataStream
+* GET api/v1/ping
+* GET api/v1/time
+* GET api/v1/ticker/bookTicker
+
+**These endpoints however, will NOT be migrated to v3. Please use the following endpoints instead moving forward.**
+
+<table>
+<tr>
+<th>Old V1 Endpoints</th>
+<th>New V3 Endpoints</th>
+</tr>
+<tr>
+<td>GET api/v1/ticker/allPrices</td>
+<td>GET api/v3/ticker/price</td>
+</tr>
+<tr>
+<td>GET api/v1/ticker/allBookTickers</td>
+<td>GET api/v3/ticker/bookTicker</td>
+</tr>
+</table>
+
+### USER DATA STREAM
+* Changes to`executionReport` event
+    * If the C field is empty, it will now properly return `null`, instead of `"null"`.
+    * New field Q which represents the `quoteOrderQty`.
+
+* `balanceUpdate` event type added
+    * This event occurs when funds are deposited or withdrawn from your account.
+
+### WEB SOCKET STREAM
+* WSS now supports live subscribing/unsubscribing to streams.
+
 ---
 ## 2019-09-09
 * New WebSocket streams for bookTickers added: `<symbol>@bookTicker` and `!bookTicker`. See `web-socket-streams.md` for details.

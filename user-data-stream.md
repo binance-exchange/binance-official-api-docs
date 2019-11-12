@@ -9,11 +9,12 @@
   - [Close a listenKey](#close-a-listenkey)
 - [Web Socket Payloads](#web-socket-payloads)
   - [Account Update](#account-update)
+  - [Balance Update](#balance-update)
   - [Order Update](#order-update)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# User Data Streams for Binance (2019-08-15)
+# User Data Streams for Binance (2019-11-13)
 # General WSS information
 * The base API endpoint is: **https://api.binance.com**
 * A User Data Stream `listenKey` is valid for 60 minutes after creation.
@@ -148,7 +149,20 @@ An additional event `outboundAccountPosition` is sent any time an account balanc
 }
 ```
 
+## Balance Update
 
+Balance Update happens when the funds are deposited or withdrawn from the account.
+
+**Payload**
+```javascript
+{
+  "e": "balanceUpdate",         //Event Type
+  "E": 1573200697110,           //Event Time
+  "a": "ABC",                   //Asset
+  "d": "100.00000000",          //Balance Delta
+  "T": 1573200697068            //Clear Time
+}
+```
 
 ## Order Update
 Orders are updated with the `executionReport` event. Check the API documentation and below for relevant enum definitions.
