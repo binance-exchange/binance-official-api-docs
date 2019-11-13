@@ -121,10 +121,10 @@ The combined property is set to `false` when connecting using `/ws/` ("raw strea
 
 * Response
   ```javascript
-{
-  "result": null,
-  "id": 5
-}
+  {
+     "result": null,
+     "id": 5
+  }
   ```
 
 ### Retrieving Properties
