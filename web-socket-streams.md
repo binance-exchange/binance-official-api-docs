@@ -19,7 +19,7 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# Web Socket Streams for Binance Jersey(2019-10-16)
+# Web Socket Streams for Binance Jersey(2019-11-13)
 # General WSS information
 * The base endpoint is: **wss://stream.binance.je:9443**
 * Streams can be accessed either in a single raw stream or a combined stream
@@ -29,6 +29,124 @@
 * All symbols for streams are **lowercase**
 * A single connection to **stream.binance.je** is only valid for 24 hours; expect to be disconnected at the 24 hour mark
 * The websocket server will send a `ping frame` every 3 minutes. If the websocket server does not receive a `pong frame` back from the connection within a 10 minute period, the connection will be disconnected. Unsolicited `pong frames` are allowed.
+
+## Live Subscribing/Unsubscribing to streams
+
+* The following data can be sent through the websocket instance in order to subscribe/unsubscribe from streams. Examples can be seen below.
+* The `id` used in the JSON payloads is an unsigned INT used as an identifier to uniquely identify the messages going back and forth.
+
+### Subscribe to a stream
+* Request
+  ```javascript
+  {
+    "method": "SUBSCRIBE",
+    "params": [
+      "bnbeur@aggTrade",
+      "bnbeur@depth"
+    ],
+    "id": 1
+  }
+  ```
+
+* Response
+  ```javascript
+  {
+    "result": null,
+    "id": 1
+  }
+  ```
+
+### Unsubscribe to a stream
+* Request
+  ```javascript
+  {
+    "method": "UNSUBSCRIBE",
+    "params": [
+      "bnbeur@depth"
+    ],
+    "id": 312
+  }
+  ```
+
+* Response
+  ```javascript
+  {
+    "result": null,
+    "id": 312
+  }
+  ```
+
+
+### Listing Subscriptions
+* Request
+  ```javascript
+  {
+    "method": "LIST_SUBSCRIPTIONS",
+    "id": 3
+  }
+  ```
+
+* Response
+  ```javascript
+  {
+    "result": [
+      "bnbeur@aggTrade"
+    ],
+    "id": 3
+  }
+  ```
+
+
+### Setting Properties
+Currently, the only property can be set is to set whether `combined` stream payloads are enabled are not.
+The combined property is set to `false` when connecting using `/ws/` ("raw streams") and `true` when connecting using `/stream/`.
+
+* Request
+  ```javascript
+  {
+    "method": "SET_PROPERTY",
+    "params": [
+      "combined",
+      true
+    ],
+    "id": 5
+  }
+  ```
+
+* Response
+  ```javascript
+  {
+    "result": [
+      "BNBEUR@aggTrade",
+      "BNBEUR@bookTicker",
+      "BNBEUR@depth20",
+      "BNBEUR@kline_1m",
+      "BNBEUR@miniTicker",
+      "BNBEUR@ticker"
+    ],
+    "id": 5
+  }
+  ```
+
+### Retrieving Properties
+* Request
+  ```javascript
+  {
+    "method": "GET_PROPERTY",
+    "params": [
+      "combined"
+    ],
+    "id": 2
+  }
+  ```
+
+* Response
+  ```javascript
+  {
+    "result": true, // Indicates that combined is set to true.
+    "id": 2
+  }
+  ```
 
 # Detailed Stream information
 ## Aggregate Trade Streams

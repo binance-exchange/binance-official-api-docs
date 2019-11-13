@@ -1,4 +1,8 @@
-# CHANGELOG for Binance's API (2019-10-16)
+# CHANGELOG for Binance's API (2019-11-13)
+---
+## 2019-11-13
+### WEB SOCKET STREAM
+* WSS now supports live subscribing/unsubscribing to streams.
 
 ---
 ## 2019-09-09
