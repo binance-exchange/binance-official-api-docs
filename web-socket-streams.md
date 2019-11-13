@@ -121,17 +121,10 @@ The combined property is set to `false` when connecting using `/ws/` ("raw strea
 
 * Response
   ```javascript
-  {
-    "result": [
-      "BNBEUR@aggTrade",
-      "BNBEUR@bookTicker",
-      "BNBEUR@depth20",
-      "BNBEUR@kline_1m",
-      "BNBEUR@miniTicker",
-      "BNBEUR@ticker"
-    ],
-    "id": 5
-  }
+{
+  "result": null,
+  "id": 5
+}
   ```
 
 ### Retrieving Properties
