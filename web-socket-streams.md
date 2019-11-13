@@ -40,6 +40,7 @@
 
 * The following data can be sent through the websocket instance in order to subscribe/unsubscribe from streams. Examples can be seen below.
 * The `id` used in the JSON payloads is an unsigned INT used as an identifier to uniquely identify the messages going back and forth.
+* In the response, if the `result` received is `null` this means the request sent was a success for non-query requests (e.g. Subscribing/Unsubscribing).
 
 ### Subscribe to a stream
 * Request
