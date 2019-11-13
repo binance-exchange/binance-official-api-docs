@@ -3,6 +3,12 @@
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
 - [General WSS information](#general-wss-information)
+  - [Live Subscribing/Unsubscribing to streams](#live-subscribingunsubscribing-to-streams)
+    - [Subscribe to a stream](#subscribe-to-a-stream)
+    - [Unsubscribe to a stream](#unsubscribe-to-a-stream)
+    - [Listing Subscriptions](#listing-subscriptions)
+    - [Setting Properties](#setting-properties)
+    - [Retrieving Properties](#retrieving-properties)
 - [Detailed Stream information](#detailed-stream-information)
   - [Aggregate Trade Streams](#aggregate-trade-streams)
   - [Trade Streams](#trade-streams)
