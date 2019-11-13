@@ -183,7 +183,7 @@ Average price can be found by doing `Z` divided by `z`.
   "P": "0.00000000",             // Stop price
   "F": "0.00000000",             // Iceberg quantity
   "g": -1,                       // OrderListId
-  "C": "null",                   // Original client order ID; This is the ID of the order being canceled
+  "C": null,                     // Original client order ID; This is the ID of the order being canceled
   "x": "NEW",                    // Current execution type
   "X": "NEW",                    // Current order status
   "r": "NONE",                   // Order reject reason; will be an error code.
