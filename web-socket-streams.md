@@ -58,8 +58,7 @@
   ```javascript
   {
     "result": null,
-    "id": 1,
-    "time": 1573463788272
+    "id": 1
   }
   ```
 
@@ -79,8 +78,7 @@
   ```javascript
   {
     "result": null,
-    "id": 312,
-    "time": 1573463790695
+    "id": 312
   }
   ```
 
@@ -132,8 +130,7 @@ The combined property is set to `false` when connecting using `/ws/` ("raw strea
       "BNBBTC@miniTicker",
       "BNBBTC@ticker"
     ],
-    "id": 5,
-    "time": 1573463790696
+    "id": 5
   }
   ```
 
@@ -153,8 +150,7 @@ The combined property is set to `false` when connecting using `/ws/` ("raw strea
   ```javascript
   {
     "result": true, // Indicates that combined is set to true.
-    "id": 2,
-    "time": 1573463788273
+    "id": 2
   }
   ```
 
