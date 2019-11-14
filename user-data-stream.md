@@ -151,7 +151,9 @@ An additional event `outboundAccountPosition` is sent any time an account balanc
 
 ## Balance Update
 
-Balance Update happens when the funds are deposited or withdrawn from the account.
+Balance Update occurs during the following:
+* Deposits or withdrawals from the account
+* Transfer of funds between accounts (e.g. Spot to Margin)
 
 **Payload**
 ```javascript
