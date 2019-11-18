@@ -18,19 +18,19 @@
 # General WSS information
 * The base API endpoint is: **https://api.binance.com**
 * A User Data Stream `listenKey` is valid for 60 minutes after creation.
-* Doing a `PUT` on a `listenKey` will extend its validity for 60 minutes.
-* Doing a `DELETE` on a `listenKey` will close the stream.
+* Doing a `PUT` on an active `listenKey` will extend its validity for 60 minutes.
+* Doing a `DELETE` on an active `listenKey` will close the stream and invalidate the `listenKey`.
+* Doing a `POST` on an account with an active `listenKey` will return the currently active `listenKey` and extend its validity for 60 minutes.
 * The base websocket endpoint is: **wss://stream.binance.com:9443**
-* User Data Streams are accessed at **/ws/\<listenKey\>**
+* User Data Streams are accessed at **/ws/\<listenKey\>** or **/stream?streams=\<listenKey\>**
 * A single connection to **stream.binance.com** is only valid for 24 hours; expect to be disconnected at the 24 hour mark
-* User data stream payloads are **not guaranteed** to be in order during heavy periods; **make sure to order your updates using E**
 
 # API Endpoints
 ## Create a listenKey
 ```
 POST /api/v3/userDataStream
 ```
-Start a new user data stream. The stream will close after 60 minutes unless a keepalive is sent.
+Start a new user data stream. The stream will close after 60 minutes unless a keepalive is sent. If the account has an active `listenKey`, that `listenKey` will be returned and its validity will be extended for 60 minutes.
 
 **Weight:**
 1
