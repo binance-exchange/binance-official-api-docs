@@ -608,7 +608,7 @@ Get compressed, aggregate trades. Trades that fill at the time, from the same
 order, with the same price will have the quantity aggregated.
 
 **Weight:**
-1
+1 by default; 2 if limit = 1000
 
 **Parameters:**
 
