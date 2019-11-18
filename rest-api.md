@@ -1321,6 +1321,65 @@ timestamp|LONG|YES|
 Additional notes:
 * Canceling an individual leg will cancel the entire OCO
 
+**Response**
+
+```javascript
+{
+  "orderListId": 0,
+  "contingencyType": "OCO",
+  "listStatusType": "ALL_DONE",
+  "listOrderStatus": "ALL_DONE",
+  "listClientOrderId": "C3wyj4WVEktd7u9aVBRXcN",
+  "transactionTime": 1574040868128,
+  "symbol": "LTCGBP",
+  "orders": [
+    {
+      "symbol": "LTCGBP",
+      "orderId": 2,
+      "clientOrderId": "pO9ufTiFGg3nw2fOdgeOXa"
+    },
+    {
+      "symbol": "LTCGBP",
+      "orderId": 3,
+      "clientOrderId": "TXOvglzXuaubXAaENpaRCB"
+    }
+  ],
+  "orderReports": [
+    {
+      "symbol": "LTCGBP",
+      "origClientOrderId": "pO9ufTiFGg3nw2fOdgeOXa",
+      "orderId": 2,
+      "orderListId": 0,
+      "clientOrderId": "unfWT8ig8i0uj6lPuYLez6",
+      "price": "1.00000000",
+      "origQty": "10.00000000",
+      "executedQty": "0.00000000",
+      "cummulativeQuoteQty": "0.00000000",
+      "status": "CANCELED",
+      "timeInForce": "GTC",
+      "type": "STOP_LOSS_LIMIT",
+      "side": "SELL",
+      "stopPrice": "1.00000000"
+    },
+    {
+      "symbol": "LTCGBP",
+      "origClientOrderId": "TXOvglzXuaubXAaENpaRCB",
+      "orderId": 3,
+      "orderListId": 0,
+      "clientOrderId": "unfWT8ig8i0uj6lPuYLez6",
+      "price": "3.00000000",
+      "origQty": "10.00000000",
+      "executedQty": "0.00000000",
+      "cummulativeQuoteQty": "0.00000000",
+      "status": "CANCELED",
+      "timeInForce": "GTC",
+      "type": "LIMIT_MAKER",
+      "side": "SELL"
+    }
+  ]
+}
+```
+
 
 ### Query OCO (USER_DATA)
 
