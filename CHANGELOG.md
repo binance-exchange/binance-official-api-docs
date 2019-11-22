@@ -8,7 +8,7 @@
     * Quote Order Qty `MARKET` orders will not break `LOT_SIZE` filter rules; the order will execute a quantity that will have the notional value as close as possible to `quoteOrderQty`.
     * Using `BNBBTC` as an example:
         * On the `BUY` side, the order will buy as many BNB as `quoteOrderQty` BTC can.
-        * On the `SELL` side, the order sell as much BNB as needed to receive `quoteOrderQty` BTC.
+        * On the `SELL` side, the order will sell as much BNB as needed to receive `quoteOrderQty` BTC.
 
 ---
 ## 2019-11-13
