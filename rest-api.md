@@ -934,7 +934,7 @@ Trigger order price rules against market price for both MARKET and LIMIT version
   "orderListId": -1, //Unless OCO, value will be -1
   "clientOrderId": "6gCrw2kRUAF9CvJDGP16IP",
   "transactTime": 1507725176595,
-  "price": "1.00000000",
+  "price": "0.00000000",
   "origQty": "10.00000000",
   "executedQty": "10.00000000",
   "cummulativeQuoteQty": "10.00000000",
@@ -953,7 +953,7 @@ Trigger order price rules against market price for both MARKET and LIMIT version
   "orderListId": -1, //Unless OCO, value will be -1
   "clientOrderId": "6gCrw2kRUAF9CvJDGP16IP",
   "transactTime": 1507725176595,
-  "price": "1.00000000",
+  "price": "0.00000000",
   "origQty": "10.00000000",
   "executedQty": "10.00000000",
   "cummulativeQuoteQty": "10.00000000",
