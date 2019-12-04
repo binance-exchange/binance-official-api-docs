@@ -148,7 +148,10 @@ An additional event `outboundAccountPosition` is sent any time an account balanc
 ```
 
 ## Order Update
-Orders are updated with the `executionReport` event. Check the API documentation and below for relevant enum definitions.
+Orders are updated with the `executionReport` event.
+
+Check the [Rest API Documentation](./rest-api.md#enum-definitions) and below for relevant enum definitions.
+
 Average price can be found by doing `Z` divided by `z`.
 
 **Payload:**
@@ -179,7 +182,7 @@ Average price can be found by doing `Z` divided by `z`.
   "T": 1499405658657,            // Transaction time
   "t": -1,                       // Trade ID
   "I": 8641984,                  // Ignore
-  "w": true,                     // Is the order working? Stops will have
+  "w": true,                     // Is the order on the book?
   "m": false,                    // Is this trade the maker side?
   "M": false,                    // Ignore
   "O": 1499405658657,            // Order creation time
