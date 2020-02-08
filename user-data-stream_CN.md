@@ -31,7 +31,7 @@ NONE
 }
 ```
 
-## 演唱lisenKey有效期
+## 延长lisenKey有效期
 ```
 PUT /api/v1/userDataStream
 ```
