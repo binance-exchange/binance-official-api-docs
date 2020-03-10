@@ -193,12 +193,12 @@ Average price can be found by doing `Z` divided by `z`.
 
 **Execution types:**
 
-* NEW
-* CANCELED
+* NEW - The order has been accepted into the engine.
+* CANCELED - The order has been canceled by the user. 
 * REPLACED (currently unused)
-* REJECTED
-* TRADE
-* EXPIRED
+* REJECTED - The order has been rejected and was not processed. (This is never pushed into the User Data Stream)
+* TRADE - Part of the order or all of the order's quantity has filled.
+* EXPIRED - The order was canceled according to the order type's rules (e.g. LIMIT FOK orders with no fill, LIMIT IOC or MARKET orders that partially fill) or by the exchange, (e.g. orders canceled during liquidation, orders canceled during maintenance)
 
 If the order is an OCO, an event will be displayed named `ListStatus` in addition to the `executionReport` event.
 

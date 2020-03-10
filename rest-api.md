@@ -293,13 +293,13 @@ There is no & between "GTC" and "quantity=1".
 
 **Order status (status):**
 
-* NEW
-* PARTIALLY_FILLED
-* FILLED
-* CANCELED
+* NEW - The order has been accepted by the engine.
+* PARTIALLY_FILLED - A part of the order has been filled.
+* FILLED - The order has been completely filled.
+* CANCELED - The order has been canceled by the user.
 * PENDING_CANCEL (currently unused)
-* REJECTED
-* EXPIRED
+* REJECTED - The order was not accepted by the engine and not processed.
+* EXPIRED - The order was canceled according to the order type's rules (e.g. LIMIT FOK orders with no fill, LIMIT IOC or MARKET orders that partially fill) or by the exchange, (e.g. orders canceled during liquidation, orders canceled during maintenance)
 
 **OCO Status (listStatusType):**
 * RESPONSE
