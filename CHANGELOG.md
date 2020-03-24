@@ -1,4 +1,15 @@
-# CHANGELOG for Binance's API (2019-11-22)
+# CHANGELOG for Binance's API (2020-03-24)
+
+---
+## 2020-03-24
+
+* `MAX_POSITION` filter added.
+    * This filter defines the allowed maximum position an account can have on the base asset of a symbol. An account's position defined as the sum of the account's:
+        * free balance of the base asset
+        * locked balance of the base asset
+        * sum of the qty of all open BUY orders
+
+    * `BUY` orders will be rejected if the account's position is greater than the maximum position allowed.
 
 ---
 ## 2019-11-22
