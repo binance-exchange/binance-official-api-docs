@@ -1,4 +1,4 @@
-# REST行情与交易接口 (2018-11-13)
+# REST行情与交易接口 (2020-03-24)
 # 基本信息
 * 本篇列出REST接口的baseurl **https://api.binance.com**
 * 所有接口的响应都是JSON格式
@@ -1303,6 +1303,23 @@ lots是拍卖术语，这个过滤器对订单中的`quantity`也就是数量参
   }
 ```
 
+### MAX_POSITION 过滤器
+
+这个过滤器定义账户允许的基于`base asset`的最大仓位。一个用户的仓位可以定义为如下资产的总和:
+1. `base asset`的可用余额
+1. `base asset`的锁定余额
+1. 所有处于open的买单的数量总和
+
+如果用户的仓位大于最大的允许仓位，买单会被拒绝。
+
+**/exchangeInfo 响应中的格式:**
+```javascript
+{
+  "filterType": "MAX_POSITION",
+  "maxPosition": "10.00000000"
+}
+```
+
 ## 交易所级别过滤器
 ### EXCHANGE_MAX_NUM_ORDERS 最多订单数
 
@@ -1323,5 +1340,3 @@ lots是拍卖术语，这个过滤器对订单中的`quantity`也就是数量参
     "maxNumAlgoOrders": 200
   }
 ```
-
-
