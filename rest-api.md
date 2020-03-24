@@ -63,13 +63,14 @@
     - [MAX_NUM_ORDERS](#max_num_orders)
     - [MAX_NUM_ALGO_ORDERS](#max_num_algo_orders)
     - [MAX_NUM_ICEBERG_ORDERS](#max_num_iceberg_orders)
+    - [MAX_POSITION FILTER](#max_position-filter)
   - [Exchange Filters](#exchange-filters)
     - [EXCHANGE_MAX_NUM_ORDERS](#exchange_max_num_orders)
     - [EXCHANGE_MAX_NUM_ALGO_ORDERS](#exchange_max_num_algo_orders)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# Public Rest API for Binance Jersey(2019-11-18)
+# Public Rest API for Binance Jersey(2020-03-24)
 
 ## General API Information
 * The base endpoint is: **https://api.binance.je**
@@ -1845,6 +1846,24 @@ An `ICEBERG` order is any order where the `icebergQty` is > 0.
     "filterType": "MAX_NUM_ICEBERG_ORDERS",
     "maxNumIcebergOrders": 5
   }
+```
+
+### MAX_POSITION FILTER
+
+The `MAX_POSITION` filter defines the allowed maximum position an account can have on the base asset of a symbol. 
+An account's position defined as the sum of the account's:
+
+1. free balance of the base asset
+1. locked balance of the base asset
+1. sum of the qty of all open BUY orders
+
+`BUY` orders will be rejected if the account's position is greater than the maximum position allowed.
+
+```javascript
+{
+  "filterType":"MAX_POSITION",
+  "maxPosition":"10.00000000"
+}
 ```
 
 ## Exchange Filters
