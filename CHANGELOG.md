@@ -1,4 +1,16 @@
-# CHANGELOG for Binance's API (2019-11-13)
+# CHANGELOG for Binance's API (2020-04-23)
+
+---
+## 2020-04-23
+WEB SOCKET STREAM
+
+* WebSocket connections have a limit of 5 incoming messages per second. A message is considered:
+    * A PING frame
+    * A PONG frame
+    * A JSON control message (e.g. subscribe, unsubscribe)
+* A connection that goes beyond the limit will be disconnected; IPs that are repeatedly disconnected may be banned.
+* A single connection can listen to a maximum of 1024 streams.
+
 ---
 ## 2019-11-13
 ### WEB SOCKET STREAM
