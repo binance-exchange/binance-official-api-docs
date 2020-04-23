@@ -39,6 +39,7 @@
     - [Test new order (TRADE)](#test-new-order-trade)
     - [Query order (USER_DATA)](#query-order-user_data)
     - [Cancel order (TRADE)](#cancel-order-trade)
+    - [Cancel All Open Orders on a Symbol (TRADE)](#cancel-all-open-orders-on-a-symbol-trade)
     - [Current open orders (USER_DATA)](#current-open-orders-user_data)
     - [All orders (USER_DATA)](#all-orders-user_data)
     - [New OCO (TRADE)](#new-oco-trade)
@@ -63,14 +64,14 @@
     - [MAX_NUM_ORDERS](#max_num_orders)
     - [MAX_NUM_ALGO_ORDERS](#max_num_algo_orders)
     - [MAX_NUM_ICEBERG_ORDERS](#max_num_iceberg_orders)
-    - [MAX_POSITION](#max_position-filter)
+    - [MAX_POSITION FILTER](#max_position-filter)
   - [Exchange Filters](#exchange-filters)
     - [EXCHANGE_MAX_NUM_ORDERS](#exchange_max_num_orders)
     - [EXCHANGE_MAX_NUM_ALGO_ORDERS](#exchange_max_num_algo_orders)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# Public Rest API for Binance (2020-03-24)
+# Public Rest API for Binance (2020-04-25)
 
 ## General API Information
 * The base endpoint is: **https://api.binance.com**
@@ -483,10 +484,14 @@ NONE
       "ocoAllowed": true,
       "quoteOrderQtyMarketAllowed": true,
       "isSpotTradingAllowed": true,
-      "isMarginTradingAllowed": false,
+      "isMarginTradingAllowed": true,
       "filters": [
         //These are defined in the Filters section.
         //All filters are optional
+      ],
+      "permissions": [
+        "SPOT",
+        "MARGIN"
       ]
     }
   ]
@@ -1106,6 +1111,114 @@ Either `orderId` or `origClientOrderId` must be sent.
 }
 ```
 
+### Cancel All Open Orders on a Symbol (TRADE)
+```
+DELETE /api/v3/openOrders (HMAC SHA256)
+```
+Cancels all active orders on a symbol.
+This includes OCO orders.
+
+**Weight**
+1
+
+Name | Type | Mandatory | Description
+------------ | ------------ | ------------ | ------------
+symbol | STRING | YES |
+recvWindow | LONG | NO | The value cannot be greater than ```60000```
+timestamp | LONG | YES |
+
+**Response**
+```javascript
+[
+  {
+    "symbol": "BTCUSDT",
+    "origClientOrderId": "E6APeyTJvkMvLMYMqu1KQ4",
+    "orderId": 11,
+    "orderListId": -1,
+    "clientOrderId": "pXLV6Hz6mprAcVYpVMTGgx",
+    "price": "0.089853",
+    "origQty": "0.178622",
+    "executedQty": "0.000000",
+    "cummulativeQuoteQty": "0.000000",
+    "status": "CANCELED",
+    "timeInForce": "GTC",
+    "type": "LIMIT",
+    "side": "BUY"
+  },
+  {
+    "symbol": "BTCUSDT",
+    "origClientOrderId": "A3EF2HCwxgZPFMrfwbgrhv",
+    "orderId": 13,
+    "orderListId": -1,
+    "clientOrderId": "pXLV6Hz6mprAcVYpVMTGgx",
+    "price": "0.090430",
+    "origQty": "0.178622",
+    "executedQty": "0.000000",
+    "cummulativeQuoteQty": "0.000000",
+    "status": "CANCELED",
+    "timeInForce": "GTC",
+    "type": "LIMIT",
+    "side": "BUY"
+  },
+  {
+    "orderListId": 1929,
+    "contingencyType": "OCO",
+    "listStatusType": "ALL_DONE",
+    "listOrderStatus": "ALL_DONE",
+    "listClientOrderId": "2inzWQdDvZLHbbAmAozX2N",
+    "transactionTime": 1585230948299,
+    "symbol": "BTCUSDT",
+    "orders": [
+      {
+        "symbol": "BTCUSDT",
+        "orderId": 20,
+        "clientOrderId": "CwOOIPHSmYywx6jZX77TdL"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "orderId": 21,
+        "clientOrderId": "461cPg51vQjV3zIMOXNz39"
+      }
+    ],
+    "orderReports": [
+      {
+        "symbol": "BTCUSDT",
+        "origClientOrderId": "CwOOIPHSmYywx6jZX77TdL",
+        "orderId": 20,
+        "orderListId": 1929,
+        "clientOrderId": "pXLV6Hz6mprAcVYpVMTGgx",
+        "price": "0.668611",
+        "origQty": "0.690354",
+        "executedQty": "0.000000",
+        "cummulativeQuoteQty": "0.000000",
+        "status": "CANCELED",
+        "timeInForce": "GTC",
+        "type": "STOP_LOSS_LIMIT",
+        "side": "BUY",
+        "stopPrice": "0.378131",
+        "icebergQty": "0.017083"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "origClientOrderId": "461cPg51vQjV3zIMOXNz39",
+        "orderId": 21,
+        "orderListId": 1929,
+        "clientOrderId": "pXLV6Hz6mprAcVYpVMTGgx",
+        "price": "0.008791",
+        "origQty": "0.690354",
+        "executedQty": "0.000000",
+        "cummulativeQuoteQty": "0.000000",
+        "status": "CANCELED",
+        "timeInForce": "GTC",
+        "type": "LIMIT_MAKER",
+        "side": "BUY",
+        "icebergQty": "0.639962"
+      }
+    ]
+  }
+]
+```
+
 ### Current open orders (USER_DATA)
 ```
 GET /api/v3/openOrders  (HMAC SHA256)
@@ -1584,6 +1697,9 @@ timestamp | LONG | YES |
       "free": "4763368.68006011",
       "locked": "0.00000000"
     }
+  ],
+    "permissions": [
+    "SPOT"
   ]
 }
 ```

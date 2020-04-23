@@ -14,7 +14,7 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# User Data Streams for Binance (2019-11-13)
+# User Data Streams for Binance (2020-04-25)
 # General WSS information
 * The base API endpoint is: **https://api.binance.com**
 * A User Data Stream `listenKey` is valid for 60 minutes after creation.
@@ -129,6 +129,9 @@ Account state is updated with the `outboundAccountInfo` event.
       "l": "0.00000000"
     }
   ]
+  "P": [                       // Account Permissions
+        "SPOT"
+  ]  
 }
 ```
 

@@ -1,4 +1,28 @@
-# CHANGELOG for Binance's API (2020-04-23)
+# CHANGELOG for Binance's API (2020-04-25)
+
+## 2020-04-25
+
+### REST API
+
+* New field `permissions`
+    * Defines the trading permissions that are allowed on accounts and symbols.
+    * `permissions` is an enum array; values:
+        * `SPOT` 
+        * `MARGIN`
+    * `permissions` will replace `isSpotTradingAllowed` and `isMarginTradingAllowed` on `GET api/v3/exchangeInfo` in future API versions (v4+).
+    * For an account to trade on a symbol, the account and symbol must share at least 1 permission in common.
+* Updates to `GET api/v3/exchangeInfo`
+    *  New field `permissions` added.
+    *  New field `quoteAssetPrecision` added; a duplicate of the `quotePrecision` field. `quotePrecision` will be removed in future API versions (v4+).
+* Updates to `GET api/v3/account`
+    * New field `permissions` added.
+* New endpoint `DELETE api/v3/openOrders`
+    * This will allow a user to cancel all open orders on a single symbol.
+    * This endpoint will cancel all open orders including OCO orders.
+* Orders can be canceled via the API on symbols in the `BREAK` or `HALT` status.
+
+### USER DATA
+* `OutboundAccountInfo` has new field `P` which shows the trading permissions of the account.
 
 ---
 
