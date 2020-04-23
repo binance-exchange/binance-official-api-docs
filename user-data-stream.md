@@ -128,7 +128,7 @@ Account state is updated with the `outboundAccountInfo` event.
       "f": "0.00000000",
       "l": "0.00000000"
     }
-  ]
+  ],
   "P": [                       // Account Permissions
         "SPOT"
   ]  
