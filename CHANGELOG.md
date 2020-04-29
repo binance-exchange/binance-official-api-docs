@@ -1,4 +1,4 @@
-# CHANGELOG for Binance's API (2020-04-25)
+# CHANGELOG for Binance's API (2020-05-01)
 
 ## 2020-05-01
 * From 2020-05-01 UTC 00:00, all symbols will have a limit of 200 open orders using the [MAX_NUM_ORDERS](https://github.com/binance-exchange/binance-official-api-docs/blob/master/rest-api.md#max_num_orders) filter.
