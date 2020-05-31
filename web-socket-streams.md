@@ -105,7 +105,7 @@
 
 
 ### Setting Properties
-Currently, the only property can be set is to set whether `combined` stream payloads are enabled or not.
+Currently, the only property that can be set is whether `combined` stream payloads are enabled or not.
 The combined property is set to `false` when connecting using `/ws/` ("raw streams") and `true` when connecting using `/stream/`.
 
 * Request
