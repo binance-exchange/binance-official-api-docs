@@ -31,7 +31,7 @@ NONE
 }
 ```
 
-## 延长lisenKey有效期
+## 延长listenKey有效期
 ```
 PUT /api/v1/userDataStream
 ```
@@ -173,5 +173,3 @@ event type统一为 `executionReport`
 * REJECTED 新订单被拒绝
 * TRADE 订单有新成交
 * EXPIRED 订单失效（根据订单的Time In Force参数）
-
-
