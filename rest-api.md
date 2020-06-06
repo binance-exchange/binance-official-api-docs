@@ -610,8 +610,7 @@ fromId | LONG | NO | TradeId to fetch from. Default gets most recent trades.
 ```
 GET /api/v3/aggTrades
 ```
-Get compressed, aggregate trades. Trades that fill at the time, from the same
-order, with the same price will have the quantity aggregated.
+Get compressed, aggregate trades. Trades that fill at the time, from the same taker order, with the same price will have the quantity aggregated.
 
 **Weight:**
 1
