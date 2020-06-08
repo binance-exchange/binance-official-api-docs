@@ -1276,7 +1276,7 @@ lots是拍卖术语，这个过滤器对订单中的`quantity`也就是数量参
 ```javascript
   {
     "filterType": "MAX_NUM_ORDERS",
-    "limit": 25
+    "maxNumOrders": 25
   }
 ```
 
