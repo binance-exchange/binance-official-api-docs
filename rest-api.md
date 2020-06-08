@@ -1939,7 +1939,7 @@ Note that both "algo" orders and normal orders are counted for this filter.
 ```javascript
 {
   "filterType": "MAX_NUM_ORDERS",
-  "limit": 25
+  "maxNumOrders": 25
 }
 ```
 
