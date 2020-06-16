@@ -152,7 +152,7 @@ The combined property is set to `false` when connecting using `/ws/` ("raw strea
 
 Error Message | Description
 ---|---
-{"code": 0, "msg": "Unknown property"} | Parameter used in the `SET_PROPERTY` or `GET_PROPERTY` was invalid
+{"code": 0, "msg": "Unknown property","id": %s} | Parameter used in the `SET_PROPERTY` or `GET_PROPERTY` was invalid
 {"code": 1, "msg": "Invalid value type: expected Boolean"} | Value should only be `true` or `false`
 {"code": 2, "msg": "Invalid request: property name must be a string"}| Property name provided was invalid
 {"code": 2, "msg": "Invalid request: request ID must be an unsigned integer"}| Parameter `id` had to be provided or the value provided in the `id` parameter is an unsupported type
