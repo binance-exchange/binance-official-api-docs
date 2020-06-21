@@ -198,7 +198,7 @@ server.
 
 
 ## SIGNED Endpoint Examples for POST /api/v3/order
-Here is a step-by-step example of how to send a vaild signed payload from the
+Here is a step-by-step example of how to send a valid signed payload from the
 Linux command line using `echo`, `openssl`, and `curl`.
 
 Key | Value
