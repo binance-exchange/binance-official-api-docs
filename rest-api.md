@@ -327,6 +327,12 @@ There is no & between "GTC" and "quantity=1".
 * TAKE_PROFIT_LIMIT
 * LIMIT_MAKER
 
+**Response JSON**
+
+* ACK
+* RESULT
+* FULL
+
 **Order side (side):**
 
 * BUY
