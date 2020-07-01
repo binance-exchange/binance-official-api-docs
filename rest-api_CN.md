@@ -189,6 +189,12 @@ There is no & between "GTC" and "quantity=1".
 * TAKE_PROFIT_LIMIT 限价止盈单
 * LIMIT_MAKER 限价做市单
 
+**订单返回类型:**
+
+* ACK
+* RESULT
+* FULL
+
 **订单方向:**
 
 * 买入

@@ -327,7 +327,7 @@ There is no & between "GTC" and "quantity=1".
 * TAKE_PROFIT_LIMIT
 * LIMIT_MAKER
 
-**Order Response Type (newOrderRespType)**
+**Order Response Type (newOrderRespType):**
 
 * ACK
 * RESULT
