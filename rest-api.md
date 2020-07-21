@@ -296,28 +296,38 @@ There is no & between "GTC" and "quantity=1".
 
 **Order status (status):**
 
-* NEW - The order has been accepted by the engine.
-* PARTIALLY_FILLED - A part of the order has been filled.
-* FILLED - The order has been completely filled.
-* CANCELED - The order has been canceled by the user.
-* PENDING_CANCEL (currently unused)
-* REJECTED - The order was not accepted by the engine and not processed.
-* EXPIRED - The order was canceled according to the order type's rules (e.g. LIMIT FOK orders with no fill, LIMIT IOC or MARKET orders that partially fill) or by the exchange, (e.g. orders canceled during liquidation, orders canceled during maintenance)
+Status | Description
+-----------| --------------
+`NEW` | The order has been accepted by the engine.
+`PARTIALLY_FILLED`| A part of the order has been filled.
+`FILLED` | The order has been completed.
+`CANCELED` | The order has been canceled by the user.
+` PENDING_CANCEL` | Currently unused
+`REJECTED`       | The order was not accepted by the engine and not processed.
+`EXPIRED` | The order was canceled according to the order type's rules (e.g. LIMIT FOK orders with no fill, LIMIT IOC or MARKET orders that partially fill) <br> or by the exchange, (e.g. orders canceled during liquidation, orders canceled during maintenance)
 
 **OCO Status (listStatusType):**
-* RESPONSE
-* EXEC_STARTED
-* ALL_DONE
+
+Status | Description
+-----------| --------------
+`RESPONSE` | This is used when the ListStatus is responding to a failed action. (E.g. Orderlist placement or cancellation)
+`EXEC_STARTED`| The order list has been placed or there is an update to the order list status.
+`ALL_DONE` | The order list has finished executing and thus no longer active.
 
 **OCO Order Status (listOrderStatus):**
-* EXECUTING
-* ALL_DONE
-* REJECT
+
+Status | Description
+-----------| --------------
+`EXECUTING` | Either an order list has been placed or there is an update to the status of the list.
+`ALL_DONE`| An order list has completed execution and thus no longer active. 
+`REJECT` | The List Status is responding to a failed action either during order placement or order canceled
 
 **ContingencyType**
 * OCO
 
 **Order types (orderTypes, type):**
+
+More information on how the order types definitions can be found here: [Types of Orders](https://www.binance.com/en/support/articles/360033779452-Types-of-Order)
 
 * LIMIT
 * MARKET
@@ -340,9 +350,13 @@ There is no & between "GTC" and "quantity=1".
 
 **Time in force (timeInForce):**
 
-* GTC
-* IOC
-* FOK
+This sets how long an order will be active before expiration.
+
+Status | Description
+-----------| --------------
+`GTC` | Good Til Canceled <br> An order will be on the book unless the order is canceled. 
+`IOC` | Immediate Or Cancel <br> An order will try to fill the order as much as it can before the order expires.
+`FOK`| Fill or Kill <br> An order will expire if the full order cannot be filled upon execution.
 
 **Kline/Candlestick chart intervals:**
 
