@@ -1372,7 +1372,8 @@ Additional Info:
 * Quantity Restrictions:
     * Both legs must have the same quantity.
     * ```ICEBERG``` quantities however do not have to be the same
-
+* Order Rate Limit
+    * `OCO` counts as 2 orders against the order rate limit. 
 
 **Response:**
 
