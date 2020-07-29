@@ -274,9 +274,12 @@ Note that the signature is different in example 3.
 There is no & between "GTC" and "quantity=1".
 
 # Public API Endpoints
-## Terminology
-* `base asset` refers to the asset that is the `quantity` of a symbol.
-* `quote asset` refers to the asset that is the `price` of a symbol.
+### Terminology
+
+These terms will be used throughout the documentation, so it is recommended especially for new users to read to help their understanding of the API.
+
+* `base asset` refers to the asset that is the `quantity` of a symbol. For the symbol BTCUSDT, BTC would be the `base asset`.
+* `quote asset` refers to the asset that is the `price` of a symbol. For the symbol BTCUSDT, USDT would be the `quote asset`.
 
 
 ## ENUM definitions
@@ -931,8 +934,12 @@ Other info:
 * `STOP_LOSS` and `TAKE_PROFIT` will execute a `MARKET` order when the `stopPrice` is reached.
 * Any `LIMIT` or `LIMIT_MAKER` type order can be made an iceberg order by sending an `icebergQty`.
 * Any order with an `icebergQty` MUST have `timeInForce` set to `GTC`.
-* `MARKET` orders using `quantity` specifies how much a user wants to buy or sell based on the market price.
-* `MARKET` orders using `quoteOrderQty` specifies the amount the user wants to spend (when buying) or receive (when selling) of the quote asset; the correct `quantity` will be determined based on the market liquidity and `quoteOrderQty`.
+* `MARKET` orders using the `quantity` field specifies the amount of the `base asset` the user wants to buy or sell at the market price.
+    * For example, sending a `MARKET` order on BTCUSDT will specify how much BTC the user is buying or selling.
+* `MARKET` orders using `quoteOrderQty` specifies the amount the user wants to spend (when buying) or receive (when selling) the `quote` asset; the correct `quantity` will be determined based on the market liquidity and `quoteOrderQty`.
+    * Using BTCUSDT as an example:
+        * On the `BUY` side, the order will buy as many BTC as `quoteOrderQty` USDT can.
+        * On the `SELL` side, the order will sell as much BTC needed to receive `quoteOrderQty` USDT.
 * `MARKET` orders using `quoteOrderQty` will not break `LOT_SIZE` filter rules; the order will execute a `quantity` that will have the notional value as close as possible to `quoteOrderQty`.
 
 Trigger order price rules against market price for both MARKET and LIMIT versions:
