@@ -909,39 +909,30 @@ timeInForce | ENUM | NO |
 quantity | DECIMAL | NO |
 quoteOrderQty|DECIMAL|NO|
 price | DECIMAL | NO |
-newClientOrderId | STRING | NO | A unique id for the order. Automatically generated if not sent.
+newClientOrderId | STRING | NO | A unique id among open orders. Automatically generated if not sent.<br> Orders with the same `newClientOrderID` can be accepted only when the previous one is filled, otherwise the order will be rejected.
 stopPrice | DECIMAL | NO | Used with `STOP_LOSS`, `STOP_LOSS_LIMIT`, `TAKE_PROFIT`, and `TAKE_PROFIT_LIMIT` orders.
 icebergQty | DECIMAL | NO | Used with `LIMIT`, `STOP_LOSS_LIMIT`, and `TAKE_PROFIT_LIMIT` to create an iceberg order.
 newOrderRespType | ENUM | NO | Set the response JSON. `ACK`, `RESULT`, or `FULL`; `MARKET` and `LIMIT` order types default to `FULL`, all other orders default to `ACK`.
-recvWindow | LONG | NO | The value cannot be greater than ```60000```
+recvWindow | LONG | NO |The value cannot be greater than ```60000```
 timestamp | LONG | YES |
 
-Additional mandatory parameters based on `type`:
+Some additional mandatory parameters based on order `type`:
 
-Type | Additional mandatory parameters
------------- | ------------
-`LIMIT` | `timeInForce`, `quantity`, `price`
-`MARKET` | `quantity` or `quoteOrderQty`
-`STOP_LOSS` | `quantity`, `stopPrice`
-`STOP_LOSS_LIMIT` | `timeInForce`, `quantity`,  `price`, `stopPrice`
-`TAKE_PROFIT` | `quantity`, `stopPrice`
-`TAKE_PROFIT_LIMIT` | `timeInForce`, `quantity`, `price`, `stopPrice`
-`LIMIT_MAKER` | `quantity`, `price`
+Type | Additional mandatory parameters | Additional Information
+------------ | ------------| ------
+`LIMIT` | `timeInForce`, `quantity`, `price`| 
+`MARKET` | `quantity` or `quoteOrderQty`| `MARKET` orders using the `quantity` field specifies the amount of the `base asset` the user wants to buy or sell at the market price. <br> E.g. MARKET order on BTCUSDT will specify how much BTC the user is buying or selling. <br><br> `MARKET` orders using `quoteOrderQty` specifies the amount the user wants to spend (when buying) or receive (when selling) the `quote` asset; the correct `quantity` will be determined based on the market liquidity and `quoteOrderQty`. <br> E.g. Using the symbol BTCUSDT: <br> `BUY` side, the order will buy as many BTC as `quoteOrderQty` USDT can. <br> `SELL` side, the order will sell as much BTC needed to receive `quoteOrderQty` USDT.
+`STOP_LOSS` | `quantity`, `stopPrice`| This will execute a `MARKET` order when the `stopPrice` is reached.
+`STOP_LOSS_LIMIT` | `timeInForce`, `quantity`,  `price`, `stopPrice` 
+`TAKE_PROFIT` | `quantity`, `stopPrice`| This will execute a `MARKET` order when the `stopPrice` is reached.
+`TAKE_PROFIT_LIMIT` | `timeInForce`, `quantity`, `price`, `stopPrice` | 
+`LIMIT_MAKER` | `quantity`, `price`| This is a `LIMIT` order that will be rejected if the order immediately matches and trades as a taker. <br> This is also known as a POST-ONLY order. 
 
 Other info:
 
-* `LIMIT_MAKER` are `LIMIT` orders that will be rejected if they would immediately match and trade as a taker.
-* `STOP_LOSS` and `TAKE_PROFIT` will execute a `MARKET` order when the `stopPrice` is reached.
 * Any `LIMIT` or `LIMIT_MAKER` type order can be made an iceberg order by sending an `icebergQty`.
 * Any order with an `icebergQty` MUST have `timeInForce` set to `GTC`.
-* `MARKET` orders using the `quantity` field specifies the amount of the `base asset` the user wants to buy or sell at the market price.
-    * For example, sending a `MARKET` order on BTCUSDT will specify how much BTC the user is buying or selling.
-* `MARKET` orders using `quoteOrderQty` specifies the amount the user wants to spend (when buying) or receive (when selling) the `quote` asset; the correct `quantity` will be determined based on the market liquidity and `quoteOrderQty`.
-    * Using BTCUSDT as an example:
-        * On the `BUY` side, the order will buy as many BTC as `quoteOrderQty` USDT can.
-        * On the `SELL` side, the order will sell as much BTC needed to receive `quoteOrderQty` USDT.
 * `MARKET` orders using `quoteOrderQty` will not break `LOT_SIZE` filter rules; the order will execute a `quantity` that will have the notional value as close as possible to `quoteOrderQty`.
-
 Trigger order price rules against market price for both MARKET and LIMIT versions:
 
 * Price above market price: `STOP_LOSS` `BUY`, `TAKE_PROFIT` `SELL`
