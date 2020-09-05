@@ -87,55 +87,8 @@ listenKey | STRING | YES
 
 # Web Socket Payloads
 ## Account Update
-Account state is updated with the `outboundAccountInfo` event.
 
-**Payload:**
-```javascript
-{
-  "e": "outboundAccountInfo",   // Event type
-  "E": 1499405658849,           // Event time
-  "m": 0,                       // Maker commission rate (bips)
-  "t": 0,                       // Taker commission rate (bips)
-  "b": 0,                       // Buyer commission rate (bips)
-  "s": 0,                       // Seller commission rate (bips)
-  "T": true,                    // Can trade?
-  "W": true,                    // Can withdraw?
-  "D": true,                    // Can deposit?
-  "u": 1499405658848,           // Time of last account update
-  "B": [                        // Balances array
-    {
-      "a": "LTC",               // Asset
-      "f": "17366.18538083",    // Free amount
-      "l": "0.00000000"         // Locked amount
-    },
-    {
-      "a": "BTC",
-      "f": "10537.85314051",
-      "l": "2.19464093"
-    },
-    {
-      "a": "ETH",
-      "f": "17902.35190619",
-      "l": "0.00000000"
-    },
-    {
-      "a": "BNC",
-      "f": "1114503.29769312",
-      "l": "0.00000000"
-    },
-    {
-      "a": "NEO",
-      "f": "0.00000000",
-      "l": "0.00000000"
-    }
-  ],
-  "P": [                       // Account Permissions
-        "SPOT"
-  ]  
-}
-```
-
-An additional event `outboundAccountPosition` is sent any time an account balance has changed and contains the assets that were possibly changed by the event that generated the balance change.
+`outboundAccountPosition` is sent any time an account balance has changed and contains the assets that were possibly changed by the event that generated the balance change.
 
 ```javascript
 {

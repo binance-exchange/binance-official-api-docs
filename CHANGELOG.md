@@ -1,4 +1,12 @@
-# CHANGELOG for Binance's API (2020-05-01)
+# CHANGELOG for Binance's API (2020-09-05)
+
+## 2020-09-05
+
+USER DATA STREAM
+
+* The event `outboundAccountInfo` will be removed from the User Data Stream.
+* The event `outboundAccountPosition` will still be available to receive any delta asset changes.
+* Users can query their full account information through GET `/api/v3/account`
 
 ## 2020-05-01
 * From 2020-05-01 UTC 00:00, all symbols will have a limit of 200 open orders using the [MAX_NUM_ORDERS](https://github.com/binance-exchange/binance-official-api-docs/blob/master/rest-api.md#max_num_orders) filter.
