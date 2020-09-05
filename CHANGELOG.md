@@ -1,6 +1,6 @@
-# CHANGELOG for Binance's API (2020-09-05)
+# CHANGELOG for Binance's API (2020-09-09)
 
-## 2020-09-05
+## 2020-09-09
 
 USER DATA STREAM
 
