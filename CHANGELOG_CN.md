@@ -1,4 +1,13 @@
-# 更新日志 (2020-05-01)
+# 更新日志 (2020-09-09)
+
+## 2020-09-09
+
+用户数据 STREAM
+
+* `outboundAccountInfo`事件将会被从用户Stream数据中删除。
+* `outboundAccountPosition`事件保持不变，还是会推送有变化的资产。
+* 用户可以从接口`GET /api/v3/account`中获取全部的用户资产信息。
+
 
 ## 2020-05-01
 * 从2020-05-01 UTC 00:00开始, 所有交易对都会有最多200个挂单的限制, 体现在过滤器[MAX_NUM_ORDERS](https://github.com/binance-exchange/binance-official-api-docs/blob/master/rest-api_CN.md#max_num_orders-%E6%9C%80%E5%A4%9A%E8%AE%A2%E5%8D%95%E6%95%B0)上.
