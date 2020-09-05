@@ -14,7 +14,7 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# User Data Streams for Binance (2020-04-25)
+# User Data Streams for Binance (2020-09-09)
 # General WSS information
 * The base API endpoint is: **https://api.binance.com**
 * A User Data Stream `listenKey` is valid for 60 minutes after creation.
@@ -205,4 +205,3 @@ If the order is an OCO, an event will be displayed named `ListStatus` in additio
   ]
 }
 ```
-
