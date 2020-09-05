@@ -1,4 +1,4 @@
-# Websocket账户接口 (2018-11-13)
+# Websocket账户接口 (2020-09-09)
 
 # 基本信息
 * 本篇所列出REST接口的baseurl **https://api.binance.com**
