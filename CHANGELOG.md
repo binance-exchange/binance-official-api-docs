@@ -4,9 +4,8 @@
 
 USER DATA STREAM
 
-* The event `outboundAccountInfo` will be removed from the User Data Stream.
-* The event `outboundAccountPosition` will still be available to receive any delta asset changes.
-* Users can query their full account information through GET `/api/v3/account`
+* `outboundAccountInfo` has been deprecated.
+* `outboundAccountInfo` will now only show the balance of non-zero assets and any asset that just changed to zero.
 
 ---
 
