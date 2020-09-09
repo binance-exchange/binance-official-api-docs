@@ -94,7 +94,8 @@ listenKey | STRING | YES
 }
 ```
 
-`outboundAccountInfo`事件不再推荐使用。
+**重要通知: `outboundAccountInfo` 事件不再推荐使用，以后可能会被删除。 <br> 推荐使用 `outboundAccountPosition` 事件.**
+
 `outboundAccountInfo`只推送余额不为0，以及余额刚变成0的资产。
 
 **Payload**
