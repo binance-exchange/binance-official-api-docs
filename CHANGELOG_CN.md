@@ -4,9 +4,8 @@
 
 用户数据 STREAM
 
-* `outboundAccountInfo`事件将会被从用户Stream数据中删除。
-* `outboundAccountPosition`事件保持不变，还是会推送有变化的资产。
-* 用户可以从接口`GET /api/v3/account`中获取全部的用户资产信息。
+* `outboundAccountInfo`事件不再推荐使用。
+* `outboundAccountInfo`只推送余额不为0，以及余额刚变成0的资产。
 
 ---
 
