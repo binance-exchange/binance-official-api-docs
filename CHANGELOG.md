@@ -5,7 +5,8 @@
 USER DATA STREAM
 
 * `outboundAccountInfo` has been deprecated.
-* `outboundAccountInfo` will now only show the balance of non-zero assets and any asset that just changed to zero.
+* `outboundAccountInfo` will be removed in the future. (Exact date unknown) **Please use `outboundAccountInfo` instead.**
+* `outboundAccountInfo` will now only show the balance of non-zero assets and assets that have been reduced to 0.
 
 ---
 

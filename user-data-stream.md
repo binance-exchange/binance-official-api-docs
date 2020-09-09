@@ -105,6 +105,8 @@ listenKey | STRING | YES
 }
 ```
 
+**IMPORTANT NOTE: `outboundAccountInfo` has been deprecated and will be removed in the future. <br> It is recommended to use `outboundAccountPosition` instead.**
+
 `outboundAccountInfo` shows the balance of non-zero assets and any asset that had recently been reduced to 0.
 
 ```javascript
