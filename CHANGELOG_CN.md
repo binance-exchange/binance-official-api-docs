@@ -5,6 +5,7 @@
 用户数据 STREAM
 
 * `outboundAccountInfo`事件不再推荐使用。
+* `outboundAccountInfo`事件以后会被删除(具体时间未定) **请使用 `outboundAccountPosition` 事件.**
 * `outboundAccountInfo`只推送余额不为0，以及余额刚变成0的资产。
 
 ---
