@@ -96,7 +96,9 @@ listenKey | STRING | YES
 
 **重要通知: `outboundAccountInfo` 事件不再推荐使用，以后可能会被删除。 <br> 推荐使用 `outboundAccountPosition` 事件.**
 
-`outboundAccountInfo`只推送余额不为0，以及余额刚变成0的资产。
+`outboundAccountInfo`只推送余额不为0，以及余额刚变成0的资产。<br />
+对于余额刚变成0的资产，只会被推送一次，后面如果此资产还是0，不会再推送。<br>
+任何没有出现在`outboundAccountInfo`消息中的资产，应该被考虑为余额是0.
 
 **Payload**
 
