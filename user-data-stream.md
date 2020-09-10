@@ -108,6 +108,8 @@ listenKey | STRING | YES
 **IMPORTANT NOTE: `outboundAccountInfo` has been deprecated and will be removed in the future. <br> It is recommended to use `outboundAccountPosition` instead.**
 
 `outboundAccountInfo` shows the balance of non-zero assets and any asset that had recently been reduced to 0.
+For assets recently reduced to 0, they will only be pushed once to notify the user has a zero balance and will not be pushed again.
+Any asset that is not included in the `outboundAccountInfo` should be considered having a balance of 0.
 
 ```javascript
 {
