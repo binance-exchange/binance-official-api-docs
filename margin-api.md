@@ -25,9 +25,9 @@
 * For `POST`, `PUT`, and `DELETE` endpoints, the parameters may be sent as a
   `query string` or in the `request body` with content type
   `application/x-www-form-urlencoded`. You may mix parameters between both the
-  `query string` and `request body` if you wish to do so.
-  ** Please note, that unlike for the REST API, if you omit to send the 
-  `Content-Type: application/x-www-form-urlencoded` header, your request will not be authorized. **
+  `query string` and `request body` if you wish to do so. 
+  **Please note, that unlike for the REST API, if you omit to send the 
+  `Content-Type: application/x-www-form-urlencoded` header, your request will not be authorized.**
 * Parameters may be sent in any order.
 * If a parameter sent in both the `query string` and `request body`, the
   `query string` parameter will be used.
