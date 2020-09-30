@@ -88,7 +88,7 @@ server.
 **It recommended to use a small recvWindow of 5000 or less!**
 
 
-## SIGNED Endpoint Examples for POST /sapi/v1/order
+## SIGNED Endpoint Examples for POST /sapi/v1/margin/order
 Here is a step-by-step example of how to send a vaild signed payload from the
 Linux command line using `echo`, `openssl`, and `curl`.
 
