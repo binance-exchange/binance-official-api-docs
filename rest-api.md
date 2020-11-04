@@ -1744,8 +1744,8 @@ recvWindow | LONG | NO | The value cannot be greater than ```60000```
 timestamp | LONG | YES |
 
 **Notes:**
-* If `fromId` is set, it will get orders >= that `fromId`.
-Otherwise most recent orders are returned.
+* If `fromId` is set, it will get trades >= that `fromId`.
+Otherwise most recent trades are returned.
 
 **Response:**
 ```javascript
