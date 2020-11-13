@@ -570,7 +570,7 @@ limit | INT | NO | Default 100; max 5000. Valid limits:[5, 10, 20, 50, 100, 500,
 ```
 GET /api/v3/trades
 ```
-Get recent trades (up to last 500).
+Get recent trades.
 
 **Weight:**
 1
