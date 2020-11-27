@@ -1,4 +1,12 @@
-# 更新日志 (2020-09-09)
+# 更新日志 (2020-11-27)
+
+## 2020-11-27
+
+为了优化性能，除了当前的`api.binance.com`，新加了一些API的集群。如果访问`api.binance.com`有性能问题，也可以尝试访问:
+
+* https://api1.binance.com/api/v3/*
+* https://api2.binance.com/api/v3/*
+* https://api3.binance.com/api/v3/*
 
 ## 2020-09-09
 
