@@ -10,7 +10,7 @@ If there are any performance issues with accessing `api.binance.com` please try 
 
 * https://api1.binance.com/api/v3/*
 * https://api2.binance.com/api/v3/*
-* https://api3.biance.com/api/v3/*
+* https://api3.binance.com/api/v3/*
 
 ## 2020-09-09
 
