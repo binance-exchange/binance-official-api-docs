@@ -1,6 +1,10 @@
-# REST行情与交易接口 (2020-03-24)
+# REST行情与交易接口 (2020-11-27)
 # 基本信息
 * 本篇列出REST接口的baseurl **https://api.binance.com**
+* 如果上面的baseURL访问有性能问题，请访问下面的API集群:
+  * **https://api1.binance.com**
+  * **https://api2.binance.com**
+  * **https://api3.binance.com**
 * 所有接口的响应都是JSON格式
 * 响应中如有数组，数组元素以时间升序排列，越早的数据越提前。
 * 所有时间、时间戳均为UNIX时间，单位为毫秒
