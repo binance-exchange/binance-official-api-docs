@@ -71,10 +71,14 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# Public Rest API for Binance (2020-04-25)
+# Public Rest API for Binance (2020-11-27)
 
 ## General API Information
 * The base endpoint is: **https://api.binance.com**
+* If there are performance issues with the endpoint above, these API clusters are also available:
+  * **https://api1.binnance.com**
+  * **https://api2.binance.com**
+  * **https://api3.binance.com**
 * All endpoints return either a JSON object or array.
 * Data is returned in **ascending** order. Oldest first, newest last.
 * All time and timestamp related fields are in **milliseconds**.

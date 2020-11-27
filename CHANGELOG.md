@@ -1,4 +1,16 @@
-# CHANGELOG for Binance's API (2020-09-09)
+# CHANGELOG for Binance's API (2020-11-27)
+
+## 2020-11-27
+
+New API clusters have been added in order to improve performance.
+
+Users can access any of the following API clusters, in addition to `api.binance.com`
+
+If there are any performance issues with accessing `api.binance.com` please try any of the following instead:
+
+* https://api1.binance.com/api/v3/*
+* https://api2.binance.com/api/v3/*
+* https://api3.biance.com/api/v3/*
 
 ## 2020-09-09
 
