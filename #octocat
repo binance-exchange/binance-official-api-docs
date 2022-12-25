@@ -1,0 +1,5 @@
+URL API Spot	URL mạng thử nghiệm tại chỗ
+https://api.binance.com/api	https://testnet.binance.vision/api
+wss://ws-api.binance.com/ws-api/v3	wss://testnet.binance.vision/ws-api/v3
+wss://stream.binance.com:9443/ws	wss://testnet.binance.vision/ws
+wss://stream.binance.com:9443/stream	wss://testnet.binance.vision/streamhis has been moved to [https://github.com/binance/binance-spot-api-docs/blob/master/errors.md](https://github.com/binance/binance-spot-api-docs/blob/master/errors.md)
