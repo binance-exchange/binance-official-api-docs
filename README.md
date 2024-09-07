@@ -1,3 +1,23 @@
+[binance date (2).md](https://github.com/user-attachments/files/16918953/binance.date.2.md)
+[docs.txt](https://github.com/user-attachments/files/16918952/docs.txt)
+![repository-open-graph-template](https://github.com/user-attachments/assets/ce7d0b47-9b79-44d9-a108-5465200f60ed)
+[README binance (2).md](https://github.com/user-attachments/files/16918951/README.binance.2.md)
+
+
+
+
+
+## diff --git a/README.md b/README.md deleted file mode 100644 index 6236fcd..0000000 --- a/README.md +++ /dev/null @@ -1,3 +0,0 @@ -## The Binance API documentation on Github has been moved to our official company repository: - -[https://github.com/binance/binance-spot-api-docs](https://github.com/binance/binance-spot-api-docs) diff --git a/README.md./File b/README.md./File new file mode 100644 index 0000000..0473848 --- /dev/null +++ b/README.md./File @@ -0,0 +1,143 @@ +## The Binance API documentation on Github has been moved to our official company repository: +[coinstats_template.csv](https://github.com/user-attachments/files/16918922/coinstats_template.csv) +[binance date (2).md](https://github.com/user-attachments/files/16918921/binance.date.2.md) +[docs.txt](https://github.com/user-attachments/files/16918920/docs.txt) +[adderall-prozac's Additions.csv](https://github.com/user-attachments/files/16918919/adderall-prozac.s.Additions.csv) +![repository-open-graph-template](https://github.com/user-attachments/assets/f7ee9b26-8054-43ec-b4ab-535134e11fda) +[export-0xdac17f958d2ee523a2206206994597c13d831ec7.csv](https://github.com/user-attachments/files/16918918/export-0xdac17f958d2ee523a2206206994597c13d831ec7.csv) +[README binance (2).md](https://github.com/user-attachments/files/16918917/README.binance.2.md) +[README (1).md](https://github.com/user-attachments/files/16918916/README.1.md) +[rest-api.md](https://github.com/user-attachments/files/16918915/rest-api.md) + +[https://github.com/binance/binance-spot-api-docs](https://github.com/binance/binance-spot-api-docs) +
++Bitcoin İşlemi + +05 Eyl 2024 08:32:13 GMT+3'te yayınlandı + +Karma Kimlik + +ed389ba92dbe13f7abd81c95dcfcc180e9bf8d30a660af7ff482d3c0fb94fd7d + +Miktar + +1,07047974BTC – 58.572,34$ + +Ücret + +30.600SATâ€¢ 16,74$ + +İtibaren + +bc1q2-lt76u + +İle + +2 Çıkış + +Onaylandı + +Bu işlem 277 Onay içeriyor. 860.036. Blokta çıkarıldı. + +Bu işlem verimlidir, herhangi bir sorun tespit edilmemiştir. + +Özet + +Bu işlem ilk olarak Bitcoin ağında 05 Eylül 2024'te 08:09 AM GMT+3'te yayınlandı. İşlemin şu anda ağda 277 onayı var. Bu işlemin güncel değeri şu anda 58.572,34 dolardır. + +Gelişmiş Ayrıntılar + +Doğramak + +ed38-fd7d + +Blok Kimliği + +860.036 + +Konum + +2 + +Zaman + +05 Eyl 2024 08:32:13 + +Yaş + +1g 21s 45dk 22sn + +Girişler + +1 + +Giriş Değeri + +1.07078574 BTC + +$58.589,08 + +Çıktılar + +2 + +Çıktı Değeri + +1.07047974 BTC + +$58.572,34 + +Ücret + +0.00030600 BTC + +$16.74 + +Ücret/B + +137.838 sat/B + +Ücret/VB + +217.021 sat/vBayt + +Boyut + +222 Bayt + +Ağırlık + +561 + +Ağırlık Birimi + +54.545 uydu/batı + +Coinbase + +HAYIR + +Tanık + +Evet + +RBF + +HAYIR + +Kilitlenme zamanı + +0 + +Sürüm + +2 + +BTC Fiyatı + +54.715,97 ABD doları + +
+
+```JSON
++{ "txid": "ed389ba92dbe13f7abd81c95dcfcc180e9bf8d30a660af7ff482d3c0fb94fd7d", "size": 222, "version": 2, "locktime": 0, "fee": 30600, "inputs": [ { "coinbase": false, "txid": "b365794d1748779789367c197128f14d51c4c840172762961773be49d14edb62", "output": 0, "sigscript": "", "sequence": 4294967293, "pkscript": "00145520a7134dd997a0c8c4289360ca39fbb6fbed2b", "değer": 107078574, "adres": "bc1q25s2wy6dmxt6pjxy9zfkpj3elwm0hmftvlt76u", "tanık": [ "304402207a5f50189519a04c7e10d0a26c40a810c8615316d611c1a87f2ac9c375efa49d022071701d8fdf84f27994b14d17c5e6a6422c46d393292aaca6970b6b68e9120f9101", "02158075747f9d1060e3c332ce254c80d69c758473d1d210e39317523fda404288" ] } ], "çıktılar": [ { "adres": "bc1qqlxcxl6k9d23pangnmpmprpwfanfl5dua0jtz0", "pkscript": "001407cd837f562b5510f6689ec3b08c2e4f669fd1bc", "değer": 69805500, "harcanan": true, "harcayan": { "txid": "e1f80e247fcda1ddf896580578f648551a601f3b083f7512f248efbc4f3e4411", "giriş": 0 } }, { "adres": "bc1qn6cvr347h9ymhpzcdlzr2ggp3zw5ta5yd08lwp", "pkscript": "00149eb0c1c6beb949bb84586fc4352101889d45f684", "değer": 37242474, "harcanan": true, "harcayan": { "txid": "78b847efb0afac6d309728821499ed2ee1f18b76cedfcbdccf28435550a5f800", "giriş": 1 } } ], "blok": { "yükseklik": 860036, "konum": 2 }, "silindi": false, "zaman": 1725557533, "rbf": false, "ağırlık": 561 }
+ + +
+
+```
+
+
+
 ## The Binance API documentation on Github has been moved to our official company repository:
 
 [https://github.com/binance/binance-spot-api-docs](https://github.com/binance/binance-spot-api-docs)
