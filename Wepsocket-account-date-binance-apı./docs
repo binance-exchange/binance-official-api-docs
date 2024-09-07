@@ -1,0 +1,131 @@
+
+Bitcoin Transaction
+
+Broadcasted on 05 Sep 2024 08:32:13 GMT+3
+
+Hash ID
+
+ed389ba92dbe13f7abd81c95dcfcc180e9bf8d30a660af7ff482d3c0fb94fd7d
+
+Amount
+
+1.07047974BTC• $58,572.34
+
+Fee
+
+30,600SATS• $16.74
+
+From
+
+bc1q2-lt76u
+
+To
+
+2 Outputs
+
+Confirmed
+
+This transaction has 277 Confirmations. It was mined in Block 860,036
+
+This transaction is efficient, no issues detected.
+
+Summary
+
+This transaction was first broadcasted on the Bitcoin network on September 05, 2024 at 08:09 AM GMT+3. The transaction currently has 277 confirmations on the network. The current value of this transaction is now $58,572.34.
+
+Advanced Details
+
+Hash
+
+ed38-fd7d 
+
+Block ID
+
+860,036
+
+Position
+
+2
+
+Time
+
+05 Sep 2024 08:32:13
+
+Age
+
+1d 21h 45m 22s
+
+Inputs
+
+1
+
+Input Value
+
+1.07078574 BTC
+
+$58,589.08
+
+Outputs
+
+2
+
+Output Value
+
+1.07047974 BTC
+
+$58,572.34
+
+Fee
+
+0.00030600 BTC
+
+$16.74
+
+Fee/B
+
+137.838 sat/B
+
+Fee/VB
+
+217.021 sat/vByte
+
+Size
+
+222 Bytes
+
+Weight
+
+561
+
+Weight Unit
+
+54.545 sat/WU
+
+Coinbase
+
+No
+
+Witness
+
+Yes
+
+RBF
+
+No
+
+Locktime
+
+0
+
+Version
+
+2
+
+BTC Price
+
+$54,715.97
+
+```JSON
+{ "txid": "ed389ba92dbe13f7abd81c95dcfcc180e9bf8d30a660af7ff482d3c0fb94fd7d", "size": 222, "version": 2, "locktime": 0, "fee": 30600, "inputs": [ { "coinbase": false, "txid": "b365794d1748779789367c197128f14d51c4c840172762961773be49d14edb62", "output": 0, "sigscript": "", "sequence": 4294967293, "pkscript": "00145520a7134dd997a0c8c4289360ca39fbb6fbed2b", "value": 107078574, "address": "bc1q25s2wy6dmxt6pjxy9zfkpj3elwm0hmftvlt76u", "witness": [ "304402207a5f50189519a04c7e10d0a26c40a810c8615316d611c1a87f2ac9c375efa49d022071701d8fdf84f27994b14d17c5e6a6422c46d393292aaca6970b6b68e9120f9101", "02158075747f9d1060e3c332ce254c80d69c758473d1d210e39317523fda404288" ] } ], "outputs": [ { "address": "bc1qqlxcxl6k9d23pangnmpmprpwfanfl5dua0jtz0", "pkscript": "001407cd837f562b5510f6689ec3b08c2e4f669fd1bc", "value": 69805500, "spent": true, "spender": { "txid": "e1f80e247fcda1ddf896580578f648551a601f3b083f7512f248efbc4f3e4411", "input": 0 } }, { "address": "bc1qn6cvr347h9ymhpzcdlzr2ggp3zw5ta5yd08lwp", "pkscript": "00149eb0c1c6beb949bb84586fc4352101889d45f684", "value": 37242474, "spent": true, "spender": { "txid": "78b847efb0afac6d309728821499ed2ee1f18b76cedfcbdccf28435550a5f800", "input": 1 } } ], "block": { "height": 860036, "position": 2 }, "deleted": false, "time": 1725557533, "rbf": false, "weight": 561 }
+
+```
