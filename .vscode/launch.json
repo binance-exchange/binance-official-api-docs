@@ -1,0 +1,100 @@
+{
+    // Olası öznitelikler hakkında bilgi edinmek için IntelliSense kullanın.
+    // Mevcut özniteliklerin açıklamalarını görüntülemek için üzerine gelin.
+    // Daha fazla bilgi için şu adresi ziyaret edin: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+    {
+
+        "command": "npm start",
+        "name": "Run npm start",
+        "request": "launch",
+        "type": "node-terminal"
+    },
+        {
+   
+            "name": "Attach by Process ID",
+            "processId": "${command:PickProcess}",
+            "request": "attach",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],// Do not change function name.
+            const actionFn = async (context, blockEvent) => {
+                console.log(blockEvent)
+            
+                // To access project's secret
+                // let secret = await context.secrets.get('MY-SECRET')
+            
+                // To access project's storage
+                // let value = await context.storage.getStr('MY-KEY')
+                // await context.storage.putStr('MY-KEY', 'MY-VALUE')
+            
+                // Your logic goes here :)
+            }
+            // Do not change this.
+            module.exports = { actionFn }
+            "type": "node"
+        },
+        {
+            // Olası öznitelikler hakkında bilgi edinmek için IntelliSense kullanın.
+            // Mevcut özniteliklerin açıklamalarını görüntülemek için üzerine gelin.
+            // Daha fazla bilgi için şu adresi ziyaret edin: https://go.microsoft.com/fwlink/?linkid=830387
+            "version": "0.2.0",
+            "configurations": [
+                {
+                    "name": "Launch Chrome",
+                    "request": "launch",
+                    "type": "chrome",
+                    "url": "http://localhost:8080",
+                    "webRoot": "
+                    "
+                },
+                {
+                    "command": "npm start",
+                    "name": "Run npm start",
+                    "request": "launch",
+                    "type": "node-terminal"
+                },
+                {
+                    "name": "Launch Chrome",
+                    "request": "launch",
+                    "type": "chrome",
+                    "url": "http://localhost:8080",
+                    "webRoot": "${workspaceFolder}"
+                },
+                {
+                    "type": "node",
+                    "request": "launch",
+                    "name": "Programı Başlat",
+                    "skipFiles": [
+                        "<node_internals>/**"
+                    ],
+                    "program": "${file}"
+                }
+            ]
+        }// Do not change function name.
+const actionFn = async (context, blockEvent) => {
+    console.log(blockEvent)
+
+    // To access project's secret
+    // let secret = await context.secrets.get('MY-SECRET')
+
+    // To access project's storage
+    // let value = await context.storage.getStr('MY-KEY')
+    // await context.storage.putStr('MY-KEY', 'MY-VALUE')
+
+    // Your logic goes here :)
+}
+// Do not change this.
+module.exports = { actionFn }
+        {
+            "type": "chrome",
+            "request": "launch",
+   
+   
+            "name": "Chrome'u localhost'ta başlat",
+            "url": "http://localhost:8080",
+            "webRoot": "${workspaceFolder}"
+        }
+    ]
+}
